@@ -172,13 +172,7 @@ properties:
     scope: event
     type: enum
     values: [share_sheet, link_copied, in_app]
-    description: How the user shared. share_sheet for the system share sheet, in_app for a sharing feature of the app itself.
-    stability: development
-  - name: share_destination
-    scope: event
-    type: enum
-    values: [message, social, email, other]
-    description: Where the share went. Sent only when the chosen target is known, on iOS, and on Android when the app gets the choice back from the share chooser (possible since Android 5.1).
+    description: How the user started the share. share_sheet for the system share sheet, in_app for a sharing feature of the app itself.
     stability: development
   - name: content_type
     scope: event

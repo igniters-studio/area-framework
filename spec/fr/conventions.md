@@ -16,11 +16,11 @@ Ce choix diffère de la [spec Segment](https://www.twilio.com/docs/segment/conne
 
 | ✅ À faire | ❌ À éviter | Pourquoi |
 |---|---|---|
-| `content_shared` | `share_button_tapped` | Le partage peut partir de trois boutons. Le tap ne dit pas si le partage a eu lieu |
+| `purchase_completed` | `buy_button_tapped` | L'achat peut partir de plusieurs boutons. Le tap ne dit pas si l'achat a abouti |
 | `permission_granted` + `permission_type: "camera"` | `camera_permission_granted` | La valeur va dans une propriété, sinon chaque nouvelle autorisation crée un event |
 | `request_submitted` + `screen_name: "home"` | `home_request_button_tapped` | L'écran d'origine est un contexte, pas un event |
 
-Une interaction devient un event seulement quand elle est elle-même ce que mesure le KPI. C'est le cas de l'Advocacy : l'app ne peut pas voir si l'utilisateur a vraiment recommandé l'app, donc l'invitation envoyée (`invite_shared`) est le résultat qu'on mesure.
+Une interaction devient un event seulement quand elle est elle-même ce que mesure le KPI. C'est le cas de l'Advocacy : l'app ne peut pas voir si l'utilisateur a vraiment recommandé l'app, donc l'invitation lancée (`invite_shared`) est ce qu'on mesure, sans savoir si elle a abouti.
 
 **Un vocabulaire de verbes commun.** Le même verbe a le même sens partout. Un nouveau verbe n'entre dans le vocabulaire qu'avec un sens qui ne recouvre aucun des autres. Ce vocabulaire fermé vaut pour les noms d'events. Les valeurs d'une propriété ne suivent pas ce vocabulaire de verbes, comme `roadmap_voted`.
 
@@ -41,7 +41,7 @@ Une interaction devient un event seulement quand elle est elle-même ce que mesu
 | `answered` | L'utilisateur répond à une question fermée posée par l'app | `satisfaction_prompt_answered`, `nps_answered` |
 | `submitted` | L'utilisateur envoie un contenu qu'il a composé | `request_submitted` |
 | `contributed` | L'utilisateur apporte une contribution au produit | `co_creation_contributed` |
-| `shared` | L'utilisateur envoie quelque chose à une autre personne | `content_shared`, `invite_shared` |
+| `shared` | L'utilisateur lance un partage vers une autre personne. L'app ne sait pas s'il a abouti | `content_shared`, `invite_shared` |
 | `applied` | Un code est appliqué au compte de l'utilisateur, tapé par lui ou porté par un lien | `referral_code_applied` |
 | `received` | L'utilisateur reçoit quelque chose de l'app | `reward_received` |
 | `triggered` | L'app appelle un dispositif du système, qui décide seul de l'afficher | `review_prompt_triggered` |

@@ -195,10 +195,9 @@ events:
     pillar: advocacy
     layer: mechanic
     mechanic: referral
-    when: The user sends an invitation or their referral link. Where the platform does not report the chosen target, sent when the share sheet opens, and the tracking plan says so.
+    when: The user starts sharing an invitation or their referral link. Sent when the share starts (share sheet opened, link copied, in-app share sent), on every platform. Whether the share went through is never known.
     properties:
       required: [share_method]
-      optional: [share_destination]   # when the platform reports the chosen target
     stability: development
 
   - name: referral_link_opened
@@ -223,10 +222,9 @@ events:
     pillar: advocacy
     layer: mechanic
     mechanic: content_sharing
-    when: The user shares content from the app. Where the platform does not report the chosen target, sent when the share sheet opens, and the tracking plan says so.
+    when: The user starts sharing content from the app. Sent when the share starts (share sheet opened, link copied, in-app share sent), on every platform. Whether the share went through is never known.
     properties:
       required: [content_type, share_method]
-      optional: [share_destination]   # when the platform reports the chosen target
     stability: development
 
   - name: co_creation_contributed

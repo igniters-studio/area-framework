@@ -144,7 +144,6 @@ Le plan de tracking est le document de l'app qui dit ce qu'elle trace et pourquo
 - **Les mécaniques présentes dans l'app**, donc les events qui deviennent obligatoires.
 - **Les listes fermées propres à l'app** : `feature_name`, `screen_name`, `step_name`, `content_type`.
 - **Les events hérités**, et le rôle AREA que chacun joue.
-- **Les choix par plateforme**, comme le moment où part un partage sur Android.
 - **Les changements de dispositif** qui touchent un KPI, comme la fréquence de la question de satisfaction.
 - **Les questions propres à l'app**, et les events qui y répondent.
 

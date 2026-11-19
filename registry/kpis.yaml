@@ -200,8 +200,8 @@ kpis:
     requires_properties: [satisfaction_answer, nps_score]
     requires_mechanics: { any_of: [satisfaction_prompt, nps, referral] }
     verdicts:
-      measurable: A satisfaction question, an NPS or an invitation exists, and its events say what the user did.
-      partial: A satisfaction question, an NPS or an invitation exists, but its events are tracked on the tap instead of the result, or are missing on some surfaces.
+      measurable: A satisfaction question, an NPS or an invitation exists, and its events say what the user did (answer given, share started).
+      partial: A satisfaction question, an NPS or an invitation exists, but its events fire before the user acts (the question shown instead of the answer given, the invite screen opened instead of the share started), or are missing on some surfaces.
       not_measurable: No satisfaction question, no NPS and no invitation. Content sharing, co-creation or the review prompt alone are not enough.
     stability: development
 
@@ -264,7 +264,7 @@ kpis:
   - id: referral_rate
     pillar: advocacy
     name: Referral rate
-    definition: Share of active users who send at least one invitation in the period.
+    definition: Share of active users who start at least one invitation in the period.
     population: active_users
     inputs: [app_opened, core_action_completed, invite_shared]
     requires_mechanics: { any_of: [referral] }
@@ -283,7 +283,7 @@ kpis:
   - id: referred_per_referrer
     pillar: advocacy
     name: Referred users per referrer
-    definition: Users who apply a referral code over users who sent at least one invitation, on the same rolling 30-day window. Indicative, an invitation and the code that follows may fall in two windows.
+    definition: Users who apply a referral code over users who started at least one invitation, on the same rolling 30-day window. Indicative, an invitation and the code that follows may fall in two windows.
     window: { rolling_days: 30 }
     inputs: [invite_shared, referral_code_applied]
     requires_mechanics: { any_of: [referral] }
