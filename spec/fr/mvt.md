@@ -1,5 +1,7 @@
 # Minimum Viable Tracking
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../mvt.md).*
+
 Le Minimum Viable Tracking est le tracking qu'AREA attend de toute app pour lire ses quatre piliers. Il se construit en trois couches : les Fondations, un socle d'events commun à toutes les apps, et les events des mécaniques que l'app contient. Pour une app courante, il compte une douzaine d'events, et il en tire plus d'une quinzaine de KPI.
 
 **La règle :** chaque event existe parce qu'un KPI en a besoin. Seul l'event des Fondations fait exception : `analytics_consent_granted` sert la conformité et la fiabilité, pas un KPI. Le Minimum Viable Tracking ne cherche pas à tout tracer. Il cherche à pouvoir répondre, de façon fiable, aux questions que toute app se pose.

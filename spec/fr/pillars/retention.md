@@ -1,5 +1,7 @@
 # Rétention
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/retention.md).*
+
 > Reviennent-ils faire ce pour quoi l'app existe ?
 
 La rétention est le signal le plus honnête de la valeur d'une app. Des milliers d'installations ne valent rien si personne ne revient la semaine suivante. Dans AREA, revenir ne veut pas dire rouvrir l'app : un utilisateur est retenu quand il revient réaliser l'action cœur (voir [l'action cœur](engagement.md#laction-cœur)).

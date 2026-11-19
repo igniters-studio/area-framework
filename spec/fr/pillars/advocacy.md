@@ -1,5 +1,7 @@
 # Advocacy
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/advocacy.md).*
+
 > Sont-ils prêts à la recommander ?
 
 Un utilisateur satisfait est le canal de croissance le moins cher : il recommande l'app, la partage, participe à son amélioration. L'Advocacy mesure cette disposition. Elle prend deux formes : **recommander** l'app autour de soi, et **contribuer** à son évolution en proposant ou en votant pour des features. Le pilier reprend l'idée du Referral d'AARRR, mesurée là où l'app peut la voir.
@@ -33,7 +35,7 @@ Le pilier vaut pour toutes les apps, mais il ne se mesure que si l'app offre au 
 | **Unité** | Des utilisateurs distincts |
 | **Volume** | Le nombre d'utilisateurs qui ont exprimé une intention dans la période |
 
-Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : poser la question de satisfaction deux fois plus souvent fera monter le KPI sans que rien n'ait changé. Il ne se compare donc dans le temps qu'à fréquence et moments constants. Tout changement se note dans le plan de tracking. Une invitation lancée puis abandonnée compte aussi comme une intention : l'app ne voit pas la suite. Le comparer d'une app à l'autre n'a pas de sens.
+Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : poser la question de satisfaction deux fois plus souvent fera monter le KPI sans que rien n'ait changé. Il ne se compare donc dans le temps qu'à fréquence et moments constants. Tout changement se note dans le plan de tracking. Le comparer d'une app à l'autre n'a pas de sens. Une invitation lancée puis abandonnée compte aussi comme une intention : l'app ne voit pas la suite.
 
 | Verdict | Condition |
 |---|---|

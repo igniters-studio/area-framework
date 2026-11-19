@@ -1,5 +1,7 @@
 # Activation
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/activation.md).*
+
 > Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ?
 
 Un utilisateur qui n'a pas perçu la valeur de l'app ne reviendra pas, quelle que soit la qualité du produit. L'activation mesure ce passage : le moment où l'utilisateur obtient pour la première fois ce que l'app promet. Ce pilier s'appuie sur l'action cœur, définie avec l'[Engagement](engagement.md#laction-cœur). La [Rétention](retention.md#activés-et-non-activés) s'appuie à son tour sur l'Activation pour séparer les utilisateurs activés des non activés.

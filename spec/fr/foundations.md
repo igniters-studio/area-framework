@@ -1,5 +1,7 @@
 # Fondations
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../foundations.md).*
+
 Les fondations ne mesurent rien à elles seules. Elles rendent les KPI fiables : si l'une d'elles est cassée, tous les piliers le sont, quelle que soit la qualité des events. On les vérifie donc avant les piliers.
 
 Elles sont au nombre de quatre : l'identité, les propriétés communes, le consentement et la séparation des données de test.

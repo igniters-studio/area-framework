@@ -1,5 +1,7 @@
 # Conventions
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../conventions.md).*
+
 Ces conventions s'appliquent à tout nouvel event et à toute nouvelle propriété. Elles visent le code qu'on écrit, pas le tracking déjà en place : un event existant dont le sens est juste garde son nom (voir [Renommer et faire évoluer](#renommer-et-faire-évoluer)).
 
 Les noms d'events et de propriétés s'écrivent en anglais, quelle que soit la langue de l'app.

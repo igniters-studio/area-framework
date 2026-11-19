@@ -1,5 +1,7 @@
 # Engagement
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/engagement.md).*
+
 > Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ?
 
 Ouvrir une app n'est pas l'utiliser. Un utilisateur peut revenir tous les jours, jeter un œil et repartir sans jamais faire ce pour quoi l'app existe. L'Engagement mesure l'usage réel : l'action cœur, sa fréquence, et les features qui comptent. Le pilier vient de [HEART](https://research.google.com/pubs/archive/36299.pdf), où il mesure l'implication de l'utilisateur. AREA le recentre sur l'action cœur, parce que c'est elle qui fait la valeur d'une app mobile.

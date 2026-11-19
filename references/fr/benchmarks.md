@@ -1,5 +1,7 @@
 # Benchmarks
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](../benchmarks.md).*
+
 Vérifié le 19 novembre 2026
 
 Cette page donne des repères du marché pour situer une app. Elle ne fait pas partie de la spec : ses chiffres changent à chaque trimestre, alors que les règles d'AREA, elles, restent stables d'une version à l'autre.

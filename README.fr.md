@@ -1,5 +1,7 @@
 # AREA Framework
 
+*Traduction de v0.1.0. La version anglaise fait référence : [English](README.md).*
+
 **Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
 
 `v0.1.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
