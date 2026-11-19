@@ -1,30 +1,32 @@
 # Changelog
 
-Tous les changements notables d'AREA sont notés dans ce fichier.
+All notable changes to AREA are recorded in this file.
 
-Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et AREA suit le
-[versionnement sémantique](https://semver.org/lang/fr/).
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and AREA follows
+[semantic versioning](https://semver.org/).
 
-## [0.1.0] - non publiée
+## [0.1.0] - unreleased
 
-Première version publique d'AREA. Toutes les entrées du registre sont en `development`.
+First public version of AREA. Every registry entry is in `development`.
 
-### Ajouté
+### Added
 
-- **Manifeste** : pourquoi AREA part des objectifs business et non des events.
-- **Conventions** : nommage des events et des propriétés, vocabulaire de verbes, noms réservés,
-  stabilité et versions.
-- **Fondations** : identité, propriétés communes, consentement, séparation des données de test.
-- **Quatre piliers**, chacun avec son KPI de référence, son volume et ses verdicts (mesurable,
-  partiel, non mesurable) :
-  - Activation : taux d'activation ;
-  - Rétention : rétention cœur ;
-  - Engagement : taux d'usage cœur ;
-  - Advocacy : taux d'intention de recommandation.
-- **Minimum Viable Tracking** en trois couches : les Fondations, un socle de trois events
-  (`app_opened`, `aha_moment_reached`, `core_action_completed`), et les events liés aux mécaniques
-  de l'app.
-- **Registre YAML** (`registry/`) : nommage, piliers, mécaniques, propriétés, events et KPI, lisibles
-  par une machine.
-- **Script de validation** du registre (`scripts/validate_registry.py`).
-- **Benchmarks** (`references/`), hors spec.
+- **Manifesto**: why AREA starts from business goals rather than from events.
+- **Conventions**: naming of events and properties, verb vocabulary, reserved names, stability and
+  versions.
+- **Foundations**: identity, common properties, consent, separation of test data.
+- **Four pillars**, each with its reference KPI, its volume and its verdicts (measurable, partial,
+  not measurable):
+  - Activation: activation rate;
+  - Retention: core retention;
+  - Engagement: core usage rate;
+  - Advocacy: advocacy intent rate.
+- **Minimum Viable Tracking** in three layers: the Foundations, a core of three events
+  (`app_opened`, `aha_moment_reached`, `core_action_completed`), and the events attached to the
+  app's mechanics.
+- **YAML registry** (`registry/`): naming, pillars, mechanics, properties, events and KPIs, in
+  machine-readable form.
+- **Validation script** for the registry (`scripts/validate_registry.py`).
+- **Benchmarks** (`references/`), outside the spec.
+- **Two languages**: English, the reference version, and a French translation (`spec/fr/`,
+  `references/fr/`, `README.fr.md`).
