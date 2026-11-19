@@ -17,12 +17,12 @@ Ce choix diffère de la [spec Segment](https://www.twilio.com/docs/segment/conne
 | ✅ À faire | ❌ À éviter | Pourquoi |
 |---|---|---|
 | `content_shared` | `share_button_tapped` | Le partage peut partir de trois boutons. Le tap ne dit pas si le partage a eu lieu |
-| `plan_selected` + `user_plan: "pro"` | `pro_plan_selected` | La valeur va dans une propriété, sinon chaque nouvelle offre crée un event |
+| `permission_granted` + `permission_type: "camera"` | `camera_permission_granted` | La valeur va dans une propriété, sinon chaque nouvelle autorisation crée un event |
 | `request_submitted` + `screen_name: "home"` | `home_request_button_tapped` | L'écran d'origine est un contexte, pas un event |
 
 Une interaction devient un event seulement quand elle est elle-même ce que mesure le KPI. C'est le cas de l'Advocacy : l'app ne peut pas voir si l'utilisateur a vraiment recommandé l'app, donc l'invitation envoyée (`invite_shared`) est le résultat qu'on mesure.
 
-**Un vocabulaire de verbes commun.** Le même verbe a le même sens partout. Un nouveau verbe n'entre dans le vocabulaire qu'avec un sens qui ne recouvre aucun des autres. Ce vocabulaire fermé vaut pour les noms d'events. Les valeurs d'une propriété restent des mots libres, comme `roadmap_voted`.
+**Un vocabulaire de verbes commun.** Le même verbe a le même sens partout. Un nouveau verbe n'entre dans le vocabulaire qu'avec un sens qui ne recouvre aucun des autres. Ce vocabulaire fermé vaut pour les noms d'events. Les valeurs d'une propriété ne suivent pas ce vocabulaire de verbes, comme `roadmap_voted`.
 
 | Verbe | Sens | Exemple |
 |---|---|---|
@@ -42,7 +42,7 @@ Une interaction devient un event seulement quand elle est elle-même ce que mesu
 | `submitted` | L'utilisateur envoie un contenu qu'il a composé | `request_submitted` |
 | `contributed` | L'utilisateur apporte une contribution au produit | `co_creation_contributed` |
 | `shared` | L'utilisateur envoie quelque chose à une autre personne | `content_shared`, `invite_shared` |
-| `applied` | L'utilisateur applique un code | `referral_code_applied` |
+| `applied` | Un code est appliqué au compte de l'utilisateur, tapé par lui ou porté par un lien | `referral_code_applied` |
 | `received` | L'utilisateur reçoit quelque chose de l'app | `reward_received` |
 | `triggered` | L'app appelle un dispositif du système, qui décide seul de l'afficher | `review_prompt_triggered` |
 

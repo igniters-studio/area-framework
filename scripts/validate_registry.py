@@ -41,22 +41,26 @@ def load(root):
     return data
 
 
-def check_nulls(node, where):
+def is_empty(value):
+    return value is None or (isinstance(value, str) and not value.strip())
+
+
+def check_empty(node, where):
     # An unquoted comma inside a flow mapping, e.g. { notes: a, b }, ends the entry:
     # "b" becomes a key with no value. YAML loads it as null without complaint.
     if isinstance(node, dict):
         for key, value in node.items():
             path = f"{where}.{key}"
-            if key is None or value is None:
+            if is_empty(key) or is_empty(value):
                 error(f"{path}: empty key or value, check the YAML (quote text that contains a comma or a colon)")
             else:
-                check_nulls(value, path)
+                check_empty(value, path)
     elif isinstance(node, list):
         for i, item in enumerate(node):
-            if item is None:
+            if is_empty(item):
                 error(f"{where}[{i}]: empty item")
             else:
-                check_nulls(item, f"{where}[{i}]")
+                check_empty(item, f"{where}[{i}]")
 
 
 def check_versions(data):
@@ -84,7 +88,10 @@ def main():
         report()
         return
     for name, d in data.items():
-        check_nulls(d, name)
+        check_empty(d, name)
+    if errors:
+        report()   # the other checks assume well-formed entries
+        return
     check_versions(data)
 
     naming = data["naming"]

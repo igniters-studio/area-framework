@@ -27,7 +27,7 @@ events:
     submitted: The user sends content they composed
     contributed: The user makes a contribution to the product
     shared: The user sends something to another person
-    applied: The user applies a code
+    applied: A code is applied to the user's account, typed by the user or carried by a link
     received: The user receives something from the app
     triggered: The app calls a system feature, which alone decides whether to show it
 

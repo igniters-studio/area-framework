@@ -166,7 +166,8 @@ kpis:
     name: Core retention of activated and non-activated users
     definition: core_retention of activated users and of the other new users of the same period, both measured from the first launch and read after the activation window closes. A correlation, never a promised gain.
     cohort: new_users
-    read_at: { default: [D7, D30], notes: "Read after the activation window closes; D7 and D30 for the default 7-day window." }
+    read_at: [D7, D30]
+    notes: "read_at is for the default 7-day window. The KPI is read after the activation window closes."
     inputs: [app_opened, aha_moment_reached, core_action_completed]
     requires_properties: [is_first_launch, aha_version]
     stability: development
@@ -174,9 +175,9 @@ kpis:
   - id: return_channels
     pillar: retention
     name: Returns by channel
-    definition: Split of the app_opened that are not a first launch, by entry_point. notification_opened and deep_link_opened detail which notification or link.
+    definition: Split of the app_opened that are not a first launch, by entry_point. notification_opened, deep_link_opened and referral_link_opened detail which notification or link.
     inputs: [app_opened]
-    optional_inputs: [notification_opened, deep_link_opened]
+    optional_inputs: [notification_opened, deep_link_opened, referral_link_opened]
     requires_properties: [entry_point, is_first_launch]
     stability: development
 
@@ -272,7 +273,7 @@ kpis:
   - id: referral_link_conversion
     pillar: advocacy
     name: Referral link conversion
-    definition: Share of users who emit referral_link_opened and then referral_code_applied within 30 days, read at D7 and D30. The gap between D7 and D30 says whether a reminder to the referred user is worth it.
+    definition: Share of users who emit referral_link_opened and then referral_code_applied within 30 days of referral_link_opened, read at D7 and D30 counted from that event, not from the first launch. The gap between D7 and D30 says whether a reminder to the referred user is worth it.
     window: { days: 30 }
     read_at: [D7, D30]
     inputs: [referral_link_opened, referral_code_applied]

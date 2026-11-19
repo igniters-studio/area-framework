@@ -65,7 +65,7 @@ Les deux cohortes partent du même jour, et la rétention se lit après la fin d
 | KPI | Définition |
 |---|---|
 | **Rétention d'ouverture** | Part de la cohorte qui émet au moins un `app_opened` le jour N. C'est le chiffre à comparer aux benchmarks du marché, avec deux écarts connus : la cohorte ne compte pas les installations jamais ouvertes, et elle ne contient que les utilisateurs qui ont accepté la mesure (voir [le consentement](../foundations.md#3-le-consentement)) |
-| **Rétention des activés et des non activés** | La rétention cœur des deux cohortes, à J7 et J30 |
+| **Rétention des activés et des non activés** | La rétention cœur des deux cohortes, lue après la fin de la fenêtre d'activation (J7 et J30 pour la fenêtre par défaut) |
 | **Retours par canal** | Répartition des `app_opened` qui ne sont pas un premier lancement, par `entry_point` : l'icône, un widget ou un raccourci, une notification, un lien. Une part d'ouvertures depuis l'icône qui grandit suggère que l'app devient une habitude, sans qu'on ait besoin de la rappeler |
 
 ## Events

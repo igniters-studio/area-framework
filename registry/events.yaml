@@ -195,7 +195,7 @@ events:
     pillar: advocacy
     layer: mechanic
     mechanic: referral
-    when: The user sends an invitation or their referral link.
+    when: The user sends an invitation or their referral link. Where the platform does not report the chosen target, sent when the share sheet opens, and the tracking plan says so.
     properties:
       required: [share_method]
       optional: [share_destination]   # when the platform reports the chosen target

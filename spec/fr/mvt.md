@@ -27,7 +27,7 @@ Les trois events du socle suffisent ainsi à calculer, à eux seuls, une bonne p
 | Taux d'activation | Activation | `app_opened`, `aha_moment_reached` |
 | Time to Aha | Activation | `app_opened`, `aha_moment_reached` |
 | Taux d'usage cœur | Engagement | `app_opened`, `core_action_completed` |
-| Fréquence de l'action cœur | Engagement | `core_action_completed` |
+| Fréquence de l'action cœur | Engagement | `app_opened`, `core_action_completed` |
 | Part d'utilisateurs intensifs | Engagement | `app_opened`, `core_action_completed` |
 | Rétention cœur à J1, J7, J30 | Rétention | `app_opened`, `core_action_completed` |
 | Rétention des activés et des non activés | Rétention | `app_opened`, `aha_moment_reached`, `core_action_completed` |
@@ -102,7 +102,7 @@ Ces events ne sont pas facultatifs : ils deviennent obligatoires dès que la mé
 | Question de satisfaction | `satisfaction_prompt_answered` | Advocacy |
 | NPS | `nps_answered` | Advocacy |
 | Demande de note | `review_prompt_triggered` | Advocacy |
-| Invitation ou parrainage | `invite_shared`, et `referral_link_opened`, `referral_code_applied` si l'app a un parrainage | Advocacy |
+| Invitation ou parrainage | `invite_shared`, `referral_code_applied` si l'app a un parrainage, `referral_link_opened` si elle a des liens de parrainage | Advocacy |
 | Partage de contenu | `content_shared` | Advocacy |
 | Co-création | `co_creation_contributed` | Advocacy |
 | Récompenses | `reward_received` | Advocacy |

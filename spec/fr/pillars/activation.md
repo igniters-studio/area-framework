@@ -2,7 +2,7 @@
 
 > Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ?
 
-Un utilisateur qui n'a pas perçu la valeur de l'app ne reviendra pas, quelle que soit la qualité du produit. L'activation mesure ce passage : le moment où l'utilisateur obtient pour la première fois ce que l'app promet. Il s'appuie sur l'action cœur, définie avec l'[Engagement](engagement.md#laction-cœur), et la [Rétention](retention.md#activés-et-non-activés) s'appuie à son tour sur lui pour séparer les utilisateurs activés des non activés.
+Un utilisateur qui n'a pas perçu la valeur de l'app ne reviendra pas, quelle que soit la qualité du produit. L'activation mesure ce passage : le moment où l'utilisateur obtient pour la première fois ce que l'app promet. Ce pilier s'appuie sur l'action cœur, définie avec l'[Engagement](engagement.md#laction-cœur). La [Rétention](retention.md#activés-et-non-activés) s'appuie à son tour sur l'Activation pour séparer les utilisateurs activés des non activés.
 
 **Objectif business type :** amener le plus de nouveaux utilisateurs possible jusqu'à la valeur de l'app, le plus vite possible. Chaque app écrit le sien (voir [Appliquer AREA](../../../README.fr.md#appliquer-area) dans le README).
 

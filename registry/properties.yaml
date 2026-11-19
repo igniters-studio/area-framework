@@ -178,7 +178,7 @@ properties:
     scope: event
     type: enum
     values: [message, social, email, other]
-    description: Where the share went. Sent only when the platform reports the chosen target (iOS share sheet, Android 5.1 and later).
+    description: Where the share went. Sent only when the chosen target is known, on iOS, and on Android when the app gets the choice back from the share chooser (possible since Android 5.1).
     stability: development
   - name: content_type
     scope: event
