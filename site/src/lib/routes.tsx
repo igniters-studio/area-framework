@@ -20,8 +20,17 @@ function alternates(route: string): Record<Lang, string> {
   return { en: sitePath("en", route), fr: sitePath("fr", route) };
 }
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/**
+ * Metadata URLs resolve against `metadataBase` without the base path (unlike `next/link`), so the
+ * base path is added here.
+ */
 function languageMetadata(route: string): Metadata["alternates"] {
-  return { languages: alternates(route) };
+  const paths = alternates(route);
+  return {
+    languages: { en: `${BASE_PATH}${paths.en}`, fr: `${BASE_PATH}${paths.fr}` },
+  };
 }
 
 export function homeMetadata(lang: Lang): Metadata {
