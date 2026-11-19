@@ -1,0 +1,33 @@
+# AREA Framework — pillars
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# business_goal is an example: each app writes its own goal for each pillar in its tracking plan.
+area_version: 0.1.0
+
+pillars:
+  - id: activation
+    name: Activation
+    question: Do new users reach the moment where the app proves its value?
+    business_goal_example: Bring as many new users as possible to the value of the app, as fast as possible.
+    reference_kpi: activation_rate
+    stability: development
+
+  - id: retention
+    name: Retention
+    question: Do they come back to do what the app is for?
+    business_goal_example: Make users come back, for a long time, for what the app gives them.
+    reference_kpi: core_retention
+    stability: development
+
+  - id: engagement
+    name: Engagement
+    question: When they are here, do they use the app for its core purpose?
+    business_goal_example: Turn the core action into a habit, and know which features create value.
+    reference_kpi: core_usage_rate
+    stability: development
+
+  - id: advocacy
+    name: Advocacy
+    question: Are they willing to recommend it?
+    business_goal_example: Turn satisfied users into a lever for organic growth and product improvement.
+    reference_kpi: advocacy_intent_rate
+    stability: development

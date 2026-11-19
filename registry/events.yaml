@@ -1,0 +1,238 @@
+# AREA Framework — events
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# layer: core (every app), foundations (applies before the pillars) or mechanic (mandatory as soon as the mechanic exists).
+# pillar: the pillar the event mainly serves; omitted for core events that serve several pillars.
+# role: core events are roles. An existing app may keep its own event name, and its tracking plan says which event plays which role.
+# properties: required ones are always sent; optional ones only when their condition holds. Values are in properties.yaml.
+area_version: 0.1.0
+
+events:
+  # ── Core ───────────────────────────────────────────────
+  - name: app_opened
+    layer: core
+    role: true
+    when: The app comes to the foreground, at launch or when returning from the background.
+    notes: Defines new users (is_first_launch), active users and return channels.
+    properties:
+      required: [entry_point, is_first_launch]
+    stability: development
+
+  - name: aha_moment_reached
+    pillar: activation
+    layer: core
+    role: true
+    when: The user reaches the aha moment, as defined by the app. By default, the first completion of the core action.
+    notes: KPIs read its first occurrence only, so a duplicate does no harm.
+    properties:
+      required: [aha_version]
+      optional: [core_action_type]   # when the aha moment is about a core action
+    stability: development
+
+  - name: core_action_completed
+    pillar: engagement
+    layer: core
+    role: true
+    when: Each completion of the core action, the first one included, from every surface where it happens.
+    properties:
+      required: [core_action_type]
+    stability: development
+
+  # ── Foundations ────────────────────────────────────────
+  - name: analytics_consent_granted
+    layer: foundations
+    mechanic: consent
+    when: Right after the user grants consent. A refusal is never sent.
+    notes: Records when and where consent was given. The consent rate itself comes from the consent management tool.
+    properties:
+      required: [consent_source]
+    stability: development
+
+  # ── Activation ─────────────────────────────────────────
+  - name: onboarding_started
+    pillar: activation
+    layer: mechanic
+    mechanic: onboarding
+    when: The user starts the onboarding.
+    properties:
+      required: [onboarding_version]
+    stability: development
+
+  - name: onboarding_step_completed
+    pillar: activation
+    layer: mechanic
+    mechanic: onboarding
+    condition: The onboarding has several steps.
+    when: An onboarding step is completed.
+    properties:
+      required: [onboarding_version, step_name, step_index, step_total]
+    stability: development
+
+  - name: onboarding_completed
+    pillar: activation
+    layer: mechanic
+    mechanic: onboarding
+    when: All onboarding steps are completed.
+    properties:
+      required: [onboarding_version]
+    stability: development
+
+  - name: paywall_shown
+    pillar: activation
+    layer: mechanic
+    mechanic: paywall
+    when: The app presents its paid offer.
+    properties:
+      required: [paywall_trigger]
+    stability: development
+
+  - name: trial_started
+    pillar: activation
+    layer: mechanic
+    mechanic: paywall
+    condition: The app offers a free trial.
+    when: The user starts a free trial.
+    properties:
+      required: [user_plan]
+    stability: development
+
+  - name: purchase_completed
+    pillar: activation
+    layer: mechanic
+    mechanic: paywall
+    when: The user buys a subscription or a product. Never sends an amount or a currency.
+    properties:
+      required: [user_plan, purchase_type]
+    stability: development
+
+  - name: permission_granted
+    pillar: activation
+    layer: mechanic
+    mechanic: permissions
+    when: The user grants a permission.
+    properties:
+      required: [permission_type]
+      optional: [permission_scope]   # when the system grants a partial permission
+    stability: development
+
+  - name: permission_denied
+    pillar: activation
+    layer: mechanic
+    mechanic: permissions
+    when: The user denies a permission, or the system denies it without showing a dialog.
+    properties:
+      required: [permission_type]
+    stability: development
+
+  # ── Engagement ─────────────────────────────────────────
+  - name: screen_viewed
+    pillar: engagement
+    layer: mechanic
+    mechanic: navigation
+    when: The user displays a screen.
+    notes: AREA name of the screen view. The sending layer may translate it to the tool's native screen event. No reference KPI depends on it.
+    properties:
+      required: [screen_name]
+    stability: development
+
+  - name: feature_used
+    pillar: engagement
+    layer: mechanic
+    mechanic: features
+    when: The user uses a feature listed in the tracking plan.
+    properties:
+      required: [feature_name]
+      optional: [user_plan]   # when the app has a paid offer
+    stability: development
+
+  # ── Retention ──────────────────────────────────────────
+  - name: notification_opened
+    pillar: retention
+    layer: mechanic
+    mechanic: notifications
+    when: The user taps a notification from the app, whether it opens the app or the app is already in the foreground.
+    properties:
+      required: [notification_type, delivery_type]
+    stability: development
+
+  - name: deep_link_opened
+    pillar: retention
+    layer: mechanic
+    mechanic: deep_links
+    when: The app opens from an external link. A notification that opens a link sends notification_opened only.
+    properties:
+      required: [link_source]
+    stability: development
+
+  # ── Advocacy ───────────────────────────────────────────
+  - name: satisfaction_prompt_answered
+    pillar: advocacy
+    layer: mechanic
+    mechanic: satisfaction_prompt
+    when: The user answers a satisfaction question asked in the app.
+    properties:
+      required: [satisfaction_answer, trigger_context]
+    stability: development
+
+  - name: nps_answered
+    pillar: advocacy
+    layer: mechanic
+    mechanic: nps
+    when: The user gives an NPS score.
+    properties:
+      required: [nps_score, trigger_context]
+    stability: development
+
+  - name: review_prompt_triggered
+    pillar: advocacy
+    layer: mechanic
+    mechanic: review_prompt
+    when: The app calls the store's review prompt. The store decides whether to show it. Never conditioned on a satisfaction answer, never from a button.
+    properties:
+      required: [trigger_context]
+    stability: development
+
+  - name: invite_shared
+    pillar: advocacy
+    layer: mechanic
+    mechanic: referral
+    when: The user sends an invitation or their referral link.
+    properties:
+      required: [share_method]
+    stability: development
+
+  - name: referral_code_applied
+    pillar: advocacy
+    layer: mechanic
+    mechanic: referral
+    condition: The app has a referral code or link.
+    when: The referred user applies a referral code or opens a referral link.
+    properties:
+      required: [referral_source]
+    stability: development
+
+  - name: content_shared
+    pillar: advocacy
+    layer: mechanic
+    mechanic: content_sharing
+    when: The user shares content from the app. Where the platform does not report the chosen target, sent when the share sheet opens, and the tracking plan says so.
+    properties:
+      required: [content_type, share_method]
+    stability: development
+
+  - name: co_creation_contributed
+    pillar: advocacy
+    layer: mechanic
+    mechanic: co_creation
+    when: The user suggests an idea, votes for a feature or sends feedback. Reading the roadmap or the changelog is not a contribution.
+    properties:
+      required: [co_creation_action]
+    stability: development
+
+  - name: reward_received
+    pillar: advocacy
+    layer: mechanic
+    mechanic: rewards
+    when: The user receives a reward from the app. May be sent by the server.
+    properties:
+      required: [reward_reason, reward_type]
+    stability: development

@@ -1,0 +1,83 @@
+# AREA Framework — mechanics
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# A mechanic is a feature an app may or may not have. When it exists,
+# the events attached to it in events.yaml become mandatory.
+# layer: foundations (applies before the pillars) or pillar (attached to one pillar).
+area_version: 0.1.0
+
+mechanics:
+  - id: consent
+    name: Consent required
+    description: Regulation requires consent before audience measurement.
+    layer: foundations
+    stability: development
+  - id: onboarding
+    name: Onboarding
+    description: A first-run flow before the user reaches the app.
+    pillar: activation
+    stability: development
+  - id: paywall
+    name: Paywall
+    description: The app presents a paid offer, a free trial or a purchase. Amounts are never sent.
+    pillar: activation
+    stability: development
+  - id: permissions
+    name: Permissions
+    description: The app asks for system permissions (notifications, location, camera, app tracking…).
+    pillar: activation
+    stability: development
+  - id: navigation
+    name: Navigation
+    description: The app analyzes its flows screen by screen. Not needed by any reference KPI.
+    pillar: engagement
+    stability: development
+  - id: features
+    name: Features beyond the core action
+    description: The app has features distinct from its core action, whose adoption is worth following.
+    pillar: engagement
+    stability: development
+  - id: notifications
+    name: Notifications
+    description: The app sends local or push notifications.
+    pillar: retention
+    stability: development
+  - id: deep_links
+    name: Incoming links
+    description: The app can be opened from an external link.
+    pillar: retention
+    stability: development
+  - id: satisfaction_prompt
+    name: Satisfaction question
+    description: The app asks users whether they like it. Never a condition for the review prompt.
+    pillar: advocacy
+    stability: development
+  - id: nps
+    name: NPS
+    description: The app measures Net Promoter Score in-app.
+    pillar: advocacy
+    stability: development
+  - id: review_prompt
+    name: Review prompt
+    description: The app calls the store's review prompt, at moments chosen from user behavior, never from a button.
+    pillar: advocacy
+    stability: development
+  - id: referral
+    name: Invitation or referral
+    description: Users can invite others, possibly with a referral code or link.
+    pillar: advocacy
+    stability: development
+  - id: content_sharing
+    name: Content sharing
+    description: Users can share content from the app.
+    pillar: advocacy
+    stability: development
+  - id: co_creation
+    name: Co-creation
+    description: Users can suggest features, vote or send feedback in the app.
+    pillar: advocacy
+    stability: development
+  - id: rewards
+    name: Rewards
+    description: The app grants rewards (discount, free period, credit, points).
+    pillar: advocacy
+    stability: development

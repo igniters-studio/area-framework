@@ -1,0 +1,129 @@
+# AREA Framework — naming rules
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# Machine-readable version of spec/conventions.md.
+area_version: 0.1.0
+stability: development
+
+language: en  # event and property names are always in English
+
+events:
+  pattern: '^[a-z][a-z0-9_]*$'   # snake_case, starts with a letter
+  max_length: 40
+  grammar: object_verb            # object first, then the verb in the past participle: onboarding_completed
+  verbs:   # closed vocabulary: one verb, one meaning
+    started: A flow begins
+    completed: The flow or the action succeeds
+    failed: The flow fails for a technical or external reason
+    cancelled: The user abandons a flow they had started
+    reached: The user reaches a milestone defined by the app
+    shown: The app presents something the user did not ask for
+    dismissed: The user closes what the app presented
+    viewed: The user opens a screen or content on their own
+    opened: The app comes to the foreground, or opens from a specific entry point
+    used: The user uses a feature
+    granted: The user accepts a permission or a consent
+    denied: The user refuses a permission
+    answered: The user answers a closed question asked by the app
+    submitted: The user sends content they composed
+    contributed: The user makes a contribution to the product
+    shared: The user sends something to another person
+    applied: The user applies a code
+    received: The user receives something from the app
+    triggered: The app calls a system feature, which alone decides whether to show it
+
+properties:
+  pattern: '^[a-z][a-z0-9_]*$'   # snake_case, never starts with an underscore
+  max_length:
+    event_property: 40
+    user_property: 24
+  max_value_length:
+    event_property: 100
+    user_property: 36
+  max_per_event: 25        # common properties included
+  max_user_properties: 25
+  rules:
+    boolean: { prefix: [is_, has_] }
+    identifier: { suffix: _id }
+    duration: { suffix: _seconds, unit: seconds }   # a measure only the app knows, e.g. run_duration_seconds
+    timestamp: forbidden   # the analytics tool timestamps every event
+    derived_value: forbidden   # counters, time between two events, ranks: computed in the tool from events
+    copy_of_user_property: allowed   # same name, listed in properties.yaml under copied_on
+    free_text: forbidden   # never send text typed by the user
+    personal_data: forbidden
+
+limits_source: https://support.google.com/firebase/answer/9237506
+limits_checked_on: 2026-11-16
+
+reserved:   # union of the GA4 and Firebase lists, the strictest common tools
+  event_names:
+    prefixes: [firebase_, google_, ga_]
+    names:
+      - ad_activeview
+      - ad_click
+      - ad_exposure
+      - ad_query
+      - ad_reward
+      - adunit_exposure
+      - app_background
+      - app_clear_data
+      - app_exception
+      - app_install
+      - app_remove
+      - app_store_refund
+      - app_store_subscription_cancel
+      - app_store_subscription_convert
+      - app_store_subscription_renew
+      - app_update
+      - app_upgrade
+      - dynamic_link_app_open
+      - dynamic_link_app_update
+      - dynamic_link_first_open
+      - error
+      - firebase_campaign
+      - firebase_in_app_message_action
+      - firebase_in_app_message_dismiss
+      - firebase_in_app_message_impression
+      - first_open
+      - first_visit
+      - in_app_purchase
+      - notification_dismiss
+      - notification_foreground
+      - notification_open
+      - notification_receive
+      - notification_send
+      - os_update
+      - screen_view
+      - session_start
+      - session_start_with_rollout
+      - user_engagement
+  event_properties:
+    prefixes: [_, firebase_, google_, ga_, gtag.]
+    names: [cid, currency, customer_id, customerid, dclid, gclid, session_id, sessionid, sfmc_id, sid, srsltid, uid, user_id, userid]
+  user_properties:
+    prefixes: [_, firebase_, google_, ga_]
+    names: [cid, customer_id, customerid, first_open_after_install, first_open_time, first_visit_time, google_allow_ad_personalization_signals, last_advertising_id_reset, last_deep_link_referrer, last_gclid, lifetime_user_engagement, non_personalized_ads, session_id, session_number, sessionid, sfmc_id, sid, uid, user_id, userid]
+  sources:
+    - https://support.google.com/analytics/answer/13316687
+    - https://firebase.google.com/docs/reference/ios/firebaseanalytics/api/reference/Classes/FIRAnalytics
+    - https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics
+  checked_on: 2026-11-19
+
+stability_levels:
+  development: May still change. Every new entry starts here.
+  stable: Does not change without a new major version.
+  deprecated: Not to be used anymore, removed in a later version.
+
+promotion:
+  development_to_stable:
+    - Implemented in at least two apps in production, at least one of them outside the author's studio.
+    - Its KPIs have been read on real data in those apps.
+    - No open feedback questions it.
+  evidence: Feedback is filed as an issue or a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.
+  development: May change or disappear from one minor version to the next.
+  stable_removal: A stable entry goes to deprecated first, then is removed at the next major version.
+  pre_1_0: In version 0.x, AREA guarantees nothing. Even a stable entry may change from one minor version to the next.
+
+versioning:
+  major: A change that breaks an existing plan, such as renaming or removing a stable entry, or a new calculation for a reference KPI.
+  minor: An addition that breaks nothing, including a new value in a closed list.
+  patch: A clarification of the text, with no effect on tracking.

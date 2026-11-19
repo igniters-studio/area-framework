@@ -1,0 +1,202 @@
+# AREA Framework — properties
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# scope: common (sent with every event), user (durable user state), event (context of one event).
+# values: closed list; "app_defined" means each app documents its own closed list in its tracking plan.
+# copied_on: events that carry a copy of a user property, to keep its value at the time of the event.
+area_version: 0.1.0
+
+properties:
+  # Foundations — common properties
+  - name: app_version
+    scope: common
+    type: string
+    description: Version of the app that sends the event, e.g. 2.4.1.
+    stability: development
+  - name: platform
+    scope: common
+    type: enum
+    values: [ios, android]
+    stability: development
+  - name: environment
+    scope: common
+    type: enum
+    values: [production, staging, development]
+    description: Detected at runtime, not at build time. KPIs always filter on production.
+    stability: development
+
+  # Foundations — user properties
+  - name: user_plan
+    scope: user
+    type: string
+    values: app_defined
+    description: Tier of the offer, e.g. free, pro. Only if the app has a paid offer. Updated from the app or the server whenever it changes.
+    copied_on: [feature_used, trial_started, purchase_completed]
+    stability: development
+  - name: is_trial
+    scope: user
+    type: boolean
+    description: The user is in a trial period. Only if the app offers one.
+    stability: development
+  - name: is_internal
+    scope: user
+    type: boolean
+    description: The user or the device belongs to the team, to exclude from KPIs. Set from install time, not only at login.
+    stability: development
+
+  # Foundations — consent
+  - name: consent_source
+    scope: event
+    type: enum
+    values: [prompt, settings]
+    description: Where the user granted consent.
+    stability: development
+
+  # Core
+  - name: entry_point
+    scope: event
+    type: enum
+    values: [icon, notification, link, widget, shortcut, other]
+    description: What brought the app to the foreground.
+    stability: development
+  - name: is_first_launch
+    scope: event
+    type: boolean
+    description: True only on the first app_opened sent after install. Stays true until that event could be sent, e.g. before consent. False for a user who updates the app.
+    stability: development
+  - name: aha_version
+    scope: event
+    type: string
+    values: app_defined
+    description: Version of the app's aha moment definition, e.g. v1, so that two definitions never mix in one curve.
+    stability: development
+  - name: core_action_type
+    scope: event
+    type: string
+    values: app_defined
+    description: Type of core action. Same values on aha_moment_reached and core_action_completed.
+    stability: development
+
+  # Activation
+  - name: onboarding_version
+    scope: event
+    type: string
+    values: app_defined
+    description: Version of the onboarding flow, to compare two versions.
+    stability: development
+  - name: step_name
+    scope: event
+    type: string
+    values: app_defined
+    stability: development
+  - name: step_index
+    scope: event
+    type: integer
+    stability: development
+  - name: step_total
+    scope: event
+    type: integer
+    stability: development
+  - name: paywall_trigger
+    scope: event
+    type: enum
+    values: [onboarding, feature_lock, usage_limit, settings]
+    description: What made the paywall appear.
+    stability: development
+  - name: purchase_type
+    scope: event
+    type: enum
+    values: [subscription, one_time]
+    stability: development
+  - name: permission_type
+    scope: event
+    type: enum
+    values: [notifications, location, health, camera, microphone, contacts, photos, app_tracking]
+    stability: development
+  - name: permission_scope
+    scope: event
+    type: enum
+    values: [full, limited, provisional, once]
+    description: What the user granted. limited for selected photos or approximate location, provisional for iOS provisional notifications, once for a one-time permission.
+    stability: development
+
+  # Engagement
+  - name: screen_name
+    scope: event
+    type: string
+    values: app_defined
+    description: Name of a screen. Same meaning on every event that carries it.
+    stability: development
+  - name: feature_name
+    scope: event
+    type: string
+    values: app_defined
+    stability: development
+
+  # Retention
+  - name: notification_type
+    scope: event
+    type: enum
+    values: [local_reminder, re_engagement, streak_reminder, social, promotional, content_update, transactional]
+    description: Set in the notification payload by whoever creates the notification, read by the app when it is tapped.
+    stability: development
+  - name: delivery_type
+    scope: event
+    type: enum
+    values: [local, push]
+    stability: development
+  - name: link_source
+    scope: event
+    type: enum
+    values: [email, social, qr_code, referral, other]
+    description: Where an incoming link comes from. No push value, a notification sends notification_opened.
+    stability: development
+
+  # Advocacy
+  - name: trigger_context
+    scope: event
+    type: enum
+    values: [post_aha_moment, post_positive_event, day_7, day_30]
+    description: The moment chosen by the app to ask the user.
+    stability: development
+  - name: satisfaction_answer
+    scope: event
+    type: enum
+    values: [positive, negative]
+    stability: development
+  - name: nps_score
+    scope: event
+    type: integer
+    range: [0, 10]
+    stability: development
+  - name: share_method
+    scope: event
+    type: enum
+    values: [share_sheet, link_copied, message, social]
+    stability: development
+  - name: content_type
+    scope: event
+    type: string
+    values: app_defined
+    stability: development
+  - name: co_creation_action
+    scope: event
+    type: enum
+    values: [feature_requested, roadmap_voted, feedback_sent]
+    stability: development
+  - name: referral_source
+    scope: event
+    type: enum
+    values: [code, link]
+    stability: development
+  - name: reward_reason
+    scope: event
+    type: string
+    values: app_defined
+    description: Why the reward was granted, e.g. referral, contribution.
+    stability: development
+  - name: reward_type
+    scope: event
+    type: enum
+    values: [discount, free_period, credit, points]
+    description: Never the amount — revenue is out of scope.
+    stability: development

@@ -1,0 +1,297 @@
+# AREA Framework — KPIs
+# License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
+# inputs: events the KPI needs. requires_properties: properties the calculation reads.
+# requires_mechanics.any_of: the KPI only exists when the app has at least one of these mechanics.
+# Every ratio counts distinct users, never events or sessions. Every reference KPI is read with its volume.
+area_version: 0.1.0
+
+definitions:
+  new_users: Users whose app_opened with is_first_launch = true falls in the period. They enter the cohort at that event.
+  active_users: Users who emit at least one app_opened or core_action_completed in the period.
+  day: 24 hours from the first launch.
+  activated_users: New users who emit aha_moment_reached within the activation window. Only the first occurrence counts.
+  maturity: A cohort KPI is read only once the cohort has lived long enough, e.g. 30 days for D30.
+
+kpis:
+  # ── Activation ─────────────────────────────────────────
+  - id: activation_rate
+    pillar: activation
+    reference: true
+    name: Activation rate
+    definition: Share of new users who emit aha_moment_reached within N days of their first launch.
+    cohort: new_users
+    numerator: { event: aha_moment_reached, occurrence: first, within_days: N }
+    window: { name: N, default_days: 7, notes: 1 day for a daily app, longer for an occasional one. Fixed once chosen. }
+    volume: Number of activated users in the cohort.
+    inputs: [app_opened, aha_moment_reached]
+    requires_properties: [is_first_launch, aha_version]
+    verdicts:
+      measurable: The aha moment is defined and versioned, aha_moment_reached is sent from every surface where it can be reached, app_opened is in place with is_first_launch, and the foundations are met.
+      partial: The event is missing on some surfaces, is_first_launch is missing, or one of the foundations is incomplete.
+      not_measurable: No aha moment is defined, or no event signals it.
+    notes: An app without accounts is not penalized; its verdict states that the KPI counts installs.
+    stability: development
+
+  - id: time_to_aha
+    pillar: activation
+    name: Time to Aha
+    definition: Median time between the first launch and the first aha_moment_reached, among users activated within the window. Published with the share of the cohort that did not reach it. Computed in the tool, never sent as a property.
+    cohort: new_users
+    inputs: [app_opened, aha_moment_reached]
+    requires_properties: [is_first_launch]
+    stability: development
+
+  - id: onboarding_completion_rate
+    pillar: activation
+    name: Onboarding completion rate
+    definition: Users who emit onboarding_completed over users who emit onboarding_started, by onboarding_version.
+    inputs: [onboarding_started, onboarding_completed]
+    requires_properties: [onboarding_version]
+    requires_mechanics: { any_of: [onboarding] }
+    stability: development
+
+  - id: onboarding_step_dropoff
+    pillar: activation
+    name: Drop-off by onboarding step
+    definition: Share of users lost at each onboarding step, by step_name and onboarding_version.
+    inputs: [onboarding_started, onboarding_step_completed]
+    requires_properties: [onboarding_version, step_name, step_index]
+    requires_mechanics: { any_of: [onboarding] }
+    stability: development
+
+  - id: paywall_conversion_rate
+    pillar: activation
+    name: Paywall conversion
+    definition: Share of users who emit paywall_shown and then trial_started or purchase_completed within 24 hours, by paywall_trigger.
+    window: { default_hours: 24 }
+    inputs: [paywall_shown, trial_started, purchase_completed]
+    requires_properties: [paywall_trigger]
+    requires_mechanics: { any_of: [paywall] }
+    stability: development
+
+  - id: permission_acceptance_rate
+    pillar: activation
+    name: Permission acceptance rate
+    definition: Users who grant a permission over users who grant or deny it, by permission_type.
+    inputs: [permission_granted, permission_denied]
+    requires_properties: [permission_type]
+    requires_mechanics: { any_of: [permissions] }
+    stability: development
+
+  # ── Engagement ─────────────────────────────────────────
+  - id: core_usage_rate
+    pillar: engagement
+    reference: true
+    name: Core usage rate
+    definition: Share of active users of the period who emit at least one core_action_completed.
+    population: active_users
+    numerator: { event: core_action_completed, min_count: 1 }
+    window: { default: week, notes: Month for a low-frequency app. }
+    volume: Number of users who completed the core action in the period.
+    inputs: [app_opened, core_action_completed]
+    verdicts:
+      measurable: The core action is defined, core_action_completed is sent on every completion and from every surface where it happens, app_opened is in place, and the foundations are met.
+      partial: The event is missing on some surfaces (widget, notification action, share extension…), fires on something other than an outcome, or one of the foundations is incomplete.
+      not_measurable: No core action is defined, or no event signals it.
+    stability: development
+
+  - id: core_action_frequency
+    pillar: engagement
+    name: Core action frequency
+    definition: For each user, the median interval between two days with a core_action_completed (several actions on one day count as one day); the KPI is the median of these intervals over active users.
+    inputs: [core_action_completed]
+    stability: development
+
+  - id: power_user_ratio
+    pillar: engagement
+    name: Power user ratio
+    definition: Share of active users who complete the core action on at least N days of the period. N is set after looking at the actual distribution, then fixed.
+    population: active_users
+    inputs: [app_opened, core_action_completed]
+    stability: development
+
+  - id: feature_adoption_rate
+    pillar: engagement
+    name: Feature adoption rate
+    definition: Share of active users who emit feature_used for a given feature in the period.
+    population: active_users
+    inputs: [app_opened, core_action_completed, feature_used]
+    requires_properties: [feature_name]
+    requires_mechanics: { any_of: [features] }
+    stability: development
+
+  - id: screen_reach_rate
+    pillar: engagement
+    name: Screen reach
+    definition: Share of active users who display a given screen in the period.
+    population: active_users
+    inputs: [app_opened, core_action_completed, screen_viewed]
+    requires_properties: [screen_name]
+    requires_mechanics: { any_of: [navigation] }
+    stability: development
+
+  # ── Retention ──────────────────────────────────────────
+  - id: core_retention
+    pillar: retention
+    reference: true
+    name: Core retention
+    definition: Share of a new-user cohort who emit at least one core_action_completed on day N after their first launch.
+    cohort: new_users
+    calculation: { default: classic_day_n, alternative: window, notes: For a low-frequency app, read by window (week 1, week 4, month 3), the user counting if they return at least once in the window. Chosen once and recorded in the tracking plan. }
+    read_at: [D1, D7, D30]
+    volume: Number of retained users at each reading point.
+    inputs: [app_opened, core_action_completed]
+    requires_properties: [is_first_launch]
+    verdicts:
+      measurable: The core action is defined, core_action_completed is sent from all its surfaces, app_opened is in place with is_first_launch, and the foundations are met.
+      partial: core_action_completed is missing on some surfaces, is_first_launch is missing, or one of the foundations is incomplete.
+      not_measurable: No core action is defined, or retention can only be measured on app opens.
+    notes: An app without accounts is not penalized; its verdict states that retention counts installs and is underestimated on each reinstall.
+    stability: development
+
+  - id: open_retention
+    pillar: retention
+    name: Open retention
+    definition: Share of a new-user cohort who emit at least one app_opened on day N. The figure to compare with market benchmarks, never to steer the product. Known gaps with benchmarks; installs never opened are not counted, and only users who accepted measurement are.
+    cohort: new_users
+    calculation: { default: classic_day_n }
+    read_at: [D1, D7, D30]
+    inputs: [app_opened]
+    requires_properties: [is_first_launch]
+    stability: development
+
+  - id: activated_vs_non_activated_retention
+    pillar: retention
+    name: Core retention of activated and non-activated users
+    definition: core_retention of activated users and of the other new users of the same period, both measured from the first launch and read after the activation window closes. A correlation, never a promised gain.
+    cohort: new_users
+    read_at: [D7, D30]
+    inputs: [app_opened, aha_moment_reached, core_action_completed]
+    requires_properties: [is_first_launch]
+    stability: development
+
+  - id: return_channels
+    pillar: retention
+    name: Returns by channel
+    definition: Split of the app_opened that are not a first launch, by entry_point. notification_opened and deep_link_opened detail which notification or link.
+    inputs: [app_opened]
+    optional_inputs: [notification_opened, deep_link_opened]
+    requires_properties: [entry_point, is_first_launch]
+    stability: development
+
+  # ── Advocacy ───────────────────────────────────────────
+  - id: advocacy_intent_rate
+    pillar: advocacy
+    reference: true
+    name: Advocacy intent rate
+    definition: Share of active users of the period who express at least once an explicit intent to recommend.
+    population: active_users
+    numerator:
+      any_of:
+        - { event: satisfaction_prompt_answered, where: { satisfaction_answer: positive } }
+        - { event: nps_answered, where: { nps_score: { gte: 9 } } }
+        - { event: invite_shared }
+    window: { default: month, notes: Quarter for a low-frequency app. }
+    volume: Number of users who expressed an intent in the period.
+    notes: Depends on how often the app asks. Compared over time with a constant setup only, never across apps. Content shares and contributions have their own KPIs.
+    inputs: [app_opened, core_action_completed, satisfaction_prompt_answered, nps_answered, invite_shared]
+    requires_properties: [satisfaction_answer, nps_score]
+    requires_mechanics: { any_of: [satisfaction_prompt, nps, referral] }
+    verdicts:
+      measurable: A satisfaction question, an NPS or an invitation exists, and its events say what the user did.
+      partial: Only diffuse signals exist (content sharing, co-creation), or only app-triggered events such as the review prompt, or invitations are tracked on the button tap instead of when sent.
+      not_measurable: The app offers no way to recommend or contribute.
+    stability: development
+
+  - id: declared_satisfaction
+    pillar: advocacy
+    name: Declared satisfaction
+    definition: Share of users asked who answer positively to satisfaction_prompt_answered, by trigger_context.
+    inputs: [satisfaction_prompt_answered]
+    requires_properties: [satisfaction_answer, trigger_context]
+    requires_mechanics: { any_of: [satisfaction_prompt] }
+    stability: development
+
+  - id: nps
+    pillar: advocacy
+    name: NPS
+    definition: Share of scores 9–10 minus share of scores 0–6 on nps_answered.
+    inputs: [nps_answered]
+    requires_properties: [nps_score]
+    requires_mechanics: { any_of: [nps] }
+    stability: development
+
+  - id: share_rate
+    pillar: advocacy
+    name: Share rate
+    definition: Share of active users who share at least one piece of content in the period.
+    population: active_users
+    inputs: [app_opened, core_action_completed, content_shared]
+    requires_mechanics: { any_of: [content_sharing] }
+    stability: development
+
+  - id: contribution_rate
+    pillar: advocacy
+    name: Contribution rate
+    definition: Share of active users who emit at least one co_creation_contributed in the period.
+    population: active_users
+    inputs: [app_opened, core_action_completed, co_creation_contributed]
+    requires_mechanics: { any_of: [co_creation] }
+    stability: development
+
+  - id: contributor_retention_gap
+    pillar: advocacy
+    name: Contributor retention gap
+    definition: Core retention of users who contributed, compared with the other users who entered in the same period. A correlation.
+    cohort: new_users
+    inputs: [app_opened, co_creation_contributed, core_action_completed]
+    requires_properties: [is_first_launch]
+    requires_mechanics: { any_of: [co_creation] }
+    stability: development
+
+  - id: review_prompt_rate
+    pillar: advocacy
+    name: Review prompt rate
+    definition: Share of active users for whom the app called the review prompt in the period, by trigger_context. Says whether the app asks at the right moments, without asking too often.
+    population: active_users
+    inputs: [app_opened, core_action_completed, review_prompt_triggered]
+    requires_properties: [trigger_context]
+    requires_mechanics: { any_of: [review_prompt] }
+    stability: development
+
+  - id: referral_rate
+    pillar: advocacy
+    name: Referral rate
+    definition: Share of active users who send at least one invitation in the period.
+    population: active_users
+    inputs: [app_opened, core_action_completed, invite_shared]
+    requires_mechanics: { any_of: [referral] }
+    stability: development
+
+  - id: referred_per_referrer
+    pillar: advocacy
+    name: Referred users per referrer
+    definition: Users who apply a referral code over users who sent at least one invitation, on the same rolling 30-day window. Indicative, an invitation and the code that follows may fall in two windows.
+    window: { rolling_days: 30 }
+    inputs: [invite_shared, referral_code_applied]
+    requires_mechanics: { any_of: [referral] }
+    stability: development
+
+  - id: referred_activation_rate
+    pillar: advocacy
+    name: Activation of referred users
+    definition: activation_rate of users who applied a referral code, compared with the other new users of the same period. A correlation.
+    cohort: new_users
+    inputs: [referral_code_applied, app_opened, aha_moment_reached]
+    requires_properties: [is_first_launch]
+    requires_mechanics: { any_of: [referral] }
+    stability: development
+
+  - id: rewarded_referrers
+    pillar: advocacy
+    name: Rewarded referrers
+    definition: Number of distinct users who receive a reward with reward_reason = referral in the period.
+    inputs: [reward_received]
+    requires_properties: [reward_reason]
+    requires_mechanics: { any_of: [rewards] }
+    stability: development
