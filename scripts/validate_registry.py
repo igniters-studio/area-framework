@@ -3,8 +3,9 @@
 
 Usage: python3 scripts/validate_registry.py [path/to/registry]
 
-Checks naming (patterns, lengths, reserved names, verb vocabulary), referential
-integrity between files, and the rule that every event serves a KPI.
+Checks that no key is empty (a sign of malformed YAML), naming (patterns, lengths,
+reserved names, verb vocabulary), referential integrity between files, and the rule
+that every event serves a KPI.
 Exits with status 1 when an error is found. Requires PyYAML.
 """
 import re
@@ -40,6 +41,24 @@ def load(root):
     return data
 
 
+def check_nulls(node, where):
+    # An unquoted comma inside a flow mapping, e.g. { notes: a, b }, ends the entry:
+    # "b" becomes a key with no value. YAML loads it as null without complaint.
+    if isinstance(node, dict):
+        for key, value in node.items():
+            path = f"{where}.{key}"
+            if key is None or value is None:
+                error(f"{path}: empty key or value, check the YAML (quote text that contains a comma or a colon)")
+            else:
+                check_nulls(value, path)
+    elif isinstance(node, list):
+        for i, item in enumerate(node):
+            if item is None:
+                error(f"{where}[{i}]: empty item")
+            else:
+                check_nulls(item, f"{where}[{i}]")
+
+
 def check_versions(data):
     versions = {name: d.get("area_version") for name, d in data.items()}
     if len(set(versions.values())) != 1:
@@ -64,6 +83,8 @@ def main():
     if errors:
         report()
         return
+    for name, d in data.items():
+        check_nulls(d, name)
     check_versions(data)
 
     naming = data["naming"]

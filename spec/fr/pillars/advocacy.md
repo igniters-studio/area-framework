@@ -33,7 +33,7 @@ Le pilier vaut pour toutes les apps, mais il ne se mesure que si l'app offre au 
 | **Unité** | Des utilisateurs distincts |
 | **Volume** | Le nombre d'utilisateurs qui ont exprimé une intention dans la période |
 
-Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : poser la question de satisfaction deux fois plus souvent fera monter le KPI sans que rien n'ait changé. Il se compare donc dans le temps à dispositif constant, et chaque changement de dispositif se note dans le plan de tracking. Le comparer d'une app à l'autre n'a pas de sens.
+Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : poser la question de satisfaction deux fois plus souvent fera monter le KPI sans que rien n'ait changé. Il se compare donc dans le temps sans changer la fréquence ni les moments où l'app pose ses questions, et chaque changement de ces réglages se note dans le plan de tracking. Le comparer d'une app à l'autre n'a pas de sens.
 
 | Verdict | Condition |
 |---|---|
@@ -59,13 +59,13 @@ Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : po
 | `satisfaction_prompt_answered` | L'utilisateur répond à une question de satisfaction posée dans l'app | `satisfaction_answer`, `trigger_context` | L'app pose la question |
 | `nps_answered` | L'utilisateur donne un score NPS | `nps_score`, `trigger_context` | L'app mesure le NPS |
 | `review_prompt_triggered` | L'app appelle la demande de note du store. Le store décide s'il l'affiche | `trigger_context` | L'app demande une note |
-| `invite_shared` | L'utilisateur envoie une invitation ou son lien de parrainage | `share_method` | L'app a une invitation ou un parrainage |
-| `content_shared` | L'utilisateur partage un contenu de l'app | `content_type`, `share_method` | L'app permet le partage |
+| `invite_shared` | L'utilisateur envoie une invitation ou son lien de parrainage | `share_method`, et `share_destination` si la plateforme la donne | L'app a une invitation ou un parrainage |
+| `content_shared` | L'utilisateur partage un contenu de l'app | `content_type`, `share_method`, et `share_destination` si la plateforme la donne | L'app permet le partage |
 | `co_creation_contributed` | L'utilisateur propose une idée, vote pour une feature ou envoie un retour | `co_creation_action` | L'app intègre un outil de co-création |
 
 Il faut au moins une question de satisfaction, un NPS ou une invitation pour que le KPI de référence soit mesurable.
 
-**Quand un partage a-t-il eu lieu ?** Sur iOS, la feuille de partage dit quelle cible l'utilisateur a choisie : l'event part à ce moment-là. Sur Android, la feuille de partage du système ne le dit pas toujours. L'event part alors à l'ouverture de la feuille, et c'est une limite connue : il mesure une intention de partage, pas un partage confirmé. Le plan de tracking note ce choix par plateforme.
+**Quand un partage a-t-il eu lieu ?** Sur iOS, la feuille de partage dit quelle cible l'utilisateur a choisie : l'event part à ce moment-là, avec `share_destination`. Sur Android, la feuille de partage du système ne le dit pas toujours. L'event part alors à l'ouverture de la feuille, et c'est une limite connue : il mesure une intention de partage, pas un partage confirmé. Le plan de tracking note ce choix par plateforme.
 
 ## Propriétés
 
@@ -74,9 +74,10 @@ Il faut au moins une question de satisfaction, un NPS ou une invitation pour que
 | `satisfaction_answer` | `positive`, `negative` |
 | `trigger_context` | Le moment choisi par l'app : `post_aha_moment`, `post_positive_event`, `day_7`, `day_30` (7 ou 30 jours après le premier lancement) |
 | `nps_score` | Entier de 0 à 10 |
-| `share_method` | `share_sheet`, `link_copied`, `message`, `social` |
+| `share_method` | Le moyen : `share_sheet` (feuille de partage du système), `link_copied`, `in_app` (fonction de partage propre à l'app) |
+| `share_destination` | La cible : `message`, `social`, `email`, `other`. Envoyée seulement quand la plateforme dit la cible choisie (iOS, Android 5.1 et plus) |
 | `content_type` | Type de contenu partagé, propre à l'app : `run`, `product`, `note`… |
-| `co_creation_action` | `feature_requested`, `roadmap_voted`, `feedback_sent` |
+| `co_creation_action` | `feature_requested`, `roadmap_voted`, `feedback_submitted` |
 
 ## La demande de note
 
@@ -97,20 +98,24 @@ L'app choisit donc le moment de la demande d'après ce que fait l'utilisateur, p
 Beaucoup d'apps font de la recommandation un levier d'acquisition, et récompensent le parrain par une réduction, un mois offert ou des points. Une bonne partie de ce parcours se passe dans l'app :
 
 1. Le parrain envoie une invitation : `invite_shared`.
-2. Le filleul applique un code de parrainage à son arrivée, ou ouvre un lien de parrainage : `referral_code_applied`. Le code désigne le parrain, ce qui relie les deux utilisateurs.
-3. Le filleul atteint, ou non, l'aha moment : `aha_moment_reached`, lu sur les utilisateurs parrainés.
-4. L'app récompense le parrain : `reward_received`.
+2. Le filleul ouvre l'app depuis un lien de parrainage : `referral_link_opened`. Le lien mène souvent d'abord à une page web qui présente l'offre. L'app ne voit pas cette page : l'event part à l'ouverture de l'app.
+3. Le parrainage est rattaché au compte du filleul : `referral_code_applied`. Le code, tapé par le filleul ou porté par le lien, désigne le parrain, ce qui relie les deux utilisateurs.
+4. Le filleul atteint, ou non, l'aha moment : `aha_moment_reached`, lu sur les utilisateurs parrainés.
+5. L'app récompense le parrain : `reward_received`.
+
+Ouvrir le lien et rattacher le parrainage sont deux marches distinctes : un filleul peut ouvrir le lien, voir l'offre, et ne jamais aller plus loin. Un lien de parrainage envoie `referral_link_opened` à la place de `deep_link_opened`, pour ne pas compter deux fois la même ouverture.
 
 Un code saisi à la main se mesure sans aucun outil d'attribution. Un lien de parrainage, lui, doit survivre à l'installation de l'app : il demande un lien différé, fourni par un outil d'attribution ou un service de liens.
 
 | Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
-| `referral_code_applied` | Le filleul applique un code ou ouvre un lien de parrainage | `referral_source` | L'app a un programme de parrainage |
+| `referral_link_opened` | L'app s'ouvre depuis un lien de parrainage, directement ou après l'installation par un lien différé | | L'app a des liens de parrainage |
+| `referral_code_applied` | Le parrainage est rattaché au compte du filleul, par un code tapé ou porté par le lien | `referral_source` | L'app a un programme de parrainage |
 | `reward_received` | L'utilisateur reçoit une récompense de l'app | `reward_reason`, `reward_type` | L'app récompense ses utilisateurs |
 
 | Propriété | Valeurs |
 |---|---|
-| `referral_source` | `code`, `link` |
+| `referral_source` | `code` (tapé par le filleul), `link` (porté par le lien de parrainage) |
 | `reward_reason` | `referral`, `contribution`, `other` |
 | `reward_type` | `discount`, `free_period`, `credit`, `points` |
 
@@ -119,6 +124,7 @@ Un code saisi à la main se mesure sans aucun outil d'attribution. Un lien de pa
 | KPI | Définition |
 |---|---|
 | **Taux de parrainage** | Part des utilisateurs actifs qui envoient au moins une invitation dans la période |
+| **Conversion des liens de parrainage** | Part des utilisateurs qui émettent `referral_link_opened` puis `referral_code_applied` dans les 30 jours, lue à J7 et J30. L'écart entre J7 et J30 dit si une relance au filleul vaut le coup |
 | **Filleuls par parrain** | Nombre d'utilisateurs qui appliquent un code de parrainage, rapporté au nombre d'utilisateurs qui ont envoyé au moins une invitation, sur une même période glissante de 30 jours. Indicatif : une invitation et le code qui la suit peuvent tomber sur deux périodes |
 | **Activation des filleuls** | Taux d'activation des utilisateurs parrainés, comparé à celui des autres nouveaux utilisateurs de la même période. Comme toujours, c'est une corrélation : un filleul arrive souvent avec une recommandation qui le motive déjà |
 | **Parrains récompensés** | Nombre de parrains distincts qui reçoivent une récompense pour un parrainage dans la période |

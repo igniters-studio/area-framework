@@ -10,7 +10,7 @@ events:
   pattern: '^[a-z][a-z0-9_]*$'   # snake_case, starts with a letter
   max_length: 40
   grammar: object_verb            # object first, then the verb in the past participle: onboarding_completed
-  verbs:   # closed vocabulary: one verb, one meaning
+  verbs:   # closed vocabulary for event names: one verb, one meaning. Enum values are free words.
     started: A flow begins
     completed: The flow or the action succeeds
     failed: The flow fails for a technical or external reason
@@ -46,7 +46,7 @@ properties:
     identifier: { suffix: _id }
     duration: { suffix: _seconds, unit: seconds }   # a measure only the app knows, e.g. run_duration_seconds
     timestamp: forbidden   # the analytics tool timestamps every event
-    derived_value: forbidden   # counters, time between two events, ranks: computed in the tool from events
+    derived_value: forbidden   # counters, time between two events, ranks in the user's history: computed in the tool from events. A step position in a flow (step_index) is not one
     copy_of_user_property: allowed   # same name, listed in properties.yaml under copied_on
     free_text: forbidden   # never send text typed by the user
     personal_data: forbidden
@@ -115,7 +115,7 @@ stability_levels:
 
 promotion:
   development_to_stable:
-    - Implemented in at least two apps in production, at least one of them outside the author's studio.
+    - Implemented in at least two apps in production, at least one of them outside the team that maintains AREA.
     - Its KPIs have been read on real data in those apps.
     - No open feedback questions it.
   evidence: Feedback is filed as an issue or a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.

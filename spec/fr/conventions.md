@@ -22,7 +22,7 @@ Ce choix diffère de la [spec Segment](https://www.twilio.com/docs/segment/conne
 
 Une interaction devient un event seulement quand elle est elle-même ce que mesure le KPI. C'est le cas de l'Advocacy : l'app ne peut pas voir si l'utilisateur a vraiment recommandé l'app, donc l'invitation envoyée (`invite_shared`) est le résultat qu'on mesure.
 
-**Un vocabulaire de verbes commun.** Le même verbe a le même sens partout. Un nouveau verbe n'entre dans le vocabulaire qu'avec un sens qui ne recouvre aucun des autres.
+**Un vocabulaire de verbes commun.** Le même verbe a le même sens partout. Un nouveau verbe n'entre dans le vocabulaire qu'avec un sens qui ne recouvre aucun des autres. Ce vocabulaire fermé vaut pour les noms d'events. Les valeurs d'une propriété restent des mots libres, comme `roadmap_voted`.
 
 | Verbe | Sens | Exemple |
 |---|---|---|
@@ -71,7 +71,7 @@ Sources : [noms réservés de GA4](https://support.google.com/analytics/answer/1
 | Durée | En secondes, suffixe `_seconds` | `run_duration_seconds` |
 | Autre mesure | L'unité en suffixe | `distance_m` |
 | Date et heure | Jamais en propriété : l'outil date chaque event | |
-| Valeur dérivée | Jamais en propriété : un compteur, un délai entre deux events ou un rang (« Nième action ») se calculent dans l'outil à partir des events | |
+| Valeur dérivée | Jamais en propriété : un compteur, un délai entre deux events ou un rang dans l'historique de l'utilisateur (« Nième action ») se calculent dans l'outil à partir des events. La position d'une étape dans un parcours (`step_index`) n'en est pas une : seule l'app connaît l'ordre de ses écrans | |
 
 Une durée envoyée en propriété est une mesure que seule l'app connaît, comme la durée d'une course. Le temps écoulé entre deux events, lui, se calcule dans l'outil.
 
@@ -134,7 +134,7 @@ Chaque entrée du registre (pilier, KPI, event, propriété, mécanique) a un ni
 
 **Une entrée devient stable par l'usage, pas par décision.** Elle passe de `development` à `stable` quand les trois conditions suivantes sont réunies :
 
-1. Elle est implémentée dans au moins deux apps en production, dont une au moins hors du studio de l'auteur.
+1. Elle est implémentée dans au moins deux apps en production, dont une au moins hors de l'équipe qui maintient AREA.
 2. Ses KPI ont été lus sur des données réelles dans ces apps.
 3. Aucun retour ouvert ne la remet en cause.
 

@@ -17,7 +17,7 @@ Beaucoup d'apps mobiles traquent beaucoup et en apprennent peu. Les events s'emp
 
 ### D'où vient AREA
 
-Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé AARRR, pensé pour la croissance d'une startup, HEART, pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait un socle commun, prêt à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
+Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), pensé pour la croissance d'une startup, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait un socle commun, prêt à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
 
 La question suivante est arrivée aussitôt : comment m'assurer que le tracking reste juste dans la durée ? Que se passe-t-il quand j'ajoute une feature, quand je change l'interface, quand j'en retire une ? Comment faire du tracking un outil de décision qui vit avec le projet, plutôt qu'un plan qui se périme au premier sprint ? Une partie de la réponse tient dans l'outillage (voir [plus bas](#outillage)). AREA, lui, s'applique sans aucun outil.
 
@@ -70,7 +70,7 @@ AREA ne remplace pas les frameworks existants. Il leur emprunte beaucoup, et ajo
 
 **La différence tient en une ligne : avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.** Chaque app écrit ses objectifs, définit son action cœur et son aha moment. Le reste du socle (les KPI de référence, leurs verdicts, les events et leurs propriétés) fait partie du framework. Une équipe n'a plus à le réinventer : elle le pose, puis elle consacre son temps à ce qui est propre à son app.
 
-Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularisé l'idée d'une action qui porte la valeur du produit, et Reforge le découpage setup, aha et habit moment. Côté events, la spec Segment et sa [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), comme les guides de taxonomie d'Amplitude et de Mixpanel, ont posé l'idée d'un vocabulaire d'events partagé. AREA relie les deux mondes : il part des questions de pilotage et descend jusqu'aux events, avec un socle commun aux apps mobiles.
+Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularisé l'idée d'une action qui porte la valeur du produit, et Reforge le découpage de l'activation en trois moments : setup (l'app est prête à servir), aha (l'utilisateur en voit la valeur) et habit (il en fait une habitude). Côté events, la spec Segment et sa [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), comme les guides de taxonomie d'Amplitude et de Mixpanel, ont posé l'idée d'un vocabulaire d'events partagé. AREA relie les deux mondes : il part des questions de pilotage et descend jusqu'aux events, avec un socle commun aux apps mobiles.
 
 ## Les limites
 
@@ -114,7 +114,7 @@ references/    Les repères qui ne font pas partie de la spec, comme les benchma
 
 ## Versions et stabilité
 
-AREA suit le versionnement sémantique. Chaque entrée du registre a un niveau de stabilité, et une entrée devient stable par l'usage : quand elle est implémentée dans au moins deux apps en production, dont une hors du studio de l'auteur, que ses KPI ont été lus sur des données réelles, et qu'aucun retour ne la remet en cause. La règle complète est dans les [conventions](spec/fr/conventions.md#stabilité-et-versions), et chaque changement est noté dans le [changelog](CHANGELOG.md).
+AREA suit le versionnement sémantique. Chaque entrée du registre a un niveau de stabilité, et une entrée devient stable par l'usage : quand elle est implémentée dans au moins deux apps en production, dont une hors de l'équipe qui maintient AREA, que ses KPI ont été lus sur des données réelles, et qu'aucun retour ne la remet en cause. La règle complète est dans les [conventions](spec/fr/conventions.md#stabilité-et-versions), et chaque changement est noté dans le [changelog](CHANGELOG.md).
 
 ## Contribuer
 

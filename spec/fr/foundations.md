@@ -33,7 +33,7 @@ Les extensions de l'app (widget, extension de partage, montre) envoient leurs ev
 
 Certaines informations accompagnent chaque event, pour que tous les KPI puissent être découpés de la même façon. Peu importe qu'elles soient collectées automatiquement par l'outil ou envoyées par l'app : elles doivent exister.
 
-Le tableau ci-dessous est un minimum. Chaque app peut en ajouter selon ses besoins, en respectant les conventions et les limites des outils (25 propriétés par event, 25 propriétés utilisateur). Les plus utiles sont celles que l'outil ne peut pas deviner : `app_language` quand la langue choisie dans l'app diffère de celle de l'appareil, `market` quand les offres changent selon les pays, `experiment_variant` quand un test A/B est en cours, ou `update_id` quand l'app déploie des mises à jour sans passer par les stores (Expo Updates, CodePush) : `app_version` ne change pas, et c'est le seul moyen de distinguer deux versions du code.
+Le tableau ci-dessous est un minimum. Chaque app peut en ajouter selon ses besoins, en respectant les conventions et les limites des outils (25 propriétés par event, 25 propriétés utilisateur). Les plus utiles sont celles que l'outil ne peut pas deviner : `app_language` quand la langue choisie dans l'app diffère de celle de l'appareil, `market` quand les offres changent selon les pays, `experiment_variant` quand un test A/B est en cours, ou `update_id` quand l'app déploie des mises à jour sans passer par les stores. Avec Expo Updates ou CodePush, `app_version` ne change pas : `update_id` est alors le seul moyen de distinguer deux versions du code.
 
 | Propriété | Portée | Sens | Valeurs |
 |---|---|---|---|

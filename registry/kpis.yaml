@@ -98,8 +98,9 @@ kpis:
   - id: core_action_frequency
     pillar: engagement
     name: Core action frequency
-    definition: For each user, the median interval between two days with a core_action_completed (several actions on one day count as one day); the KPI is the median of these intervals over active users.
-    inputs: [core_action_completed]
+    definition: For each user, the median interval between two days with a core_action_completed (several actions on one day count as one day); the KPI is the median of these intervals over active users who have at least two days with a core action in the period (one day gives no interval).
+    population: active_users
+    inputs: [app_opened, core_action_completed]
     stability: development
 
   - id: power_user_ratio
@@ -165,7 +166,7 @@ kpis:
     name: Core retention of activated and non-activated users
     definition: core_retention of activated users and of the other new users of the same period, both measured from the first launch and read after the activation window closes. A correlation, never a promised gain.
     cohort: new_users
-    read_at: [D7, D30]
+    read_at: { default: [D7, D30], notes: "Read after the activation window closes; D7 and D30 for the default 7-day window." }
     inputs: [app_opened, aha_moment_reached, core_action_completed]
     requires_properties: [is_first_launch, aha_version]
     stability: development
@@ -265,6 +266,16 @@ kpis:
     definition: Share of active users who send at least one invitation in the period.
     population: active_users
     inputs: [app_opened, core_action_completed, invite_shared]
+    requires_mechanics: { any_of: [referral] }
+    stability: development
+
+  - id: referral_link_conversion
+    pillar: advocacy
+    name: Referral link conversion
+    definition: Share of users who emit referral_link_opened and then referral_code_applied within 30 days, read at D7 and D30. The gap between D7 and D30 says whether a reminder to the referred user is worth it.
+    window: { days: 30 }
+    read_at: [D7, D30]
+    inputs: [referral_link_opened, referral_code_applied]
     requires_mechanics: { any_of: [referral] }
     stability: development
 

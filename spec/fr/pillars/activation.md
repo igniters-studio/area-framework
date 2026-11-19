@@ -54,7 +54,7 @@ Le verdict dit si ce KPI peut être lu de façon fiable à partir du tracking en
 
 | Verdict | Condition |
 |---|---|
-| **Mesurable** | L'aha moment est défini et versionné, `aha_moment_reached` part depuis toutes les surfaces où il peut être atteint, `app_opened` est en place avec `is_first_launch`, et les Fondations sont respectées |
+| **Mesurable** | L'aha moment est défini et versionné, `aha_moment_reached` part depuis toutes les surfaces où il peut être atteint (écran de l'app, widget, notification…), `app_opened` est en place avec `is_first_launch`, et les Fondations sont respectées |
 | **Partiel** | L'event manque sur une partie des surfaces, `is_first_launch` est absent, ou l'une des Fondations est incomplète |
 | **Non mesurable** | Aucun aha moment défini, ou aucun event qui le signale |
 
@@ -81,7 +81,7 @@ Une app sans compte n'est pas pénalisée : son verdict précise seulement qu'il
 | `paywall_shown` | L'app présente son offre payante | `paywall_trigger` | L'app a une paywall |
 | `trial_started` | L'utilisateur démarre un essai gratuit | `user_plan` | L'app propose un essai |
 | `purchase_completed` | L'utilisateur achète un abonnement ou un produit proposé par la paywall. Une commande dans une app de commerce n'en est pas un : c'est l'action cœur | `user_plan`, `purchase_type` | L'app a une paywall |
-| `permission_granted` | L'utilisateur accorde une autorisation | `permission_type`, `permission_scope` | L'app demande des autorisations |
+| `permission_granted` | L'utilisateur accorde une autorisation | `permission_type`, et `permission_scope` si la plateforme expose une portée | L'app demande des autorisations |
 | `permission_denied` | L'utilisateur refuse une autorisation | `permission_type` | L'app demande des autorisations |
 
 `aha_moment_reached` peut partir plus d'une fois sans fausser le KPI, puisque seule sa première occurrence compte. Il n'est donc pas nécessaire de garder un état côté serveur pour l'envoyer une seule fois.
@@ -99,7 +99,7 @@ Une app sans compte n'est pas pénalisée : son verdict précise seulement qu'il
 | `user_plan` | Palier de l'offre au moment de l'event : sur `trial_started` et `purchase_completed`, le palier qui vient d'être obtenu. Copie de la propriété utilisateur des Fondations |
 | `purchase_type` | `subscription`, `one_time` |
 | `permission_type` | `notifications`, `location`, `health`, `camera`, `microphone`, `contacts`, `photos`, `app_tracking` |
-| `permission_scope` | Ce que l'utilisateur a accordé : `full`, `limited` (photos choisies, position approximative), `provisional` (notifications provisoires d'iOS), `once` (pour cette fois seulement) |
+| `permission_scope` | Ce que l'utilisateur a accordé, envoyé chaque fois que la plateforme expose une portée : `full` (autorisation complète), `limited` (photos choisies, position approximative), `provisional` (notifications provisoires d'iOS), `once` (pour cette fois seulement) |
 
 ## La paywall et l'achat
 

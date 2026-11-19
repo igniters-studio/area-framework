@@ -44,7 +44,7 @@ Les mécaniques ajoutent leurs propres KPI : complétion de l'onboarding, abando
 |---|---|---|
 | `app_opened` | L'app passe au premier plan : lancement ou retour depuis l'arrière-plan. Il définit les nouveaux utilisateurs et les canaux de retour, et entre dans la définition des utilisateurs actifs | `entry_point`, `is_first_launch` |
 | `aha_moment_reached` | L'utilisateur atteint l'aha moment, tel que l'app l'a défini (voir [l'aha moment](pillars/activation.md#laha-moment)) | `aha_version`, et `core_action_type` si l'aha porte sur une action cœur |
-| `core_action_completed` | Chaque réalisation de l'action cœur, première comprise, depuis toutes les surfaces où elle se fait | `core_action_type` |
+| `core_action_completed` | Chaque réalisation de l'action cœur, première comprise, depuis toutes les surfaces où elle se fait (écran de l'app, widget, notification, extension de partage…) | `core_action_type` |
 
 | Propriété | Valeurs |
 |---|---|
@@ -102,7 +102,7 @@ Ces events ne sont pas facultatifs : ils deviennent obligatoires dès que la mé
 | Question de satisfaction | `satisfaction_prompt_answered` | Advocacy |
 | NPS | `nps_answered` | Advocacy |
 | Demande de note | `review_prompt_triggered` | Advocacy |
-| Invitation ou parrainage | `invite_shared`, `referral_code_applied` | Advocacy |
+| Invitation ou parrainage | `invite_shared`, et `referral_link_opened`, `referral_code_applied` si l'app a un parrainage | Advocacy |
 | Partage de contenu | `content_shared` | Advocacy |
 | Co-création | `co_creation_contributed` | Advocacy |
 | Récompenses | `reward_received` | Advocacy |

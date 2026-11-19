@@ -49,7 +49,7 @@ Ce KPI répond directement à la question du pilier : parmi ceux qui viennent, c
 
 | KPI | Définition |
 |---|---|
-| **Fréquence de l'action cœur** | Pour chaque utilisateur, l'intervalle médian entre deux jours où il réalise l'action cœur. Plusieurs actions le même jour comptent pour un jour. Le KPI est la médiane de ces intervalles sur les utilisateurs actifs |
+| **Fréquence de l'action cœur** | Pour chaque utilisateur, l'intervalle médian entre deux jours où il réalise l'action cœur. Plusieurs actions le même jour comptent pour un jour. Le KPI est la médiane de ces intervalles sur les utilisateurs actifs qui ont au moins deux jours d'action cœur dans la période : un seul jour ne donne aucun intervalle |
 | **Part d'utilisateurs intensifs** | Part des utilisateurs actifs qui réalisent l'action cœur au moins N jours dans la période. N est propre à chaque app : il se fixe après avoir regardé la distribution réelle, puis il est noté dans le plan de tracking. Le changer ouvre une nouvelle série, qui ne se compare pas à l'ancienne |
 | **Adoption d'une feature** | Part des utilisateurs actifs qui émettent `feature_used` pour cette feature dans la période |
 | **Atteinte d'un écran** | Part des utilisateurs actifs qui affichent un écran donné dans la période, si l'app trace la navigation |

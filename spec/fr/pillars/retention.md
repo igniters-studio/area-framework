@@ -34,7 +34,7 @@ La rétention au jour près mesure aussi la fréquence : une app utilisée une f
 
 | Verdict | Condition |
 |---|---|
-| **Mesurable** | L'action cœur est définie, `core_action_completed` part depuis toutes ses surfaces, `app_opened` est en place avec `is_first_launch`, et les Fondations sont respectées |
+| **Mesurable** | L'action cœur est définie, `core_action_completed` part depuis toutes ses surfaces (écran de l'app, widget, notification…), `app_opened` est en place avec `is_first_launch`, et les Fondations sont respectées |
 | **Partiel** | `core_action_completed` manque sur une partie des surfaces, `is_first_launch` est absent, ou l'une des Fondations est incomplète |
 | **Non mesurable** | Aucune action cœur définie, ou la rétention n'est mesurable que sur l'ouverture de l'app |
 
@@ -75,7 +75,7 @@ La rétention se mesure avec les events du socle : `app_opened`, `aha_moment_rea
 | Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
 | `notification_opened` | L'utilisateur touche une notification de l'app, qu'elle ouvre l'app ou que l'app soit déjà au premier plan | `notification_type`, `delivery_type` | L'app envoie des notifications |
-| `deep_link_opened` | L'app s'ouvre depuis un lien externe | `link_source` | L'app reçoit des liens entrants |
+| `deep_link_opened` | L'app s'ouvre depuis un lien externe. Un lien de parrainage envoie [`referral_link_opened`](advocacy.md#le-parrainage) à la place | `link_source` | L'app reçoit des liens entrants |
 
 ## Propriétés
 
@@ -83,7 +83,7 @@ La rétention se mesure avec les events du socle : `app_opened`, `aha_moment_rea
 |---|---|
 | `notification_type` | `reminder`, `re_engagement`, `streak_reminder`, `social`, `promotional`, `content_update`, `transactional`. Le serveur ou le code qui crée la notification y place cette valeur, pour que l'app la lise à l'ouverture |
 | `delivery_type` | `local` (planifiée sur l'appareil), `push` (envoyée par un serveur) |
-| `link_source` | `email`, `social`, `qr_code`, `referral`, `other`. Pas de valeur `push` : une notification qui ouvre un lien envoie `notification_opened`, pour ne pas compter deux fois le même retour |
+| `link_source` | `email`, `social`, `qr_code`, `other`. Pas de valeur `push` : une notification qui ouvre un lien envoie `notification_opened`, pour ne pas compter deux fois le même retour. Pas de valeur `referral` non plus : un lien de parrainage envoie `referral_link_opened` |
 
 ## Les questions auxquelles ce pilier répond
 
