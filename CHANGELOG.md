@@ -28,5 +28,7 @@ First public version of AREA. Every registry entry is in `development`.
   machine-readable form.
 - **Validation script** for the registry (`scripts/validate_registry.py`).
 - **Benchmarks** (`references/`), outside the spec.
+- **Website** (`site/`): the spec in both languages, with a home page and `llms.txt`, built as a
+  static export from the repo's Markdown and registry, published on GitHub Pages.
 - **Two languages**: English, the reference version, and a French translation (`spec/fr/`,
   `references/fr/`, `README.fr.md`).

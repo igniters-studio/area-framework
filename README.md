@@ -110,6 +110,7 @@ spec/          The spec: manifesto, conventions, foundations, pillars, Minimum V
 spec/fr/       The French translation of the spec
 registry/      The spec in machine-readable form (YAML)
 scripts/       The script that validates the registry
+site/          The website, a static export of the spec published on GitHub Pages
 references/    Reference points that are not part of the spec, such as benchmarks
 ```
 
@@ -125,6 +126,6 @@ Feedback from apps that apply AREA is what moves it forward, and what moves its 
 
 - **The text** of AREA (`spec/`, `references/`, this README) is published under the [CC BY 4.0](LICENSE) license. You can reuse it, adapt it and use it commercially, as long as you credit the source and state your changes.
 - **The registry** (`registry/`) is published under the [CC0 1.0](registry/LICENSE) license: event, property and KPI names can be reused in your code and tracking plans with no conditions at all.
-- **The script** (`scripts/`) is published under the [Apache 2.0](scripts/LICENSE) license.
+- **The script** (`scripts/`) and **the website's code** (`site/`) are published under the [Apache 2.0](scripts/LICENSE) license.
 
 > AREA Framework, Kevin Tersigni, igniters — https://github.com/igniters-studio/area-framework
