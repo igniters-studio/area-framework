@@ -2,7 +2,7 @@
 # License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
 # A mechanic is a feature an app may or may not have. When it exists,
 # the events attached to it in events.yaml become mandatory.
-# layer: foundations (applies before the pillars) or pillar (attached to one pillar).
+# A mechanic has either layer: foundations (applies before the pillars) or a pillar it is attached to.
 area_version: 0.1.0
 
 mechanics:

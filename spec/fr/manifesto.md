@@ -1,8 +1,6 @@
-# AREA Framework
+# Manifeste
 
 **Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
-
-`v0.1.0 · brouillon`
 
 ## Le problème
 
@@ -39,7 +37,7 @@ Un event existe parce qu'un KPI en a besoin. Un KPI existe parce qu'il répond �
 | **Engagement** | Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ? |
 | **Advocacy** | Sont-ils prêts à la recommander ? |
 
-Les piliers ne sont pas nouveaux : l'Activation, la Rétention et le Referral, devenu Advocacy, viennent d'AARRR ; l'Engagement vient de HEART. Ce qui est nouveau, c'est de les poser comme un tronc commun pour les apps mobiles, avec leurs KPI et leurs events. Ils s'appliquent à la plupart des apps, quel que soit leur modèle économique ; les cas où ils ne s'appliquent pas tels quels sont listés dans le README. Les features de l'app ne créent pas de nouveaux piliers : elles se rattachent aux quatre existants.
+Les piliers ne sont pas nouveaux : l'Activation, la Rétention et le Referral, devenu Advocacy, viennent d'AARRR ; l'Engagement vient de HEART. Ce qui est nouveau, c'est de les poser comme un tronc commun pour les apps mobiles, avec leurs KPI et leurs events. Ils s'appliquent à la plupart des apps, quel que soit leur modèle économique ; les cas où ils ne s'appliquent pas tels quels sont listés dans [les limites](../../README.fr.md#les-limites) du README. Les features de l'app ne créent pas de nouveaux piliers : elles se rattachent aux quatre existants.
 
 ## Les principes
 

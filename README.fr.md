@@ -19,7 +19,7 @@ Beaucoup d'apps mobiles traquent beaucoup et en apprennent peu. Les events s'emp
 
 Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé AARRR, pensé pour la croissance d'une startup, HEART, pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait un socle commun, prêt à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
 
-La question suivante est arrivée aussitôt : comment m'assurer que le tracking reste juste dans la durée ? Que se passe-t-il quand j'ajoute une feature, quand je change l'interface, quand j'en retire une ? Comment faire du tracking un outil de décision qui vit avec le projet, plutôt qu'un plan qui se périme au premier sprint ? Une partie de la réponse tient dans l'outillage (voir plus bas). AREA, lui, s'applique sans aucun outil.
+La question suivante est arrivée aussitôt : comment m'assurer que le tracking reste juste dans la durée ? Que se passe-t-il quand j'ajoute une feature, quand je change l'interface, quand j'en retire une ? Comment faire du tracking un outil de décision qui vit avec le projet, plutôt qu'un plan qui se périme au premier sprint ? Une partie de la réponse tient dans l'outillage (voir [plus bas](#outillage)). AREA, lui, s'applique sans aucun outil.
 
 — Kevin Tersigni
 
@@ -99,7 +99,7 @@ Côté outillage, un skill pour les agents de code et un serveur MCP, publics eu
 AREA se vérifie sans outil particulier :
 
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
-- **Le registre se valide avec un script** livré dans ce repo : `python3 scripts/validate_registry.py`. Il contrôle le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
+- **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
 L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui vérifie le tracking d'une app face à AREA à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 

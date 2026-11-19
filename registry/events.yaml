@@ -1,7 +1,7 @@
 # AREA Framework — events
 # License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
 # layer: core (every app), foundations (applies before the pillars) or mechanic (mandatory as soon as the mechanic exists).
-# pillar: the pillar the event mainly serves; omitted for core events that serve several pillars.
+# pillar: the pillar the event mainly serves; omitted for app_opened, which serves every pillar, and for foundations events.
 # role: core events are roles. An existing app may keep its own event name, and its tracking plan says which event plays which role.
 # properties: required ones are always sent; optional ones only when their condition holds. Values are in properties.yaml.
 area_version: 0.1.0
@@ -12,7 +12,7 @@ events:
     layer: core
     role: true
     when: The app comes to the foreground, at launch or when returning from the background.
-    notes: Defines new users (is_first_launch), active users and return channels.
+    notes: Defines new users (is_first_launch) and return channels, and counts toward active users.
     properties:
       required: [entry_point, is_first_launch]
     stability: development
@@ -41,7 +41,7 @@ events:
   - name: analytics_consent_granted
     layer: foundations
     mechanic: consent
-    when: Right after the user grants consent. A refusal is never sent.
+    when: Right after the user grants consent, just after the app_opened that consent unblocks. A refusal is never sent.
     notes: Records when and where consent was given. The consent rate itself comes from the consent management tool.
     properties:
       required: [consent_source]
@@ -99,7 +99,7 @@ events:
     pillar: activation
     layer: mechanic
     mechanic: paywall
-    when: The user buys a subscription or a product. Never sends an amount or a currency.
+    when: The user buys a subscription or a product offered by the paywall. An order in a commerce app is not a purchase_completed, it is the app's core action. Never sends an amount or a currency.
     properties:
       required: [user_plan, purchase_type]
     stability: development

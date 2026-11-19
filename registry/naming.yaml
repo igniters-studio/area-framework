@@ -1,6 +1,6 @@
 # AREA Framework — naming rules
 # License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
-# Machine-readable version of spec/conventions.md.
+# Machine-readable version of spec/conventions.md (English) and spec/fr/conventions.md (French).
 area_version: 0.1.0
 stability: development
 
@@ -16,13 +16,13 @@ events:
     failed: The flow fails for a technical or external reason
     cancelled: The user abandons a flow they had started
     reached: The user reaches a milestone defined by the app
-    shown: The app presents something the user did not ask for
+    shown: The app presents an offer or a message it controls, whatever triggered it (a property says what)
     dismissed: The user closes what the app presented
     viewed: The user opens a screen or content on their own
     opened: The app comes to the foreground, or opens from a specific entry point
     used: The user uses a feature
     granted: The user accepts a permission or a consent
-    denied: The user refuses a permission
+    denied: The user refuses a permission, or the system refuses it without a dialog. A consent refusal is never sent
     answered: The user answers a closed question asked by the app
     submitted: The user sends content they composed
     contributed: The user makes a contribution to the product

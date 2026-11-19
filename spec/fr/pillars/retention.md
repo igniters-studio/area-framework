@@ -2,7 +2,7 @@
 
 > Reviennent-ils faire ce pour quoi l'app existe ?
 
-La rétention est le signal le plus honnête de la valeur d'une app. Des milliers d'installations ne valent rien si personne ne revient la semaine suivante. Dans AREA, revenir ne veut pas dire rouvrir l'app : un utilisateur est retenu quand il revient réaliser l'action cœur (voir Engagement).
+La rétention est le signal le plus honnête de la valeur d'une app. Des milliers d'installations ne valent rien si personne ne revient la semaine suivante. Dans AREA, revenir ne veut pas dire rouvrir l'app : un utilisateur est retenu quand il revient réaliser l'action cœur (voir [l'action cœur](engagement.md#laction-cœur)).
 
 **Objectif business type :** faire revenir les utilisateurs, longtemps, pour ce que l'app leur apporte.
 
@@ -58,13 +58,13 @@ Les deux cohortes partent du même jour, et la rétention se lit après la fin d
 
 **Cet écart est une corrélation, pas une cause.** Les utilisateurs qui atteignent l'aha moment sont aussi, en moyenne, les plus motivés au départ. Une partie de leur meilleure rétention leur appartenait avant même d'ouvrir l'app. L'écart dit où regarder, il ne promet pas de gain : « 10 % d'activés en plus » ne donnera pas forcément 10 % de rétention en plus. Seule une expérience le prouve : un changement testé contre un groupe témoin, ou à défaut une hausse du taux d'activation suivie d'une hausse de la rétention de toute la cohorte.
 
-**Les benchmarks du marché ne mesurent pas la même chose.** Ils comptent les utilisateurs qui ouvrent l'app au jour N, rapportés aux installations. Pour s'y comparer, AREA calcule une rétention d'ouverture (voir les KPI complémentaires). La rétention cœur, elle, est toujours plus basse, puisqu'un retour sans action cœur ne compte pas : la comparer aux benchmarks donnerait une inquiétude injustifiée. À l'inverse, comparer la cohorte des activés, structurellement plus haute, donnerait une satisfaction trompeuse.
+**Les benchmarks du marché ne mesurent pas la même chose.** Ils comptent les utilisateurs qui ouvrent l'app au jour N, rapportés aux installations. Pour s'y comparer, AREA calcule une rétention d'ouverture (voir [les KPI complémentaires](#kpi-complémentaires)). La rétention cœur, elle, est toujours plus basse, puisqu'un retour sans action cœur ne compte pas : la comparer aux benchmarks donnerait une inquiétude injustifiée. À l'inverse, comparer la cohorte des activés, structurellement plus haute, donnerait une satisfaction trompeuse.
 
 ## KPI complémentaires
 
 | KPI | Définition |
 |---|---|
-| **Rétention d'ouverture** | Part de la cohorte qui émet au moins un `app_opened` le jour N. C'est le chiffre à comparer aux benchmarks du marché, avec deux écarts connus : la cohorte ne compte pas les installations jamais ouvertes, et elle ne contient que les utilisateurs qui ont accepté la mesure (voir les Fondations) |
+| **Rétention d'ouverture** | Part de la cohorte qui émet au moins un `app_opened` le jour N. C'est le chiffre à comparer aux benchmarks du marché, avec deux écarts connus : la cohorte ne compte pas les installations jamais ouvertes, et elle ne contient que les utilisateurs qui ont accepté la mesure (voir [le consentement](../foundations.md#3-le-consentement)) |
 | **Rétention des activés et des non activés** | La rétention cœur des deux cohortes, à J7 et J30 |
 | **Retours par canal** | Répartition des `app_opened` qui ne sont pas un premier lancement, par `entry_point` : l'icône, un widget ou un raccourci, une notification, un lien. Une part d'ouvertures depuis l'icône qui grandit suggère que l'app devient une habitude, sans qu'on ait besoin de la rappeler |
 
@@ -72,16 +72,16 @@ Les deux cohortes partent du même jour, et la rétention se lit après la fin d
 
 La rétention se mesure avec les events du socle : `app_opened`, `aha_moment_reached` et `core_action_completed`. Les events propres à ce pilier précisent quelle notification ou quel lien a ramené l'utilisateur, quand `entry_point` dit seulement qu'il s'agissait d'une notification ou d'un lien.
 
-| Event | Quand | Propriétés | Statut |
+| Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
-| `notification_opened` | L'utilisateur touche une notification de l'app, qu'elle ouvre l'app ou que l'app soit déjà au premier plan | `notification_type`, `delivery_type` | Si l'app envoie des notifications |
-| `deep_link_opened` | L'app s'ouvre depuis un lien externe | `link_source` | Si l'app reçoit des liens entrants |
+| `notification_opened` | L'utilisateur touche une notification de l'app, qu'elle ouvre l'app ou que l'app soit déjà au premier plan | `notification_type`, `delivery_type` | L'app envoie des notifications |
+| `deep_link_opened` | L'app s'ouvre depuis un lien externe | `link_source` | L'app reçoit des liens entrants |
 
 ## Propriétés
 
 | Propriété | Valeurs |
 |---|---|
-| `notification_type` | `local_reminder`, `re_engagement`, `streak_reminder`, `social`, `promotional`, `content_update`, `transactional`. Le serveur ou le code qui crée la notification y place cette valeur, pour que l'app la lise à l'ouverture |
+| `notification_type` | `reminder`, `re_engagement`, `streak_reminder`, `social`, `promotional`, `content_update`, `transactional`. Le serveur ou le code qui crée la notification y place cette valeur, pour que l'app la lise à l'ouverture |
 | `delivery_type` | `local` (planifiée sur l'appareil), `push` (envoyée par un serveur) |
 | `link_source` | `email`, `social`, `qr_code`, `referral`, `other`. Pas de valeur `push` : une notification qui ouvre un lien envoie `notification_opened`, pour ne pas compter deux fois le même retour |
 

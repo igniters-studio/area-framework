@@ -21,7 +21,7 @@ kpis:
     definition: Share of new users who emit aha_moment_reached within N days of their first launch.
     cohort: new_users
     numerator: { event: aha_moment_reached, occurrence: first, within_days: N }
-    window: { name: N, default_days: 7, notes: 1 day for a daily app, longer for an occasional one. Fixed once chosen. }
+    window: { name: N, default_days: 7, notes: "1 day for a daily app, longer for an occasional one. Once chosen, it is recorded in the tracking plan; changing it starts a new series, never compared with the previous one." }
     volume: Number of activated users in the cohort.
     inputs: [app_opened, aha_moment_reached]
     requires_properties: [is_first_launch, aha_version]
@@ -38,7 +38,7 @@ kpis:
     definition: Median time between the first launch and the first aha_moment_reached, among users activated within the window. Published with the share of the cohort that did not reach it. Computed in the tool, never sent as a property.
     cohort: new_users
     inputs: [app_opened, aha_moment_reached]
-    requires_properties: [is_first_launch]
+    requires_properties: [is_first_launch, aha_version]
     stability: development
 
   - id: onboarding_completion_rate
@@ -105,7 +105,7 @@ kpis:
   - id: power_user_ratio
     pillar: engagement
     name: Power user ratio
-    definition: Share of active users who complete the core action on at least N days of the period. N is set after looking at the actual distribution, then fixed.
+    definition: Share of active users who complete the core action on at least N days of the period. N is set after looking at the actual distribution, then recorded in the tracking plan; changing it starts a new series, never compared with the previous one.
     population: active_users
     inputs: [app_opened, core_action_completed]
     stability: development
@@ -137,7 +137,7 @@ kpis:
     name: Core retention
     definition: Share of a new-user cohort who emit at least one core_action_completed on day N after their first launch.
     cohort: new_users
-    calculation: { default: classic_day_n, alternative: window, notes: For a low-frequency app, read by window (week 1, week 4, month 3), the user counting if they return at least once in the window. Chosen once and recorded in the tracking plan. }
+    calculation: { default: classic_day_n, alternative: window, notes: "For a low-frequency app, read by window (week 1, week 4, month 3), the user counting if they return at least once in the window. Chosen once and recorded in the tracking plan." }
     read_at: [D1, D7, D30]
     volume: Number of retained users at each reading point.
     inputs: [app_opened, core_action_completed]
@@ -167,7 +167,7 @@ kpis:
     cohort: new_users
     read_at: [D7, D30]
     inputs: [app_opened, aha_moment_reached, core_action_completed]
-    requires_properties: [is_first_launch]
+    requires_properties: [is_first_launch, aha_version]
     stability: development
 
   - id: return_channels
@@ -199,8 +199,8 @@ kpis:
     requires_mechanics: { any_of: [satisfaction_prompt, nps, referral] }
     verdicts:
       measurable: A satisfaction question, an NPS or an invitation exists, and its events say what the user did.
-      partial: Only diffuse signals exist (content sharing, co-creation), or only app-triggered events such as the review prompt, or invitations are tracked on the button tap instead of when sent.
-      not_measurable: The app offers no way to recommend or contribute.
+      partial: A satisfaction question, an NPS or an invitation exists, but its events are tracked on the tap instead of the result, or are missing on some surfaces.
+      not_measurable: No satisfaction question, no NPS and no invitation. Content sharing, co-creation or the review prompt alone are not enough.
     stability: development
 
   - id: declared_satisfaction
@@ -242,7 +242,7 @@ kpis:
   - id: contributor_retention_gap
     pillar: advocacy
     name: Contributor retention gap
-    definition: Core retention of users who contributed, compared with the other users who entered in the same period. A correlation.
+    definition: Core retention of new users who contribute within their first N days (the activation window), read after those N days and compared with the other new users of the same period. A correlation.
     cohort: new_users
     inputs: [app_opened, co_creation_contributed, core_action_completed]
     requires_properties: [is_first_launch]
@@ -283,7 +283,7 @@ kpis:
     definition: activation_rate of users who applied a referral code, compared with the other new users of the same period. A correlation.
     cohort: new_users
     inputs: [referral_code_applied, app_opened, aha_moment_reached]
-    requires_properties: [is_first_launch]
+    requires_properties: [is_first_launch, aha_version]
     requires_mechanics: { any_of: [referral] }
     stability: development
 
@@ -291,6 +291,7 @@ kpis:
     pillar: advocacy
     name: Rewarded referrers
     definition: Number of distinct users who receive a reward with reward_reason = referral in the period.
+    numerator: { event: reward_received, where: { reward_reason: referral } }
     inputs: [reward_received]
     requires_properties: [reward_reason]
     requires_mechanics: { any_of: [rewards] }

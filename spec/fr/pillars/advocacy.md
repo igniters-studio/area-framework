@@ -16,7 +16,7 @@ L'Advocacy mesure donc **l'intention captée dans l'app**. Le KPI de référence
 |---|---|
 | Course à pied | Invite un ami à un défi |
 | Budget | Donne 9 ou 10 à la question NPS |
-| Méditation | Offre une séance à un proche |
+| Méditation | Invite un proche à méditer avec lui |
 | Prise de notes | Répond positivement à une question de satisfaction |
 | E-commerce | Parraine un ami |
 
@@ -38,8 +38,8 @@ Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : po
 | Verdict | Condition |
 |---|---|
 | **Mesurable** | Au moins une question de satisfaction, un NPS ou une invitation existe, et ses events disent ce que l'utilisateur a fait (réponse donnée, invitation envoyée) |
-| **Partiel** | Seuls des signaux diffus existent (partage de contenu, co-création), ou seuls des events déclenchés par l'app, comme la demande de note, ou les invitations sont tracées au tap sur le bouton plutôt qu'à leur envoi |
-| **Non mesurable** | L'app n'offre aucun moyen de recommander ou de contribuer |
+| **Partiel** | Une question de satisfaction, un NPS ou une invitation existe, mais ses events sont tracés au tap plutôt qu'au résultat, ou manquent sur une partie des surfaces |
+| **Non mesurable** | Ni question de satisfaction, ni NPS, ni invitation. Le partage de contenu, la co-création ou la demande de note seuls ne suffisent pas |
 
 ## KPI complémentaires
 
@@ -49,19 +49,19 @@ Ce taux dépend aussi de la fréquence à laquelle l'app pose ses questions : po
 | **NPS** | Part des scores de 9 et 10 moins part des scores de 0 à 6, sur `nps_answered`, si l'app le mesure |
 | **Taux de partage** | Part des utilisateurs actifs qui partagent au moins un contenu (`content_shared`) dans la période |
 | **Taux de contribution** | Part des utilisateurs actifs qui émettent au moins un `co_creation_contributed` dans la période |
-| **Rétention des contributeurs** | Rétention cœur des utilisateurs qui ont contribué, comparée à celle des autres utilisateurs entrés à la même période. C'est une corrélation : les contributeurs étaient sans doute déjà les plus engagés |
+| **Rétention des contributeurs** | Rétention cœur des nouveaux utilisateurs qui contribuent dans les N premiers jours (la fenêtre d'activation), lue après ces N jours et comparée à celle des autres nouveaux utilisateurs de la même période. Comparer à tous ceux qui ont contribué un jour fausserait l'écart : un utilisateur qui contribue à J25 est forcément encore là à J25. C'est une corrélation : les contributeurs étaient sans doute déjà les plus engagés |
 | **Sollicitation de note** | Part des utilisateurs actifs pour qui l'app a appelé la demande de note dans la période, par `trigger_context`. Il dit si l'app demande au bon moment, sans demander trop souvent |
 
 ## Events
 
-| Event | Quand | Propriétés | Statut |
+| Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
-| `satisfaction_prompt_answered` | L'utilisateur répond à une question de satisfaction posée dans l'app | `satisfaction_answer`, `trigger_context` | Si l'app pose la question |
-| `nps_answered` | L'utilisateur donne un score NPS | `nps_score`, `trigger_context` | Si l'app mesure le NPS |
-| `review_prompt_triggered` | L'app appelle la demande de note du store. Le store décide s'il l'affiche | `trigger_context` | Si l'app demande une note |
-| `invite_shared` | L'utilisateur envoie une invitation ou son lien de parrainage | `share_method` | Si l'app a une invitation ou un parrainage |
-| `content_shared` | L'utilisateur partage un contenu de l'app | `content_type`, `share_method` | Si l'app permet le partage |
-| `co_creation_contributed` | L'utilisateur propose une idée, vote pour une feature ou envoie un retour | `co_creation_action` | Si l'app intègre un outil de co-création |
+| `satisfaction_prompt_answered` | L'utilisateur répond à une question de satisfaction posée dans l'app | `satisfaction_answer`, `trigger_context` | L'app pose la question |
+| `nps_answered` | L'utilisateur donne un score NPS | `nps_score`, `trigger_context` | L'app mesure le NPS |
+| `review_prompt_triggered` | L'app appelle la demande de note du store. Le store décide s'il l'affiche | `trigger_context` | L'app demande une note |
+| `invite_shared` | L'utilisateur envoie une invitation ou son lien de parrainage | `share_method` | L'app a une invitation ou un parrainage |
+| `content_shared` | L'utilisateur partage un contenu de l'app | `content_type`, `share_method` | L'app permet le partage |
+| `co_creation_contributed` | L'utilisateur propose une idée, vote pour une feature ou envoie un retour | `co_creation_action` | L'app intègre un outil de co-création |
 
 Il faut au moins une question de satisfaction, un NPS ou une invitation pour que le KPI de référence soit mesurable.
 
@@ -72,7 +72,7 @@ Il faut au moins une question de satisfaction, un NPS ou une invitation pour que
 | Propriété | Valeurs |
 |---|---|
 | `satisfaction_answer` | `positive`, `negative` |
-| `trigger_context` | Le moment choisi par l'app : `post_aha_moment`, `post_positive_event`, `day_7`, `day_30` |
+| `trigger_context` | Le moment choisi par l'app : `post_aha_moment`, `post_positive_event`, `day_7`, `day_30` (7 ou 30 jours après le premier lancement) |
 | `nps_score` | Entier de 0 à 10 |
 | `share_method` | `share_sheet`, `link_copied`, `message`, `social` |
 | `content_type` | Type de contenu partagé, propre à l'app : `run`, `product`, `note`… |
@@ -82,7 +82,7 @@ Il faut au moins une question de satisfaction, un NPS ou une invitation pour que
 
 La question de satisfaction et la demande de note sont deux mécaniques indépendantes. **La demande de note ne se conditionne jamais à une réponse positive.** La [documentation de l'In-App Review API de Google Play](https://developer.android.com/guide/playcore/in-app-review) interdit de poser à l'utilisateur la moindre question avant ou pendant la demande de note, y compris « Vous aimez l'app ? ». Elle déconseille aussi de la déclencher depuis un bouton : le store peut ne rien afficher, et l'utilisateur croit que l'app est cassée. Un bouton « Noter l'app » dans les réglages ouvre plutôt la page de l'app sur le store.
 
-L'app choisit donc le moment de la demande d'après ce que fait l'utilisateur, par exemple juste après un moment positif ou plusieurs jours après l'aha moment, et `trigger_context` dit lequel.
+L'app choisit donc le moment de la demande d'après ce que fait l'utilisateur, par exemple juste après l'aha moment, juste après un moment positif, ou 7 ou 30 jours après le premier lancement, et `trigger_context` dit lequel.
 
 ## Les questions auxquelles ce pilier répond
 
@@ -103,15 +103,15 @@ Beaucoup d'apps font de la recommandation un levier d'acquisition, et récompens
 
 Un code saisi à la main se mesure sans aucun outil d'attribution. Un lien de parrainage, lui, doit survivre à l'installation de l'app : il demande un lien différé, fourni par un outil d'attribution ou un service de liens.
 
-| Event | Quand | Propriétés | Statut |
+| Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
-| `referral_code_applied` | Le filleul applique un code ou ouvre un lien de parrainage | `referral_source` | Si l'app a un programme de parrainage |
-| `reward_received` | L'utilisateur reçoit une récompense de l'app | `reward_reason`, `reward_type` | Si l'app récompense ses utilisateurs |
+| `referral_code_applied` | Le filleul applique un code ou ouvre un lien de parrainage | `referral_source` | L'app a un programme de parrainage |
+| `reward_received` | L'utilisateur reçoit une récompense de l'app | `reward_reason`, `reward_type` | L'app récompense ses utilisateurs |
 
 | Propriété | Valeurs |
 |---|---|
 | `referral_source` | `code`, `link` |
-| `reward_reason` | `referral`, `contribution`, ou une autre raison propre à l'app |
+| `reward_reason` | `referral`, `contribution`, `other` |
 | `reward_type` | `discount`, `free_period`, `credit`, `points` |
 
 `reward_received` est volontairement générique : il couvre aussi les récompenses accordées pour une contribution, comme une idée retenue dans la roadmap. Il n'envoie jamais de montant, puisque le revenu est hors périmètre. Il peut partir du serveur, quand c'est lui qui accorde la récompense.

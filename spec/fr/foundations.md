@@ -11,7 +11,7 @@ Activation et rétention comptent des utilisateurs, pas des sessions. Il faut do
 Quel que soit le cas, quatre règles s'appliquent :
 
 - **Chaque event porte un identifiant**, dès le premier lancement.
-- **L'identifiant utilisateur vient du système d'authentification**, que ce soit le backend de l'app ou un service d'authentification hébergé. Ce n'est jamais un email (voir les conventions). Le même identifiant est transmis au fournisseur de paiement, pour relier les achats aux parcours.
+- **L'identifiant utilisateur vient du système d'authentification**, que ce soit le backend de l'app ou un service d'authentification hébergé. Ce n'est jamais un email (voir [les données personnelles](conventions.md#les-données-personnelles) dans les conventions). Le même identifiant est transmis au fournisseur de paiement, pour relier les achats aux parcours.
 - **Quand l'identifiant change, l'ancien est relié au nouveau.** Le parcours fait avant le changement compte ainsi pour le même utilisateur.
 - **À la déconnexion, l'identité est réinitialisée.** Sinon, la personne suivante sur le même appareil hérite de l'historique de la précédente.
 
@@ -39,7 +39,7 @@ Le tableau ci-dessous est un minimum. Chaque app peut en ajouter selon ses besoi
 |---|---|---|---|
 | `app_version` | Commune | Version de l'app qui envoie l'event | `2.4.1` |
 | `platform` | Commune | Système de l'appareil | `ios`, `android` |
-| `environment` | Commune | Environnement d'exécution | `production`, `staging`, `development` |
+| `environment` | Commune | Environnement d'exécution | `production`, `staging` pour les builds de test distribuées (TestFlight, tests internes du Play Store), `development` pour les builds locales et les simulateurs |
 | `user_plan` | Utilisateur | Palier de l'offre, si l'app en a une payante | `free`, `pro`… |
 | `is_trial` | Utilisateur | L'utilisateur est en période d'essai, si l'app en propose une | `true`, `false` |
 | `is_internal` | Utilisateur | L'utilisateur ou l'appareil appartient à l'équipe | `true`, `false` |
@@ -51,8 +51,8 @@ Une propriété utilisateur est mise à jour à chaque fois que l'état change, 
 ## 3. Le consentement
 
 - **Quand la réglementation exige un consentement** pour la mesure d'audience, aucun event n'est envoyé avant que l'utilisateur l'ait donné. Les events émis avant sont jetés, jamais mis en file d'attente pour partir plus tard.
-- **Le premier lancement n'est pas perdu pour autant.** `app_opened` porte `is_first_launch` (voir le Minimum Viable Tracking), et ce drapeau reste vrai tant que le premier `app_opened` n'a pas pu partir. L'utilisateur entre ainsi dans les cohortes au premier event envoyé après son accord.
-- **L'accord est tracé, le refus jamais.** L'app envoie `analytics_consent_granted` juste après l'accord, avec `consent_source` (`prompt` ou `settings`). Un refus ne part pas, puisque rien ne doit partir sans consentement.
+- **Le premier lancement n'est pas perdu pour autant.** `app_opened` porte `is_first_launch` (voir [le socle](mvt.md#le-socle) du Minimum Viable Tracking), et ce drapeau reste vrai tant que le premier `app_opened` n'a pas pu partir. À l'accord, l'app envoie aussitôt ce premier `app_opened`, avec `is_first_launch: true`, puis `analytics_consent_granted` : l'utilisateur entre dans les cohortes à ce moment-là.
+- **L'accord est tracé, le refus jamais.** L'app envoie `analytics_consent_granted` juste après l'accord et le `app_opened` qu'il débloque, avec `consent_source` (`prompt` ou `settings`). Un refus ne part pas, puisque rien ne doit partir sans consentement.
 - **Le taux de consentement vient d'ailleurs.** Les données d'analytics ne contiennent que ceux qui ont accepté, donc elles ne peuvent pas le calculer. Il se lit dans l'outil de gestion du consentement, ou dans un compteur agrégé qui ne contient aucun identifiant.
 - **Les KPI ne décrivent que les consentants.** Ceux qui acceptent sont souvent plus engagés que les autres : une activation mesurée sur 60 % des utilisateurs est probablement plus haute que la vraie. Le taux de consentement accompagne donc la lecture des KPI, et la comparaison aux benchmarks du marché, qui n'ont pas ce filtre.
 - **Le choix vaut pour tous les SDK**, y compris ceux qui envoient leurs propres events (paiement, paywall, messagerie in-app).

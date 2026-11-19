@@ -1,6 +1,6 @@
 # Conventions
 
-Ces conventions s'appliquent à tout nouvel event et à toute nouvelle propriété. Elles visent le code qu'on écrit, pas le tracking déjà en place : un event existant dont le sens est juste garde son nom (voir « Renommer et faire évoluer »).
+Ces conventions s'appliquent à tout nouvel event et à toute nouvelle propriété. Elles visent le code qu'on écrit, pas le tracking déjà en place : un event existant dont le sens est juste garde son nom (voir [Renommer et faire évoluer](#renommer-et-faire-évoluer)).
 
 Les noms d'events et de propriétés s'écrivent en anglais, quelle que soit la langue de l'app.
 
@@ -17,7 +17,7 @@ Ce choix diffère de la [spec Segment](https://www.twilio.com/docs/segment/conne
 | ✅ À faire | ❌ À éviter | Pourquoi |
 |---|---|---|
 | `content_shared` | `share_button_tapped` | Le partage peut partir de trois boutons. Le tap ne dit pas si le partage a eu lieu |
-| `plan_selected` + `plan: "pro"` | `pro_plan_selected` | La valeur va dans une propriété, sinon chaque nouvelle offre crée un event |
+| `plan_selected` + `user_plan: "pro"` | `pro_plan_selected` | La valeur va dans une propriété, sinon chaque nouvelle offre crée un event |
 | `request_submitted` + `screen_name: "home"` | `home_request_button_tapped` | L'écran d'origine est un contexte, pas un event |
 
 Une interaction devient un event seulement quand elle est elle-même ce que mesure le KPI. C'est le cas de l'Advocacy : l'app ne peut pas voir si l'utilisateur a vraiment recommandé l'app, donc l'invitation envoyée (`invite_shared`) est le résultat qu'on mesure.
@@ -31,12 +31,13 @@ Une interaction devient un event seulement quand elle est elle-même ce que mesu
 | `failed` | Le parcours échoue pour une raison technique ou externe | `purchase_failed` |
 | `cancelled` | L'utilisateur abandonne un parcours qu'il avait commencé | `purchase_cancelled` |
 | `reached` | L'utilisateur atteint un jalon que l'app a défini | `aha_moment_reached` |
-| `shown` | L'app présente quelque chose sans que l'utilisateur l'ait demandé | `paywall_shown` |
+| `shown` | L'app présente une offre ou un message qu'elle contrôle, quel qu'en soit le déclencheur (une propriété dit lequel) | `paywall_shown` |
 | `dismissed` | L'utilisateur ferme ce que l'app lui a présenté | `paywall_dismissed` |
 | `viewed` | L'utilisateur affiche un écran ou un contenu de lui-même | `screen_viewed` |
 | `opened` | L'app passe au premier plan, ou s'ouvre depuis un point d'entrée précis | `app_opened`, `deep_link_opened` |
 | `used` | L'utilisateur se sert d'une feature | `feature_used` |
-| `granted` / `denied` | L'utilisateur accepte ou refuse une autorisation ou un consentement | `permission_granted` + `permission_type: "notifications"` |
+| `granted` | L'utilisateur accepte une autorisation ou un consentement | `permission_granted` + `permission_type: "notifications"`, `analytics_consent_granted` |
+| `denied` | L'utilisateur refuse une autorisation, ou le système la refuse sans dialogue. Un refus de consentement n'est jamais envoyé | `permission_denied` |
 | `answered` | L'utilisateur répond à une question fermée posée par l'app | `satisfaction_prompt_answered`, `nps_answered` |
 | `submitted` | L'utilisateur envoie un contenu qu'il a composé | `request_submitted` |
 | `contributed` | L'utilisateur apporte une contribution au produit | `co_creation_contributed` |
@@ -97,7 +98,7 @@ Une propriété utilisateur ne porte qu'une information. `user_plan` dit le pali
 - Aucune donnée directement identifiante dans un nom ou une propriété : ni email, ni nom, ni téléphone, ni adresse.
 - L'identifiant utilisateur est un identifiant interne pseudonyme, jamais un email. Il reste une donnée personnelle au sens du RGPD : il relève du consentement, du droit d'accès et du droit à l'effacement.
 - Aucun texte libre saisi par l'utilisateur (recherche, message, formulaire). Si le contenu compte, on envoie une catégorie.
-- Aucun event avant le consentement, quand il est requis. Le détail est dans les Fondations.
+- Aucun event avant le consentement, quand il est requis. Le détail est dans [les Fondations](foundations.md#3-le-consentement).
 
 ## Les limites des outils
 
@@ -117,7 +118,7 @@ Source : [limites de collecte de Google Analytics pour Firebase](https://support
 
 ## Renommer et faire évoluer
 
-- **On ne renomme un event que si son sens est faux.** Un renommage casse l'historique et les dashboards. Un event au sens juste mais au nom non conforme garde son nom : le plan de tracking de l'app le note comme hérité, et indique le rôle AREA qu'il joue (voir le Minimum Viable Tracking, « Des rôles, pas seulement des noms »).
+- **On ne renomme un event que si son sens est faux.** Un renommage casse l'historique et les dashboards. Un event au sens juste mais au nom non conforme garde son nom : le plan de tracking de l'app le note comme hérité, et indique le rôle AREA qu'il joue (voir [Des rôles, pas seulement des noms](mvt.md#des-rôles-pas-seulement-des-noms) dans le Minimum Viable Tracking).
 - **Un event qui change de sens change de nom.** Garder le nom ferait comparer deux choses différentes dans le même graphique.
 - **Un event abandonné est d'abord marqué déprécié**, puis retiré dans une version suivante.
 

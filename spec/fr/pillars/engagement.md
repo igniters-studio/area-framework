@@ -8,7 +8,7 @@ Ouvrir une app n'est pas l'utiliser. Un utilisateur peut revenir tous les jours,
 
 ## L'action cœur
 
-L'action cœur est **l'action qui délivre la valeur de l'app**, celle que l'utilisateur répète parce qu'il en tire quelque chose. L'aha moment s'appuie sur elle (voir Activation).
+L'action cœur est **l'action qui délivre la valeur de l'app**, celle que l'utilisateur répète parce qu'il en tire quelque chose. L'aha moment s'appuie sur elle (voir [Activation](activation.md#laha-moment)).
 
 | App | Action cœur |
 |---|---|
@@ -22,7 +22,7 @@ Pour la trouver, deux questions. D'abord : si on demande à un utilisateur à qu
 
 L'action cœur est un résultat obtenu, jamais une navigation : ouvrir l'app, afficher un écran ou parcourir une liste ne sont pas des actions cœur.
 
-Une app peut avoir plusieurs types d'action cœur, par exemple enregistrer une course ou suivre un programme. Ils restent un seul event, distingués par la propriété `core_action_type`. Si les types ont des propriétés très différentes, l'app peut aussi garder un event par type et indiquer dans son plan de tracking qu'ils jouent tous le rôle de `core_action_completed` (voir le Minimum Viable Tracking, « Des rôles, pas seulement des noms »).
+Une app peut avoir plusieurs types d'action cœur, par exemple enregistrer une course ou suivre un programme. Ils restent un seul event, distingués par la propriété `core_action_type`. Si les types ont des propriétés très différentes, l'app peut aussi garder un event par type et indiquer dans son plan de tracking qu'ils jouent tous le rôle de `core_action_completed` (voir [Des rôles, pas seulement des noms](../mvt.md#des-rôles-pas-seulement-des-noms) dans le Minimum Viable Tracking).
 
 Comme l'aha moment, l'action cœur se définit avant le tracking. La Rétention se mesure dessus : sans action cœur, aucun des deux piliers ne se lit.
 
@@ -50,17 +50,17 @@ Ce KPI répond directement à la question du pilier : parmi ceux qui viennent, c
 | KPI | Définition |
 |---|---|
 | **Fréquence de l'action cœur** | Pour chaque utilisateur, l'intervalle médian entre deux jours où il réalise l'action cœur. Plusieurs actions le même jour comptent pour un jour. Le KPI est la médiane de ces intervalles sur les utilisateurs actifs |
-| **Part d'utilisateurs intensifs** | Part des utilisateurs actifs qui réalisent l'action cœur au moins N jours dans la période. N est propre à chaque app : il se fixe après avoir regardé la distribution réelle, puis ne change plus sans nouvelle version du KPI |
+| **Part d'utilisateurs intensifs** | Part des utilisateurs actifs qui réalisent l'action cœur au moins N jours dans la période. N est propre à chaque app : il se fixe après avoir regardé la distribution réelle, puis il est noté dans le plan de tracking. Le changer ouvre une nouvelle série, qui ne se compare pas à l'ancienne |
 | **Adoption d'une feature** | Part des utilisateurs actifs qui émettent `feature_used` pour cette feature dans la période |
 | **Atteinte d'un écran** | Part des utilisateurs actifs qui affichent un écran donné dans la période, si l'app trace la navigation |
 
 ## Events
 
-| Event | Quand | Propriétés | Statut |
+| Event | Quand | Propriétés | Obligatoire si |
 |---|---|---|---|
-| `core_action_completed` | À chaque réalisation de l'action cœur, première comprise, depuis toutes les surfaces où elle se fait | `core_action_type` | Socle |
-| `feature_used` | Quand l'utilisateur se sert d'une feature identifiée dans le plan de tracking | `feature_name`, `user_plan` | Si l'app a des features distinctes de l'action cœur |
-| `screen_viewed` | L'utilisateur affiche un écran | `screen_name` | Si l'app analyse ses parcours écran par écran |
+| `core_action_completed` | À chaque réalisation de l'action cœur, première comprise, depuis toutes les surfaces où elle se fait | `core_action_type` | Toujours (socle) |
+| `feature_used` | Quand l'utilisateur se sert d'une feature identifiée dans le plan de tracking | `feature_name`, `user_plan` | L'app a des features distinctes de l'action cœur |
+| `screen_viewed` | L'utilisateur affiche un écran | `screen_name` | L'app analyse ses parcours écran par écran |
 
 `screen_viewed` est le nom AREA de la vue d'écran. Certains outils ont leur propre event de vue d'écran, au nom réservé : la couche qui envoie les events peut traduire `screen_viewed` vers cet event natif, mais le plan de tracking ne connaît qu'un seul nom. Il ne sert à aucun KPI de référence : AREA mesure l'activité avec `app_opened`, pas avec des vues d'écran.
 

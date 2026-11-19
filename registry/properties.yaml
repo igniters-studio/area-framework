@@ -29,7 +29,7 @@ properties:
     scope: user
     type: string
     values: app_defined
-    description: Tier of the offer, e.g. free, pro. Only if the app has a paid offer. Updated from the app or the server whenever it changes.
+    description: Tier of the offer, e.g. free, pro. Only if the app has a paid offer. Updated from the app or the server whenever it changes. On trial_started and purchase_completed, the copy carries the tier just obtained.
     copied_on: [feature_used, trial_started, purchase_completed]
     stability: development
   - name: is_trial
@@ -61,7 +61,7 @@ properties:
   - name: is_first_launch
     scope: event
     type: boolean
-    description: True only on the first app_opened sent after install. Stays true until that event could be sent, e.g. before consent. False for a user who updates the app.
+    description: True only on the first app_opened sent after install. Stays true until that event could be sent, e.g. before consent. When consent is given, the app sends this app_opened right away, before analytics_consent_granted. False for a user who updates the app.
     stability: development
   - name: aha_version
     scope: event
@@ -136,7 +136,7 @@ properties:
   - name: notification_type
     scope: event
     type: enum
-    values: [local_reminder, re_engagement, streak_reminder, social, promotional, content_update, transactional]
+    values: [reminder, re_engagement, streak_reminder, social, promotional, content_update, transactional]
     description: Set in the notification payload by whoever creates the notification, read by the app when it is tapped.
     stability: development
   - name: delivery_type
@@ -156,7 +156,7 @@ properties:
     scope: event
     type: enum
     values: [post_aha_moment, post_positive_event, day_7, day_30]
-    description: The moment chosen by the app to ask the user.
+    description: The moment chosen by the app to ask the user. day_7 and day_30 count from the first launch.
     stability: development
   - name: satisfaction_answer
     scope: event
@@ -190,9 +190,9 @@ properties:
     stability: development
   - name: reward_reason
     scope: event
-    type: string
-    values: app_defined
-    description: Why the reward was granted, e.g. referral, contribution.
+    type: enum
+    values: [referral, contribution, other]
+    description: Why the reward was granted.
     stability: development
   - name: reward_type
     scope: event

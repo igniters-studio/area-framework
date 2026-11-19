@@ -1,6 +1,6 @@
 # Benchmarks
 
-`development` · vérifié le 19 novembre 2026
+Vérifié le 19 novembre 2026
 
 Cette page donne des repères du marché pour situer une app. Elle ne fait pas partie de la spec : ses chiffres changent à chaque trimestre, alors que les règles d'AREA, elles, restent stables d'une version à l'autre.
 
@@ -8,7 +8,7 @@ Cette page donne des repères du marché pour situer une app. Elle ne fait pas p
 
 1. **Un benchmark situe, il ne juge pas.** Un chiffre au-dessus ou en dessous de la moyenne ne dit pas si le tracking est bon, ni si le produit va bien. Il aide à poser une question, pas à rendre un verdict.
 2. **On se compare à sa catégorie.** Une rétention à J30 de 3 % est dans la moyenne pour une app de shopping, mais faible pour une app d'actualités.
-3. **Les benchmarks mesurent l'ouverture de l'app, depuis l'installation.** Ils se comparent donc à la rétention d'ouverture (voir Rétention), jamais à la rétention cœur ni à la cohorte des activés. Deux écarts restent : la rétention d'ouverture d'AREA ne compte pas les installations jamais ouvertes, et elle ne contient que les utilisateurs qui ont accepté la mesure, souvent plus engagés que les autres. Les deux la font paraître plus haute que le benchmark.
+3. **Les benchmarks mesurent l'ouverture de l'app, depuis l'installation.** Ils se comparent donc à la [rétention d'ouverture](../../spec/fr/pillars/retention.md#kpi-complémentaires), jamais à la rétention cœur ni à la cohorte des activés. Deux écarts restent : la rétention d'ouverture d'AREA ne compte pas les installations jamais ouvertes, et elle ne contient que les utilisateurs qui ont accepté la mesure, souvent plus engagés que les autres. Les deux la font paraître plus haute que le benchmark.
 4. **Les sources ne s'accordent pas entre elles.** Périmètre, mode de calcul (moyenne par app ou ensemble des utilisateurs) et période varient d'un éditeur à l'autre. On garde une seule source pour comparer dans le temps.
 5. **Les chiffres vieillissent.** Chaque tableau porte sa période et sa date de vérification.
 
