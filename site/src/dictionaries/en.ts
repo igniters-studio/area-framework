@@ -151,12 +151,30 @@ export const en: Dictionary = {
   apply: {
     title: "Applying AREA, in six steps.",
     steps: [
-      { title: "Write the business goal of each pillar" },
-      { title: "Define the core action, then the aha moment" },
-      { title: "List the mechanics of the app" },
-      { title: "Set up the Foundations" },
-      { title: "Implement Minimum Viable Tracking" },
-      { title: "Read the four reference KPIs" },
+      {
+        title: "Write the business goal of each pillar",
+        text: "The pillar pages give a typical example: each app writes its own, and that goal says why the pillar matters.",
+      },
+      {
+        title: "Define the core action, then the aha moment",
+        text: "The aha moment is a hypothesis to check against the data. Everything else depends on them.",
+      },
+      {
+        title: "List the mechanics of the app",
+        text: "Onboarding, paywall, permissions, notifications, sharing, referral… Each one brings its events.",
+      },
+      {
+        title: "Set up the Foundations",
+        text: "Identity, common properties, consent, separation of test data.",
+      },
+      {
+        title: "Implement Minimum Viable Tracking",
+        text: "Following the conventions.",
+      },
+      {
+        title: "Read the four reference KPIs",
+        text: "Their volume and their verdict, then check the aha moment and add the app's own questions. Never an event without a question.",
+      },
     ],
   },
   compare: {

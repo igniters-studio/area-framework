@@ -325,6 +325,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             <li key={step.title}>
               <span className="step-number">{index + 1}</span>
               <strong>{step.title}</strong>
+              <span className="text">{step.text}</span>
             </li>
           ))}
         </ol>

@@ -153,12 +153,30 @@ export const fr = {
   apply: {
     title: "Appliquer AREA, en six étapes.",
     steps: [
-      { title: "Écrire l'objectif business de chaque pilier" },
-      { title: "Définir l'action cœur, puis l'aha moment" },
-      { title: "Lister les mécaniques de l'app" },
-      { title: "Poser les Fondations" },
-      { title: "Implémenter le Minimum Viable Tracking" },
-      { title: "Lire les quatre KPI de référence" },
+      {
+        title: "Écrire l'objectif business de chaque pilier",
+        text: "Les pages des piliers en donnent un exemple type : chaque app écrit le sien, et c'est lui qui dit pourquoi le pilier compte.",
+      },
+      {
+        title: "Définir l'action cœur, puis l'aha moment",
+        text: "L'aha moment est une hypothèse à vérifier sur les données. Tout le reste en dépend.",
+      },
+      {
+        title: "Lister les mécaniques de l'app",
+        text: "Onboarding, paywall, autorisations, notifications, partage, parrainage… Chacune apporte ses events.",
+      },
+      {
+        title: "Poser les Fondations",
+        text: "Identité, propriétés communes, consentement, séparation des données de test.",
+      },
+      {
+        title: "Implémenter le Minimum Viable Tracking",
+        text: "En suivant les conventions.",
+      },
+      {
+        title: "Lire les quatre KPI de référence",
+        text: "Leur volume et leur verdict, puis vérifier l'aha moment et ajouter les questions propres à l'app. Jamais d'event sans question.",
+      },
     ],
   },
   compare: {
