@@ -2,12 +2,8 @@ import type { CoreKpi, PillarId } from "@/lib/registry";
 
 const CORE_EVENTS = ["app_opened", "aha_moment_reached", "core_action_completed"] as const;
 
-const ON_DARK: Record<PillarId, string> = {
-  activation: "#FF8A4C",
-  retention: "#8EA2FF",
-  engagement: "#3DD9A2",
-  advocacy: "#FF7AAA",
-};
+/** A pillar's color on a dark ground, from the identity tokens of globals.css. */
+const onDark = (pillar: PillarId) => `var(--${pillar}-dark)`;
 
 /**
  * Geometry of the design: events 64 px high every 138 px; KPI rows every 52 px, 44 px high so a
@@ -46,7 +42,7 @@ export function Fan({ kpis, label }: { kpis: CoreKpi[]; label: string }) {
                     <path
                       key={`${kpi.name}-${event}`}
                       d={`M${EVENT_RIGHT} ${ey} C${mid} ${ey} ${mid} ${ky} ${KPI_LEFT} ${ky}`}
-                      stroke={ON_DARK[kpi.pillar]}
+                      style={{ stroke: onDark(kpi.pillar) }}
                     />
                   );
                 })
@@ -67,7 +63,7 @@ export function Fan({ kpis, label }: { kpis: CoreKpi[]; label: string }) {
           {kpis.map((kpi, index) => (
             <li key={kpi.name} className="fan-kpi" style={{ top: 12 + KPI_STEP * index }}>
               <span>{kpi.name}</span>
-              <span className="pillar-tag" style={{ color: ON_DARK[kpi.pillar] }}>
+              <span className="pillar-tag" style={{ color: onDark(kpi.pillar) }}>
                 {kpi.pillarLabel}
               </span>
               <span className="sr-only">: {kpi.events.join(", ")}</span>
