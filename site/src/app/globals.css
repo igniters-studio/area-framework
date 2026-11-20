@@ -865,36 +865,177 @@ pre,
 }
 
 /* ─── Apply ────────────────────────────────────────────────────────────── */
+/* Three phases on a three-column grid; each phase spans as many columns as it has steps. */
+.phases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 56px 40px;
+}
+.phase {
+  grid-column: span var(--span);
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: 16px;
+  align-content: start;
+}
+.phase-label {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .steps {
+  grid-column: 1 / -1;
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: 36px 40px;
+  grid-template-columns: subgrid;
+  row-gap: 36px;
 }
 .steps li {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.step-bar {
+/* The timeline: a numbered dot, and a rail to the next step of the same phase. */
+.step-marker {
   display: flex;
-  gap: 3px;
-  height: 3px;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 6px;
 }
-.step-bar span {
+.step-marker.linked::after {
+  content: "";
   flex: 1;
-  border-radius: 2px;
-  background: var(--ink);
+  height: 2px;
+  margin-right: -40px;
+  background: var(--line-2);
 }
 .step-number {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
   font-weight: 800;
-  font-size: 44px;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: 17px;
   color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.step-visual {
+  height: 108px;
+  padding: 16px 18px;
+  margin-bottom: 6px;
+  background: var(--paper);
+  border: 1px solid var(--line-3);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.sv-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.sv-pillars span {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.sv-pillars i {
+  height: 4px;
+  border-radius: 2px;
+}
+.sv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+}
+.sv-chips span {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--ground);
+}
+.sv-chips.mono span {
+  font-size: 13px;
+}
+.sv-chips .more {
+  background: none;
+  padding: 5px 4px;
+  color: var(--muted);
+}
+.sv-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.sv-layer {
+  height: 22px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px dashed var(--line-2);
+  border-radius: 4px;
+  color: var(--muted-dark);
+}
+.sv-layer-1 {
+  border-radius: 10px 10px 4px 4px;
+}
+.sv-layer-3 {
+  border-radius: 4px 4px 10px 10px;
+}
+/* Built layers take their colors from the Minimum Viable Tracking band. */
+.sv-layer.on {
+  border: 1px solid var(--ink-3);
+  background: var(--ink-3);
+  color: var(--paper);
+}
+.sv-layer-2.on {
+  border-color: var(--line-2);
+  background: var(--paper);
+  color: var(--ink);
+}
+.sv-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+}
+.sv-kpis > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sv-kpis b {
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+}
+.sv-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line-3);
+}
+.sv-track span {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
 }
 .steps strong {
   font-size: 20px;
@@ -1342,6 +1483,15 @@ pre,
 }
 
 @media (max-width: 900px) {
+  .phases {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .phase {
+    grid-column: auto;
+  }
+  .step-marker.linked::after {
+    display: none;
+  }
   .doc-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;

@@ -150,6 +150,7 @@ export const en: Dictionary = {
   },
   apply: {
     title: "Applying AREA, in six steps.",
+    phases: { frame: "Define", instrument: "Instrument", read: "Read" },
     steps: [
       {
         title: "Write the business goal of each pillar",

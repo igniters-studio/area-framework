@@ -152,6 +152,7 @@ export const fr = {
   },
   apply: {
     title: "Appliquer AREA, en six étapes.",
+    phases: { frame: "Cadrer", instrument: "Instrumenter", read: "Lire" },
     steps: [
       {
         title: "Écrire l'objectif business de chaque pilier",
