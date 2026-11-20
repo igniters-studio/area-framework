@@ -1,5 +1,5 @@
 import { DOC_PAGES, readRepoFile } from "@/lib/content";
-import { renderMarkdown } from "@/lib/markdown";
+import { markdownTitle } from "@/lib/markdown";
 import { areaVersion } from "@/lib/registry";
 
 export const dynamic = "force-static";
@@ -23,7 +23,7 @@ export function GET() {
   const version = areaVersion();
   const tag = `${RAW}/v${version}`;
   const docs = DOC_PAGES.map((page) => {
-    const title = renderMarkdown(readRepoFile(page.file.en), page.file.en).title;
+    const title = markdownTitle(readRepoFile(page.file.en), page.file.en);
     return `- [${title}](${tag}/${page.file.en})`;
   });
   const body = [

@@ -91,6 +91,12 @@ function siteTransforms(fromFile: string) {
   };
 }
 
+/** The first `# ` heading of a Markdown source, without rendering it. */
+export function markdownTitle(source: string, fallback: string): string {
+  const match = /^#\s+(.+)$/m.exec(source);
+  return match ? match[1].trim() : fallback;
+}
+
 export interface RenderedDoc {
   title: string;
   html: string;
@@ -98,7 +104,6 @@ export interface RenderedDoc {
 
 /** The repo file `file`, rendered for the site: GitHub anchors, site links, no diagram library. */
 export function renderMarkdown(source: string, file: string): RenderedDoc {
-  const titleMatch = /^#\s+(.+)$/m.exec(source);
   const html = unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -108,5 +113,5 @@ export function renderMarkdown(source: string, file: string): RenderedDoc {
     .use(rehypeStringify)
     .processSync(source)
     .toString();
-  return { title: titleMatch ? titleMatch[1].trim() : file, html };
+  return { title: markdownTitle(source, file), html };
 }

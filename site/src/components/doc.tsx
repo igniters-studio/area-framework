@@ -2,13 +2,13 @@ import Link from "next/link";
 
 import type { Dictionary } from "@/dictionaries/fr";
 import { DOC_PAGES, type DocPage, type Lang, readRepoFile, REPO_URL, sitePath } from "@/lib/content";
-import { renderMarkdown } from "@/lib/markdown";
+import { markdownTitle, renderMarkdown } from "@/lib/markdown";
 
 const GROUPS = ["start", "spec", "pillars", "references"] as const;
 
 /** Title of a page in a language: the first heading of its Markdown file. */
 export function docTitle(page: DocPage, lang: Lang): string {
-  return renderMarkdown(readRepoFile(page.file[lang]), page.file[lang]).title;
+  return markdownTitle(readRepoFile(page.file[lang]), page.file[lang]);
 }
 
 /** A spec page: the repo's Markdown, rendered, with the list of every page beside it. */
@@ -28,7 +28,7 @@ export function Doc({ page, lang, dict }: { page: DocPage; lang: Lang; dict: Dic
                     href={sitePath(lang, other.route)}
                     aria-current={other.id === page.id ? "page" : undefined}
                   >
-                    {docTitle(other, lang)}
+                    {other.id === "about" ? dict.docs.overview : docTitle(other, lang)}
                   </Link>
                 </li>
               ))}

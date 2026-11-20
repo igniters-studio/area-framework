@@ -244,6 +244,7 @@ export const fr = {
       references: "Repères",
     },
     home: "Accueil",
+    overview: "Présentation",
     editOnGitHub: "Voir ce fichier sur GitHub",
   },
   notFound: {

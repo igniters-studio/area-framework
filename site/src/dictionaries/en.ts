@@ -242,6 +242,7 @@ export const en: Dictionary = {
       references: "References",
     },
     home: "Home",
+    overview: "Overview",
     editOnGitHub: "View this file on GitHub",
   },
   notFound: {
