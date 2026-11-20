@@ -94,7 +94,10 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 AREA est un socle, et ce socle n'est pas fini. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique, le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur le même socle.
 
-Côté outillage, un skill pour les agents de code et un serveur MCP, publics eux aussi, permettront d'appliquer AREA directement depuis l'environnement de développement d'une app.
+Côté outillage, deux outils suivront cette première version, dans cet ordre :
+
+- **area-core** (à venir) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md), score du socle), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
+- **[supertrack](https://igniters.studio)** (en développement) : un SaaS qui audite le tracking d'une app depuis sa codebase et le garde en phase avec ses objectifs business dans la durée, avec un contrôle sur chaque pull request, l'historique de plusieurs apps et des réponses pour les non-développeurs.
 
 ## Outillage
 
@@ -103,7 +106,7 @@ AREA se vérifie sans outil particulier :
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
 - **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
-L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui audite le tracking d'une app depuis sa codebase et le vérifie à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe area-core et supertrack, annoncés dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA ne dépend d'aucun des deux, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 
