@@ -52,35 +52,6 @@ const TYPICAL_PLAN = [
 
 const CORE_EVENTS = ["app_opened", "aha_moment_reached", "core_action_completed"];
 
-/** The six steps fall in three phases: on paper, in the code, in the analytics tool. */
-const PHASES = [
-  { id: "frame", steps: [0, 1, 2] },
-  { id: "instrument", steps: [3, 4] },
-  { id: "read", steps: [5] },
-] as const;
-
-/** The mechanics the third step names before counting the rest. */
-const STEP_MECHANICS = SHOWN_MECHANICS.slice(0, 3);
-
-/** "1. Foundations" → "Foundations": the step visuals drop the layer's rank. */
-function layerName(label: string) {
-  return label.replace(/^\d+\.\s*/, "");
-}
-
-/** The three layers of Minimum Viable Tracking, the first `filled` of them drawn as built. */
-function LayerStack({ dict, filled }: { dict: Dictionary; filled: number }) {
-  const names = [dict.mvt.foundations, dict.mvt.core, dict.mvt.mechanics];
-  return (
-    <div className="sv-stack">
-      {names.map((name, index) => (
-        <span key={name} className={`sv-layer sv-layer-${index + 1}${index < filled ? " on" : ""}`}>
-          {layerName(name)}
-        </span>
-      ))}
-    </div>
-  );
-}
-
 export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
   const version = areaVersion();
   const kpis = coreKpis(lang);
@@ -107,57 +78,6 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
     ["engagement", "E", 61],
     ["advocacy", "A", 9],
   ];
-
-  // Colors only where they mean something: the pillars at both ends (four goals written, four
-  // KPIs read), the layers of Minimum Viable Tracking in between.
-  const stepVisual = (index: number) => {
-    switch (index) {
-      case 0:
-        return (
-          <div className="sv-pillars">
-            {kpiCards.map(([pillar, letter]) => (
-              <span key={pillar} style={{ color: `var(--${pillar})` }}>
-                {letter}
-                <i style={{ background: `var(--${pillar})` }} />
-              </span>
-            ))}
-          </div>
-        );
-      case 1:
-        return (
-          <div className="sv-chips mono">
-            <span>core_action_completed</span>
-            <span>aha_moment_reached</span>
-          </div>
-        );
-      case 2:
-        return (
-          <div className="sv-chips">
-            {STEP_MECHANICS.map((id) => (
-              <span key={id}>{dict.mvt.mechanicNames[id]}</span>
-            ))}
-            <span className="more">{dict.mvt.more(mechanics.length - STEP_MECHANICS.length)}</span>
-          </div>
-        );
-      case 3:
-        return <LayerStack dict={dict} filled={1} />;
-      case 4:
-        return <LayerStack dict={dict} filled={3} />;
-      default:
-        return (
-          <div className="sv-kpis">
-            {kpiCards.map(([pillar, letter, value]) => (
-              <span key={pillar}>
-                <b style={{ color: `var(--${pillar})` }}>{letter}</b>
-                <span className="sv-track">
-                  <span style={{ width: `${value}%`, background: `var(--${pillar})` }} />
-                </span>
-              </span>
-            ))}
-          </div>
-        );
-    }
-  };
 
   return (
     <main id="top">
@@ -400,38 +320,14 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
         <h2 id="apply-title" className="h2" style={{ maxWidth: 760 }}>
           {dict.apply.title}
         </h2>
-        <div className="phases">
-          {PHASES.map((phase) => (
-            <section
-              key={phase.id}
-              className="phase"
-              style={{ "--span": phase.steps.length } as React.CSSProperties}
-              aria-labelledby={`phase-${phase.id}`}
-            >
-              <h3 id={`phase-${phase.id}`} className="phase-label">
-                {dict.apply.phases[phase.id]}
-              </h3>
-              <ol className="steps" start={phase.steps[0] + 1}>
-                {phase.steps.map((index, position) => {
-                  const step = dict.apply.steps[index];
-                  return (
-                    <li key={step.title}>
-                      <span className={position < phase.steps.length - 1 ? "step-marker linked" : "step-marker"}>
-                        <span className="step-number">{index + 1}</span>
-                      </span>
-                      {/* What the step produces, drawn with the page's own pieces. */}
-                      <div className="step-visual" aria-hidden="true">
-                        {stepVisual(index)}
-                      </div>
-                      <strong>{step.title}</strong>
-                      <span className="text">{step.text}</span>
-                    </li>
-                  );
-                })}
-              </ol>
-            </section>
+        <ol className="steps">
+          {dict.apply.steps.map((step, index) => (
+            <li key={step.title}>
+              <span className="step-number">{index + 1}</span>
+              <strong>{step.title}</strong>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section id="compare" aria-labelledby="compare-title" className="wrap compare">
