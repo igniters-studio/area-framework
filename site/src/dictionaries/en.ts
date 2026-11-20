@@ -230,7 +230,19 @@ export const en: Dictionary = {
     copied: "Copied",
     devLink: "View on GitHub",
     nextLabel: "Coming next:",
-    next: "a skill for coding agents and an MCP server, also public, to apply AREA directly from an app's development environment.",
+    // In release order: area-core first, then supertrack.
+    next: [
+      {
+        name: "area-core",
+        status: "(coming soon):",
+        text: "an open-source toolkit (Apache 2.0) that applies AREA to an app's repo, locally, with the developer's own coding agent: deterministic checks (naming conventions, Minimum Viable Tracking, core score), audit and fix-recommendation skills, and an MCP server that serves the framework to coding agents.",
+      },
+      {
+        name: "supertrack",
+        status: "(in development):",
+        text: "audits an app's tracking from its codebase and keeps it in line with the app's business goals over time: a check on every pull request, a history across several apps, and answers for non-developers.",
+      },
+    ],
     star: "Follow the repo on GitHub",
   },
   footer: {

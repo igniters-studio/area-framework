@@ -409,9 +409,18 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             </div>
           </div>
           <div className="cta-foot">
-            <p>
-              <strong>{dict.cta.nextLabel}</strong> {dict.cta.next}
-            </p>
+            <div className="cta-next">
+              <p>
+                <strong>{dict.cta.nextLabel}</strong>
+              </p>
+              <ul>
+                {dict.cta.next.map((tool) => (
+                  <li key={tool.name}>
+                    <strong>{tool.name}</strong> {tool.status} {tool.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <a href={REPO_URL} className="on-dark-link">
               {dict.cta.star}
             </a>

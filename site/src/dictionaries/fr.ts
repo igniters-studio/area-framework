@@ -232,7 +232,19 @@ export const fr = {
     copied: "Copié",
     devLink: "Voir sur GitHub",
     nextLabel: "Ce qui vient ensuite :",
-    next: "un skill pour les agents de code et un serveur MCP, publics eux aussi, pour appliquer AREA depuis l'environnement de développement d'une app.",
+    // In release order: area-core first, then supertrack.
+    next: [
+      {
+        name: "area-core",
+        status: "(à venir) :",
+        text: "une boîte à outils open source (Apache 2.0) qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur : checks déterministes (conventions de nommage, Minimum Viable Tracking, score du socle), skills d'audit et de recommandations, et un serveur MCP qui sert le framework aux agents de code.",
+      },
+      {
+        name: "supertrack",
+        status: "(en développement) :",
+        text: "audite le tracking d'une app depuis sa codebase et le garde en phase avec ses objectifs business dans la durée : un contrôle sur chaque pull request, l'historique de plusieurs apps et des réponses pour les non-développeurs.",
+      },
+    ],
     star: "Suivre le repo sur GitHub",
   },
   footer: {
