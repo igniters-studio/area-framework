@@ -103,7 +103,7 @@ AREA se vérifie sans outil particulier :
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
 - **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
-L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui vérifie le tracking d'une app face à AREA à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui audite le tracking d'une app depuis sa codebase et le vérifie à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 
@@ -111,6 +111,7 @@ L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant
 spec/          La spec : manifeste, conventions, fondations, piliers, Minimum Viable Tracking
 registry/      La spec en version lisible par une machine (YAML)
 scripts/       Le script qui valide le registre
+site/          Le site, un export statique de la spec publié sur GitHub Pages
 references/    Les repères qui ne font pas partie de la spec, comme les benchmarks
 ```
 
@@ -126,6 +127,6 @@ Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fa
 
 - **Le texte** d'AREA (`spec/`, `references/`, ce README) est publié sous licence [CC BY 4.0](LICENSE). Vous pouvez le reprendre, l'adapter et l'utiliser commercialement, à condition de citer la source et d'indiquer vos modifications.
 - **Le registre** (`registry/`) est publié sous licence [CC0 1.0](registry/LICENSE) : les noms d'events, de propriétés et de KPI se reprennent dans votre code et vos plans de tracking sans aucune condition.
-- **Le script** (`scripts/`) est publié sous licence [Apache 2.0](scripts/LICENSE).
+- **Le script** (`scripts/`) et **le code du site** (`site/`) sont publiés sous licence [Apache 2.0](scripts/LICENSE).
 
 > AREA Framework, Kevin Tersigni, igniters — https://github.com/igniters-studio/area-framework
