@@ -5,6 +5,17 @@ All notable changes to AREA are recorded in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and AREA follows
 [semantic versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- **Tooling teaser** (README in both languages, home page of the website): the coming tooling is now
+  area-core, then supertrack, in this order. area-core is an open-source toolkit, under Apache 2.0,
+  that applies AREA to an app's repo with the developer's own coding agent: deterministic checks,
+  audit and fix-recommendation skills, and the MCP server. supertrack is a SaaS that audits an app's
+  tracking and keeps it in line with the app's business goals over time. The MCP server is no longer
+  announced on its own: it is part of area-core.
+
 ## [0.1.0] - 2026-11-20
 
 First public version of AREA. Every registry entry is in `development`.
