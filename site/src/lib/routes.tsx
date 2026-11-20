@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { Doc, docTitle } from "@/components/doc";
 import { Home } from "@/components/home";
+import { LANG_KEY } from "@/lib/lang-key";
 import { en } from "@/dictionaries/en";
 import { type Dictionary, fr } from "@/dictionaries/fr";
 import { DOC_PAGES, type Lang, pageByRoute, sitePath } from "@/lib/content";
@@ -38,10 +39,18 @@ export function homeMetadata(lang: Lang): Metadata {
   return { title: dict.meta.title, description: dict.meta.description, alternates: languageMetadata("") };
 }
 
+/**
+ * On the English home page (the site's root), a browser that prefers French goes to the French
+ * home page, unless the visitor chose a language with the switch. Without storage, no redirect:
+ * a visitor who wants English must be able to stay there. Inline, so it runs before the page shows.
+ */
+const PREFERRED_LANGUAGE = `(function(){try{if(localStorage.getItem(${JSON.stringify(LANG_KEY)}))return;}catch(e){return;}var l=(navigator.languages&&navigator.languages[0])||navigator.language||"";if(/^fr(-|$)/i.test(l))location.replace(${JSON.stringify(`${BASE_PATH}/fr/`)});})();`;
+
 export function HomeRoute({ lang }: { lang: Lang }) {
   const dict = dictionaries[lang];
   return (
     <>
+      {lang === "en" && <script dangerouslySetInnerHTML={{ __html: PREFERRED_LANGUAGE }} />}
       <SiteHeader lang={lang} dict={dict} onHome />
       <Home lang={lang} dict={dict} />
       <SiteFooter lang={lang} dict={dict} version={areaVersion()} alternates={alternates("")} />

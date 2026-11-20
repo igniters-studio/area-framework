@@ -1,11 +1,13 @@
 import Link from "next/link";
 
+import { LangLink } from "@/components/lang";
 import { type Lang, REPO_URL, sitePath } from "@/lib/content";
 import type { Dictionary } from "@/dictionaries/fr";
 
-export function Wordmark({ onDark = false }: { onDark?: boolean }) {
+/** The AREA wordmark: one color per pillar, the same on every ground. */
+export function Wordmark() {
   return (
-    <span className={onDark ? "wordmark on-dark" : "wordmark"}>
+    <span className="wordmark">
       <span className="a1">A</span>
       <span className="r">R</span>
       <span className="e">E</span>
@@ -80,12 +82,12 @@ export function SiteFooter({
         <Wordmark /> {version}, {dict.footer.license} <a href="https://igniters.studio">igniters</a>
       </span>
       <nav className="lang-switch" aria-label={dict.footer.languages}>
-        <Link href={alternates.en} hrefLang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>
+        <LangLink lang="en" href={alternates.en} current={lang === "en"}>
           English
-        </Link>
-        <Link href={alternates.fr} hrefLang="fr" lang="fr" aria-current={lang === "fr" ? "true" : undefined}>
+        </LangLink>
+        <LangLink lang="fr" href={alternates.fr} current={lang === "fr"}>
           Français
-        </Link>
+        </LangLink>
       </nav>
     </footer>
   );

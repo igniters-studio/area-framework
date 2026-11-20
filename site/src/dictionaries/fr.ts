@@ -225,7 +225,11 @@ export const fr = {
     productLink: "Lire la spec",
     devTitle: "Pour les développeurs",
     devText:
-      "Chargez le registre YAML des events, des propriétés et des KPI dans vos outils, ou donnez llms.txt à votre agent de code.",
+      "Donnez llms.txt à votre agent de code : il pointe vers le registre YAML des events, des propriétés et des KPI, et vers la spec, figés sur cette version. Puis demandez-lui, par exemple :",
+    devPrompt:
+      "Lis https://igniters-studio.github.io/area-framework/llms.txt et le registre AREA qu'il cite. Puis liste les mécaniques de cette app, écris son plan de tracking selon le Minimum Viable Tracking, et implémente-le derrière notre wrapper analytics.",
+    copy: "Copier",
+    copied: "Copié",
     devLink: "Voir sur GitHub",
     nextLabel: "Ce qui vient ensuite :",
     next: "un skill pour les agents de code et un serveur MCP, publics eux aussi, pour appliquer AREA depuis l'environnement de développement d'une app.",

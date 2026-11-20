@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function FrenchLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <body>
         <a href="#top" className="skip-link">
           Aller au contenu

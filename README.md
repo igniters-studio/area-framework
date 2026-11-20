@@ -101,7 +101,7 @@ AREA can be checked without any particular tool:
 - **Verdicts are checked by hand.** Each pillar page lists the conditions of each verdict: measurable, partial, not measurable.
 - **The registry is validated with a script** shipped in this repo. It needs PyYAML: `pip install pyyaml`, then `python3 scripts/validate_registry.py`, or in one command with uv: `uv run --with pyyaml python3 scripts/validate_registry.py`. It checks empty keys and values (a sign of malformed YAML), naming, reserved names, the verb vocabulary and consistency between the registry files.
 
-The author also builds [supertrack](https://igniters.studio), a paid tool that checks an app's tracking against AREA on every pull request. AREA does not depend on it, and any other tool can build on the registry.
+The author also builds [supertrack](https://igniters.studio), a paid tool that audits an app's tracking from its codebase and checks it on every pull request. AREA does not depend on it, and any other tool can build on the registry.
 
 ## Repository contents
 

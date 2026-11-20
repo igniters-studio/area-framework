@@ -103,7 +103,7 @@ AREA se vérifie sans outil particulier :
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
 - **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
-L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui vérifie le tracking d'une app face à AREA à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe aussi [supertrack](https://igniters.studio), un outil payant qui audite le tracking d'une app depuis sa codebase et le vérifie à chaque pull request. AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 

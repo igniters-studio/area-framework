@@ -1,6 +1,7 @@
 import GithubSlugger from "github-slugger";
 import Link from "next/link";
 
+import { CopyPrompt } from "@/components/copy-prompt";
 import { Fan } from "@/components/fan";
 import { Wordmark } from "@/components/chrome";
 import type { Dictionary } from "@/dictionaries/fr";
@@ -62,14 +63,14 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
 
   // Fictional first week of a running app; values from the registry's closed lists.
   const stream: [string, string, string, string][] = [
-    ["0:00", "app_opened", t.firstLaunch, "var(--activation-dark)"],
-    ["0:38", "onboarding_completed", t.steps, "var(--activation-dark)"],
-    ["1:12", "aha_moment_reached", "", "var(--activation-dark)"],
-    ["1:12", "core_action_completed", '"run"', "var(--engagement-dark)"],
-    [t.day1, "notification_opened", '"streak_reminder"', "var(--retention-dark)"],
-    [t.day1, "core_action_completed", '"run"', "var(--retention-dark)"],
-    [t.day3, "satisfaction_prompt_answered", '"positive"', "var(--advocacy-dark)"],
-    [t.day3, "invite_shared", '"link_copied"', "var(--advocacy-dark)"],
+    ["0:00", "app_opened", t.firstLaunch, "var(--activation)"],
+    ["0:38", "onboarding_completed", t.steps, "var(--activation)"],
+    ["1:12", "aha_moment_reached", "", "var(--activation)"],
+    ["1:12", "core_action_completed", '"run"', "var(--engagement)"],
+    [t.day1, "notification_opened", '"streak_reminder"', "var(--retention)"],
+    [t.day1, "core_action_completed", '"run"', "var(--retention)"],
+    [t.day3, "satisfaction_prompt_answered", '"positive"', "var(--advocacy)"],
+    [t.day3, "invite_shared", '"link_copied"', "var(--advocacy)"],
   ];
   const kpiCards: [PillarId, string, number][] = [
     ["activation", "A", 46],
@@ -121,13 +122,13 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           <div className="kpi-grid">
             {kpiCards.map(([pillar, letter, value]) => (
               <div className="kpi" key={pillar}>
-                <span className="kpi-letter" style={{ color: `var(--${pillar}-dark)` }}>
+                <span className="kpi-letter" style={{ color: `var(--${pillar})` }}>
                   {letter}
                 </span>
                 <span className="kpi-name">{dict.hero.kpis[pillar]}</span>
                 <span className="kpi-value">{value}%</span>
                 <span className="kpi-track">
-                  <span className="kpi-fill" style={{ width: `${value}%`, background: `var(--${pillar}-dark)` }} />
+                  <span className="kpi-fill" style={{ width: `${value}%`, background: `var(--${pillar})` }} />
                 </span>
               </div>
             ))}
@@ -320,18 +321,21 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           {dict.apply.title}
         </h2>
         <ol className="steps">
-          {dict.apply.steps.map((step, index) => {
-            const pillar = PILLARS[index % PILLARS.length];
-            return (
-              <li key={step.title} style={{ borderTopColor: `var(--${pillar})` }}>
-                <span className="step-number" style={{ color: `var(--${pillar}-ink)` }}>
-                  {index + 1}
-                </span>
-                <strong>{step.title}</strong>
-                <span className="text">{step.text}</span>
-              </li>
-            );
-          })}
+          {dict.apply.steps.map((step, index) => (
+            <li key={step.title}>
+              {/* The first step writes a goal for each pillar: its bar carries the four colors. */}
+              <span className="step-bar" aria-hidden="true">
+                {index === 0 ? (
+                  PILLARS.map((pillar) => <span key={pillar} style={{ background: `var(--${pillar})` }} />)
+                ) : (
+                  <span />
+                )}
+              </span>
+              <span className="step-number">{index + 1}</span>
+              <strong>{step.title}</strong>
+              <span className="text">{step.text}</span>
+            </li>
+          ))}
         </ol>
       </section>
 
@@ -349,7 +353,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 <th scope="col">AARRR</th>
                 <th scope="col">HEART</th>
                 <th scope="col" className="area">
-                  <Wordmark onDark />
+                  <Wordmark />
                 </th>
               </tr>
             </thead>
@@ -401,6 +405,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             <div className="cta-card">
               <h3>{dict.cta.devTitle}</h3>
               <p>{dict.cta.devText}</p>
+              <CopyPrompt prompt={dict.cta.devPrompt} copy={dict.cta.copy} copied={dict.cta.copied} />
               <div className="actions">
                 <a href={REPO_URL} className="button button-light">
                   {dict.cta.devLink}

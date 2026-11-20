@@ -109,10 +109,6 @@ pre,
 .wordmark .r { color: var(--retention); }
 .wordmark .e { color: var(--engagement); }
 .wordmark .a2 { color: var(--advocacy); }
-.wordmark.on-dark .a1 { color: var(--activation-dark); }
-.wordmark.on-dark .r { color: var(--retention-dark); }
-.wordmark.on-dark .e { color: var(--engagement-dark); }
-.wordmark.on-dark .a2 { color: var(--advocacy-dark); }
 
 /* ─── Header and footer ────────────────────────────────────────────────── */
 .site-header {
@@ -188,9 +184,6 @@ pre,
   flex-wrap: wrap;
   font-size: 15px;
   color: var(--muted);
-}
-.site-footer .wordmark {
-  font-stretch: 100%;
 }
 .lang-switch {
   display: flex;
@@ -884,14 +877,24 @@ pre,
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-top: 3px solid;
-  padding-top: 18px;
+}
+.step-bar {
+  display: flex;
+  gap: 3px;
+  height: 3px;
+  margin-bottom: 8px;
+}
+.step-bar span {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--ink);
 }
 .step-number {
   font-weight: 800;
   font-size: 44px;
   line-height: 1;
   letter-spacing: -0.04em;
+  color: var(--ink);
 }
 .steps strong {
   font-size: 20px;
@@ -965,7 +968,7 @@ pre,
 
 /* ─── Origin and call to action ────────────────────────────────────────── */
 .origin {
-  margin: 0;
+  margin: 0 auto;
   padding-top: 112px;
   padding-bottom: 112px;
   display: flex;
@@ -1041,6 +1044,40 @@ pre,
   color: var(--muted-dark-2);
   flex-grow: 1;
 }
+.prompt {
+  position: relative;
+  background: var(--ink-2);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px #262a40;
+}
+.prompt-text {
+  margin: 0;
+  padding: 16px 16px 52px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #d3d7e6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.prompt-copy {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.prompt-copy:hover {
+  background: var(--ground);
+}
 .cta .button-light {
   box-shadow: none;
 }
@@ -1111,6 +1148,7 @@ pre,
   100% { left: 0%; opacity: 0; }
 }
 @media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
   .stream { animation: stream 22s linear infinite; }
   .live-dot { animation: blink 1.6s ease-in-out infinite; }
   .back-dot { animation: back 4.2s linear infinite; }

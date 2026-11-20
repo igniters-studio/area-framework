@@ -223,7 +223,11 @@ export const en: Dictionary = {
     productLink: "Read the spec",
     devTitle: "For developers",
     devText:
-      "Load the YAML registry of events, properties and KPIs into your own tools, or point your coding agent to llms.txt.",
+      "Give your coding agent llms.txt: it links the YAML registry of events, properties and KPIs and the spec, pinned to this version. Then ask, for example:",
+    devPrompt:
+      "Read https://igniters-studio.github.io/area-framework/llms.txt and the AREA registry it links. Then list the mechanics of this app, write its tracking plan following Minimum Viable Tracking, and implement it behind our analytics wrapper.",
+    copy: "Copy",
+    copied: "Copied",
     devLink: "View on GitHub",
     nextLabel: "Coming next:",
     next: "a skill for coding agents and an MCP server, also public, to apply AREA directly from an app's development environment.",
