@@ -5,7 +5,7 @@ All notable changes to AREA are recorded in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and AREA follows
 [semantic versioning](https://semver.org/).
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-11-20
 
 First public version of AREA. Every registry entry is in `development`.
 
