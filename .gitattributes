@@ -1,0 +1,4 @@
+# GitHub language stats: AREA is a spec, so the website code under site/ does not count,
+# and the Markdown of the spec does.
+site/** linguist-documentation
+*.md linguist-detectable
