@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/assets/header-en.svg" alt="AREA: a tracking framework for mobile apps that starts from business goals, not from events. The four pillars with a reference KPI each, by igniters." width="100%"></p>
+
 # AREA Framework
 
 **A tracking framework for mobile apps that starts from business goals, not from events.**

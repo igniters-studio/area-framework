@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/assets/header-fr.svg" alt="AREA : un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events. Les quatre piliers avec chacun un KPI de référence, par igniters." width="100%"></p>
+
 # AREA Framework
 
 *Traduction de v0.1.0. La version anglaise fait référence : [English](README.md).*
