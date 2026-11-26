@@ -55,7 +55,7 @@ Les piliers ne sont pas nouveaux : l'Activation, la Rétention et le Referral, d
 ## Hors périmètre
 
 - **L'acquisition et l'attribution.** D'où viennent les utilisateurs se mesure avec des outils d'attribution, pas avec des events in-app.
-- **Les montants de revenu.** AREA mesure les décisions d'achat prises dans l'app : la paywall présentée, l'essai démarré, l'achat fait. Combien paient les utilisateurs, les renouvellements et les remboursements se lisent chez le fournisseur de paiement.
+- **La monétisation et le revenu.** Les quatre piliers ne portent ni la paywall ni l'achat : toutes les apps n'ont pas d'offre payante. Les décisions d'achat prises dans l'app viendront avec la dimension transversale d'une version suivante. Combien paient les utilisateurs, les renouvellements et les remboursements se lisent chez le fournisseur de paiement.
 - **Ce qui se passe hors de l'app.** L'Advocacy mesure l'intention de recommander captée dans l'app, pas l'avis sur le store qui suivra peut-être. La satisfaction déclarée dans une enquête externe ou le volume de tickets au support relèvent d'autres outils.
 - **La santé technique.** Disponibilité, temps de réponse et crashs relèvent du monitoring, pas du tracking produit.
 - **La décision.** AREA dit si les KPI sont lisibles et comment les lire. Il ne fixe ni cible ni priorité entre les piliers : c'est le travail de l'équipe produit.

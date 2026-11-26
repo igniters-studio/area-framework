@@ -59,16 +59,6 @@ kpis:
     requires_mechanics: { any_of: [onboarding] }
     stability: development
 
-  - id: paywall_conversion_rate
-    pillar: activation
-    name: Paywall conversion
-    definition: Share of users who emit paywall_shown and then trial_started or purchase_completed within 24 hours, by paywall_trigger.
-    window: { default_hours: 24 }
-    inputs: [paywall_shown, trial_started, purchase_completed]
-    requires_properties: [paywall_trigger]
-    requires_mechanics: { any_of: [paywall] }
-    stability: development
-
   - id: permission_acceptance_rate
     pillar: activation
     name: Permission acceptance rate

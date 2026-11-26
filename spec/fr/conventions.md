@@ -77,9 +77,9 @@ Sources : [noms réservés de GA4](https://support.google.com/analytics/answer/1
 
 Une durée envoyée en propriété est une mesure que seule l'app connaît, comme la durée d'une course. Le temps écoulé entre deux events, lui, se calcule dans l'outil.
 
-**Des noms descriptifs, jamais abrégés.** `permission_type` et `paywall_trigger`, pas `perm_type` ni `trigger`. Un nom générique comme `type` ou `source` ne dit rien une fois sorti de son event.
+**Des noms descriptifs, jamais abrégés.** `permission_type` et `onboarding_version`, pas `perm_type` ni `version`. Un nom générique comme `type` ou `source` ne dit rien une fois sorti de son event.
 
-**Valeurs d'une liste fermée.** En `snake_case` minuscule, et la liste est documentée dans le registre : `paywall_trigger` vaut `onboarding`, `feature_lock`, `usage_limit` ou `settings`, rien d'autre. Ajouter une valeur à une liste fermée est une version mineure : un plan qui suit l'ancienne liste reste valide.
+**Valeurs d'une liste fermée.** En `snake_case` minuscule, et la liste est documentée dans le registre : `entry_point` vaut `icon`, `notification`, `link`, `widget`, `shortcut` ou `other`, rien d'autre. Ajouter une valeur à une liste fermée est une version mineure : un plan qui suit l'ancienne liste reste valide.
 
 **Un nom, un sens.** Une propriété garde le même sens et le même type sur tous les events. `screen_name` désigne partout le nom d'un écran, jamais autre chose. Quand deux events ont besoin d'une notion voisine, chacun a sa propriété : `link_source` pour l'origine d'un lien entrant, `consent_source` pour l'endroit où le consentement a été donné.
 
@@ -87,7 +87,7 @@ Une durée envoyée en propriété est une mesure que seule l'app connaît, comm
 
 | Portée | Ce qu'elle décrit | Quand elle est envoyée | Exemple |
 |---|---|---|---|
-| **Propriété d'event** | Le contexte de cet event précis | Avec l'event concerné | `paywall_trigger`, `step_name` |
+| **Propriété d'event** | Le contexte de cet event précis | Avec l'event concerné | `permission_type`, `step_name` |
 | **Propriété utilisateur** | Un état durable de l'utilisateur | À chaque changement de cet état, depuis l'app ou depuis le serveur | `user_plan`, `is_trial` |
 | **Propriété commune** | Un contexte partagé par tous les events | Jointe automatiquement à chaque event | Définies dans les Fondations |
 

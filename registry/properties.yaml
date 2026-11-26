@@ -29,8 +29,8 @@ properties:
     scope: user
     type: string
     values: app_defined
-    description: Tier of the offer, e.g. free, pro. Only if the app has a paid offer. Updated from the app or the server whenever it changes. On trial_started and purchase_completed, the copy carries the tier just obtained.
-    copied_on: [feature_used, trial_started, purchase_completed]
+    description: Tier of the offer, e.g. free, pro. Only if the app has a paid offer. Updated from the app or the server whenever it changes.
+    copied_on: [feature_used]
     stability: development
   - name: is_trial
     scope: user
@@ -95,17 +95,6 @@ properties:
   - name: step_total
     scope: event
     type: integer
-    stability: development
-  - name: paywall_trigger
-    scope: event
-    type: enum
-    values: [onboarding, feature_lock, usage_limit, settings]
-    description: What made the paywall appear.
-    stability: development
-  - name: purchase_type
-    scope: event
-    type: enum
-    values: [subscription, one_time]
     stability: development
   - name: permission_type
     scope: event

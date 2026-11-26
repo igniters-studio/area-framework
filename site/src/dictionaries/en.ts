@@ -161,7 +161,7 @@ export const en: Dictionary = {
       },
       {
         title: "List the mechanics of the app",
-        text: "Onboarding, paywall, permissions, notifications, sharing, referral… Each one brings its events.",
+        text: "Onboarding, permissions, notifications, sharing, referral… Each one brings its events.",
       },
       {
         title: "Set up the Foundations",
@@ -198,7 +198,7 @@ export const en: Dictionary = {
         label: "Acquisition and revenue",
         aarrr: "At the heart of the model",
         heart: "Adoption only",
-        area: "Purchase decisions in the app; neither acquisition nor amounts",
+        area: "Neither, in the pillars; monetization will come with the cross-cutting dimension",
       },
       {
         label: "Designed for mobile",

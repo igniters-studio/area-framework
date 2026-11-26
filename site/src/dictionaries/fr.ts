@@ -163,7 +163,7 @@ export const fr = {
       },
       {
         title: "Lister les mécaniques de l'app",
-        text: "Onboarding, paywall, autorisations, notifications, partage, parrainage… Chacune apporte ses events.",
+        text: "Onboarding, autorisations, notifications, partage, parrainage… Chacune apporte ses events.",
       },
       {
         title: "Poser les Fondations",
@@ -200,7 +200,7 @@ export const fr = {
         label: "Acquisition et revenu",
         aarrr: "Au cœur du modèle",
         heart: "Adoption seulement",
-        area: "Les décisions d'achat dans l'app ; ni l'acquisition ni les montants",
+        area: "Ni l'un ni l'autre dans les piliers ; la monétisation viendra avec la dimension transversale",
       },
       {
         label: "Pensé pour le mobile",

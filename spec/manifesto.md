@@ -53,7 +53,7 @@ The pillars are not new: Activation, Retention and Referral, which became Advoca
 ## Out of scope
 
 - **Acquisition and attribution.** Where users come from is measured with attribution tools, not with in-app events.
-- **Revenue amounts.** AREA measures the purchase decisions made in the app: the paywall shown, the trial started, the purchase made. How much users pay, renewals and refunds are read at the payment provider.
+- **Monetization and revenue.** The four pillars carry neither the paywall nor purchases: not every app has a paid offer. Purchase decisions made in the app will come with the cross-cutting dimension of a later version. How much users pay, renewals and refunds are read at the payment provider.
 - **What happens outside the app.** Advocacy measures the intent to recommend captured in the app, not the store review that may follow. Satisfaction reported in an external survey or the volume of support tickets belong to other tools.
 - **Technical health.** Uptime, response times and crashes belong to monitoring, not to product tracking.
 - **Decisions.** AREA says whether the KPIs can be read and how to read them. It sets no targets and no priority between the pillars: that is the product team's job.

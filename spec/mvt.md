@@ -10,7 +10,7 @@ Minimum Viable Tracking is the tracking AREA expects from every app to read its 
 |---|---|---|
 | **Foundations** | Identity, common properties (`app_version`, `platform`, `environment`, `user_plan`…), consent and the separation of test data | All |
 | **Core** | `app_opened`, `aha_moment_reached`, `core_action_completed` | All |
-| **Mechanics** | The events of onboarding, the paywall, permissions, notifications, sharing, referral… | Each app, depending on what it contains. A mechanic that is present makes its events required |
+| **Mechanics** | The events of onboarding, permissions, notifications, sharing, referral… | Each app, depending on what it contains. A mechanic that is present makes its events required |
 
 ## Few events, many KPIs
 
@@ -36,7 +36,7 @@ The three core events are thus enough, on their own, to compute a good share of 
 
 Each one can then be broken down by the Foundations properties: iOS or Android, free or paying, app version.
 
-The mechanics add their own KPIs: onboarding completion, drop-off by step, paywall conversion, permission acceptance, feature adoption, declared satisfaction, referral.
+The mechanics add their own KPIs: onboarding completion, drop-off by step, permission acceptance, feature adoption, declared satisfaction, referral.
 
 ## The core
 
@@ -93,7 +93,6 @@ These events are not optional: they become required as soon as the mechanic exis
 |---|---|---|
 | Consent required | `analytics_consent_granted` | Foundations |
 | Onboarding | `onboarding_started`, `onboarding_completed`, and `onboarding_step_completed` if it has several steps | Activation |
-| Paywall | `paywall_shown`, `purchase_completed`, and `trial_started` if the app offers a trial | Activation |
 | Permissions | `permission_granted`, `permission_denied` | Activation |
 | Navigation, if the app analyzes its flows screen by screen | `screen_viewed` | Engagement |
 | Features beyond the core action | `feature_used` | Engagement |
@@ -122,7 +121,7 @@ An app with a multi-step onboarding, permissions, notifications, a few features 
 | Notifications | `notification_opened` |
 | Advocacy | `satisfaction_prompt_answered`, `review_prompt_triggered` |
 
-Twelve events, with the Foundations underneath. They are enough to read the four pillars, to break every KPI down by platform, version and offer tier, and to answer the questions below. With a paywall, two or three more events (`trial_started` if the app offers a trial).
+Twelve events, with the Foundations underneath. They are enough to read the four pillars, to break every KPI down by platform, version and offer tier, and to answer the questions below.
 
 ## What Minimum Viable Tracking can answer
 
