@@ -236,17 +236,11 @@ export const fr = {
     copied: "Copié",
     devLink: "Voir sur GitHub",
     nextLabel: "Ce qui vient ensuite :",
-    // In release order: area-core first, then supertrack.
     next: [
       {
         name: "area-core",
         status: "(à venir) :",
         text: "une boîte à outils open source (Apache 2.0) qui applique AREA au repo d'une app React Native ou Expo, en local, avec l'agent de code du développeur : checks déterministes (conventions de nommage, Minimum Viable Tracking et son score), skills d'audit et de recommandations, et un serveur MCP qui sert le framework aux agents de code.",
-      },
-      {
-        name: "supertrack",
-        status: "(en développement) :",
-        text: "un SaaS pour les apps React Native et Expo, qui se branche sur le dépôt GitHub, audite le tracking sur les quatre piliers, propose le code qui manque et le vérifie à chaque pull request.",
       },
     ],
     star: "Suivre le repo sur GitHub",

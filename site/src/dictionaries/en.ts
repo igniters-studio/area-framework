@@ -234,17 +234,11 @@ export const en: Dictionary = {
     copied: "Copied",
     devLink: "View on GitHub",
     nextLabel: "Coming next:",
-    // In release order: area-core first, then supertrack.
     next: [
       {
         name: "area-core",
         status: "(coming soon):",
         text: "an open-source toolkit (Apache 2.0) that applies AREA to the repo of a React Native or Expo app, locally, with the developer's own coding agent: deterministic checks (naming conventions, Minimum Viable Tracking and its score), audit and fix-recommendation skills, and an MCP server that serves the framework to coding agents.",
-      },
-      {
-        name: "supertrack",
-        status: "(in development):",
-        text: "a SaaS for React Native and Expo apps that connects to the GitHub repository, audits the tracking on the four pillars, suggests the missing code and checks it on every pull request.",
       },
     ],
     star: "Follow the repo on GitHub",

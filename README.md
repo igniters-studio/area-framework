@@ -94,10 +94,9 @@ AREA also owes a lot to other work. The North Star Framework made popular the id
 
 AREA is a common base, and this base is not finished. The next step is a dimension that cuts across the four pillars, so that each app can add its own goals: a conversion flow specific to its business model, a feature launch, a goal set by the team. Each will be described in AREA's grammar, with its KPIs and events, on the same base.
 
-On the tooling side, two tools will follow this first version, in this order. They start with React Native and Expo apps: the stack where their audits and fixes can be guaranteed right. Native iOS, native Android and Flutter will follow; the framework itself depends on no stack.
+On the tooling side, a toolkit will follow this first version. It starts with React Native and Expo apps: the stack where its audits and fixes can be guaranteed right. Native iOS, native Android and Flutter will follow; the framework itself depends on no stack.
 
 - **area-core** (coming soon): an open-source toolkit, under Apache 2.0, that applies AREA to an app's repo, locally, with the developer's own coding agent. It brings deterministic checks that need no LLM (naming conventions, [Minimum Viable Tracking](spec/mvt.md) and its score), skills that audit the tracking and recommend fixes, and the MCP server that serves the framework to coding agents.
-- **[supertrack](https://igniters.studio)** (in development): a SaaS that connects to an app's GitHub repository, audits its tracking on the four pillars, suggests the missing code and checks it on every pull request, to keep it in line with the app's business goals.
 
 ## Tooling
 
@@ -106,7 +105,7 @@ AREA can be checked without any particular tool:
 - **Verdicts are checked by hand.** Each pillar page lists the conditions of each verdict: measurable, partial, not measurable.
 - **The registry is validated with a script** shipped in this repo. It needs PyYAML: `pip install pyyaml`, then `python3 scripts/validate_registry.py`, or in one command with uv: `uv run --with pyyaml python3 scripts/validate_registry.py`. It checks empty keys and values (a sign of malformed YAML), naming, reserved names, the verb vocabulary and consistency between the registry files.
 
-The author builds area-core and supertrack, announced in [What comes next](#what-comes-next). AREA depends on neither of them, and any other tool can build on the registry.
+The author builds area-core, announced in [What comes next](#what-comes-next). AREA does not depend on it, and any other tool can build on the registry.
 
 ## Repository contents
 

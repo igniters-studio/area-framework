@@ -96,10 +96,9 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 AREA est une base commune, et cette base n'est pas finie. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique, le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur la même base.
 
-Côté outillage, deux outils suivront cette première version, dans cet ordre. Ils commencent par les apps React Native et Expo : c'est la stack où leurs audits et leurs correctifs peuvent être garantis justes. iOS natif, Android natif et Flutter suivront ; le framework, lui, ne dépend d'aucune stack.
+Côté outillage, une boîte à outils suivra cette première version. Elle commence par les apps React Native et Expo : c'est la stack où ses audits et ses correctifs peuvent être garantis justes. iOS natif, Android natif et Flutter suivront ; le framework, lui, ne dépend d'aucune stack.
 
 - **area-core** (à venir) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md) et son score), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
-- **[supertrack](https://igniters.studio)** (en développement) : un SaaS qui se branche sur le dépôt GitHub d'une app, audite son tracking sur les quatre piliers, propose le code qui manque et le vérifie à chaque pull request, pour le garder en phase avec les objectifs business de l'app.
 
 ## Outillage
 
@@ -108,7 +107,7 @@ AREA se vérifie sans outil particulier :
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
 - **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
-L'auteur développe area-core et supertrack, annoncés dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA ne dépend d'aucun des deux, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe area-core, annoncé dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 
