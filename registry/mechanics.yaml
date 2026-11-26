@@ -16,11 +16,6 @@ mechanics:
     description: A first-run flow before the user reaches the app.
     pillar: activation
     stability: development
-  - id: paywall
-    name: Paywall
-    description: The app presents a paid offer, a free trial or a purchase. Amounts are never sent.
-    pillar: activation
-    stability: development
   - id: permissions
     name: Permissions
     description: The app asks for system permissions (notifications, location, camera, app tracking…).

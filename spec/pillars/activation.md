@@ -67,7 +67,6 @@ An app without accounts is not penalized: its verdict only states that it counts
 | **Time to Aha** | Median time between the first launch and `aha_moment_reached`, among users activated within the window. It is published with the share of the cohort that did not reach it; otherwise a falling median can hide more drop-outs. Computed in the tool, never sent as a property |
 | **Onboarding completion rate** | Users who emit `onboarding_completed`, over those who emit `onboarding_started`, by `onboarding_version` |
 | **Drop-off by onboarding step** | Share of users lost at each onboarding step, read with `step_name` and `onboarding_version`, if the onboarding has several steps |
-| **Paywall conversion** | Share of users exposed to the paywall who start a trial or buy within 24 hours (default window), by `paywall_trigger` |
 | **Permission acceptance rate** | Users who grant the permission, over those who granted or denied it, by `permission_type` |
 
 ## Events
@@ -78,9 +77,6 @@ An app without accounts is not penalized: its verdict only states that it counts
 | `onboarding_started` | The user starts onboarding | `onboarding_version` | The app has an onboarding |
 | `onboarding_step_completed` | An onboarding step is completed | `onboarding_version`, `step_name`, `step_index`, `step_total` | The onboarding has several steps |
 | `onboarding_completed` | All the steps are completed | `onboarding_version` | The app has an onboarding |
-| `paywall_shown` | The app presents its paid offer | `paywall_trigger` | The app has a paywall |
-| `trial_started` | The user starts a free trial | `user_plan` | The app offers a trial |
-| `purchase_completed` | The user buys a subscription or a product offered by the paywall. An order in a commerce app is not one: it is the core action | `user_plan`, `purchase_type` | The app has a paywall |
 | `permission_granted` | The user grants a permission | `permission_type`, and `permission_scope` if the platform exposes a scope | The app asks for permissions |
 | `permission_denied` | The user denies a permission | `permission_type` | The app asks for permissions |
 
@@ -95,24 +91,20 @@ An app without accounts is not penalized: its verdict only states that it counts
 | `onboarding_version` | Version of the onboarding flow, to compare two versions: `v1`, `v2`… |
 | `step_name` | Name of the step, specific to the app: `profile_setup`, `goal_selection`… |
 | `step_index`, `step_total` | Position of the step and total number of steps |
-| `paywall_trigger` | What made the paywall appear: `onboarding`, `feature_lock`, `usage_limit`, `settings` |
-| `user_plan` | Tier of the offer at the time of the event: on `trial_started` and `purchase_completed`, the tier just obtained. Copy of the Foundations user property |
-| `purchase_type` | `subscription`, `one_time` |
 | `permission_type` | `notifications`, `location`, `health`, `camera`, `microphone`, `contacts`, `photos`, `app_tracking` |
 | `permission_scope` | What the user granted, sent whenever the platform exposes a scope: `full` (complete permission), `limited` (selected photos, approximate location), `provisional` (iOS provisional notifications), `once` (this time only) |
 
-## The paywall and purchases
+## A paywall before the aha moment
 
-AREA measures the purchase decisions made in the app: the paywall shown, the trial started, the purchase made. It never measures money: no amount, no currency. Revenue, renewals and refunds are read at the payment provider, which receives the same user identifier (see [identity](../foundations.md#1-identity) in the Foundations).
+**When a paywall blocks access**, nobody reaches the aha moment without paying or starting a trial first. This required step weighs on the activation rate and lengthens Time to Aha: read it alongside them.
 
-**When the paywall blocks access**, nobody reaches the aha moment without paying or starting a trial first. The paywall becomes a step of activation: whatever breaks it breaks activation, and Time to Aha grows by this required step.
+The paywall and purchases are not part of the four pillars: not every app has a paid offer. Their events will come with the cross-cutting dimension announced in [What comes next](../../README.md#what-comes-next). Revenue is read at the payment provider.
 
 ## Questions this pillar answers
 
 - What share of my new users sees the app's value?
 - How long does it take them to get there?
 - At which onboarding step do I lose the most users?
-- Does my paywall convert, and how does that depend on what triggers it?
 - Which permissions are denied most often?
 
 ## Common mistakes
@@ -121,5 +113,4 @@ AREA measures the purchase decisions made in the app: the paywall shown, the tri
 - Never checking the aha moment, or changing its definition without changing `aha_version`.
 - Tracking only granted permissions. Without the denials, no acceptance rate can be computed. On Android, after two denials, the system denies without showing a dialog anymore: `permission_denied` is still sent, and the rate then measures a decision, not a display.
 - Sending Time to Aha as a property. It is a KPI the tool computes from the events.
-- Sending an amount or a currency with `purchase_completed`. Revenue is read at the payment provider.
 - Counting activation in sessions rather than in users.
