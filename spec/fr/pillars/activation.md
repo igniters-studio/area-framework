@@ -1,6 +1,6 @@
 # Activation
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/activation.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../../pillars/activation.md).*
 
 > Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ?
 

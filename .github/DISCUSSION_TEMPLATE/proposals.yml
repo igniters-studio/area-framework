@@ -1,11 +1,8 @@
-name: Change proposal
-description: An event, property or KPI of the registry does not fit your app.
 title: "Proposal: "
-labels: ["proposal"]
 body:
   - type: markdown
     attributes:
-      value: English or French. A registry change affects every app that follows it, so it is discussed here before any pull request.
+      value: English or French. A registry change affects every app that follows it, so it is discussed here first.
   - type: input
     id: entry
     attributes:
@@ -17,7 +14,7 @@ body:
     id: app
     attributes:
       label: The app
-      description: What it does, and the mechanics it has (onboarding, paywall, notifications…).
+      description: What it does, and the mechanics it has (onboarding, notifications, referral…).
     validations:
       required: true
   - type: textarea

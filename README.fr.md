@@ -2,11 +2,11 @@
 
 # AREA Framework
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](README.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](README.md).*
 
 **Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
 
-`v0.1.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
+`v0.2.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
 
 ```mermaid
 flowchart LR
@@ -125,7 +125,7 @@ AREA suit le versionnement sémantique. Chaque entrée du registre a un niveau d
 
 ## Contribuer
 
-Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fait passer ses entrées en `stable`. Une question, une incohérence, un event qui ne tient pas dans votre app : ouvrez une issue ou une discussion.
+Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fait passer ses entrées en `stable`. Une question, une incohérence, un event qui ne tient pas dans votre app : ouvrez une [discussion](https://github.com/igniters-studio/area-framework/discussions).
 
 AREA ne dépend d'aucune stack, mais son outillage commence par React Native et Expo. Les retours d'apps iOS natives, Android natives et Flutter sont précieux : ce qui change d'une stack à l'autre (où envoyer `app_opened`, comment connaître son `entry_point`, l'action cœur faite depuis un widget ou une extension), sans nouveaux events. Le détail est dans le [guide de contribution](CONTRIBUTING.fr.md).
 

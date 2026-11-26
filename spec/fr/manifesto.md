@@ -1,6 +1,6 @@
 # Manifeste
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../manifesto.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../manifesto.md).*
 
 **Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
 

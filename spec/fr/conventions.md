@@ -1,6 +1,6 @@
 # Conventions
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../conventions.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../conventions.md).*
 
 Ces conventions s'appliquent à tout nouvel event et à toute nouvelle propriété. Elles visent le code qu'on écrit, pas le tracking déjà en place : un event existant dont le sens est juste garde son nom (voir [Renommer et faire évoluer](#renommer-et-faire-évoluer)).
 
@@ -140,7 +140,7 @@ Chaque entrée du registre (pilier, KPI, event, propriété, mécanique) a un ni
 2. Ses KPI ont été lus sur des données réelles dans ces apps.
 3. Aucun retour ouvert ne la remet en cause.
 
-Les retours se déposent dans une issue ou une discussion du repo, et chaque changement de niveau est noté dans le changelog avec les retours qui le justifient.
+Les retours se déposent dans une discussion du repo, et chaque changement de niveau est noté dans le changelog avec les retours qui le justifient.
 
 Une entrée en `development` peut changer ou disparaître d'une version mineure à l'autre. Une entrée `stable` qui doit disparaître passe d'abord en `deprecated`, puis elle est retirée à la version majeure suivante.
 

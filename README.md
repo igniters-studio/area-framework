@@ -4,7 +4,7 @@
 
 **A tracking framework for mobile apps that starts from business goals, not from events.**
 
-`v0.1.0` · Text [CC BY 4.0](LICENSE), registry [CC0 1.0](registry/LICENSE) · English · [Français](README.fr.md)
+`v0.2.0` · Text [CC BY 4.0](LICENSE), registry [CC0 1.0](registry/LICENSE) · English · [Français](README.fr.md)
 
 ```mermaid
 flowchart LR
@@ -124,7 +124,7 @@ AREA follows semantic versioning. Each registry entry has a stability level, and
 
 ## Contributing
 
-Feedback from apps that apply AREA is what moves it forward, and what moves its entries to `stable`. A question, an inconsistency, an event that does not fit your app: open an issue or a discussion.
+Feedback from apps that apply AREA is what moves it forward, and what moves its entries to `stable`. A question, an inconsistency, an event that does not fit your app: open a [discussion](https://github.com/igniters-studio/area-framework/discussions).
 
 AREA depends on no stack, but its tooling starts with React Native and Expo. Feedback from native iOS, native Android and Flutter apps is valuable: what changes from one stack to another (where to send `app_opened`, how to know its `entry_point`, the core action done from a widget or an extension), with no new events. The details are in the [contributing guide](CONTRIBUTING.md).
 

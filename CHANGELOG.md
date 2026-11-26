@@ -7,6 +7,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-26
+
 ### Changed
 
 - **Tooling teaser** (README in both languages, home page of the website): the coming tooling is
@@ -35,7 +37,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - **Contributing guide** (`CONTRIBUTING.md`, `CONTRIBUTING.fr.md`), with what helps most and notes
   per stack for native iOS, native Android and Flutter.
-- **Issue templates**: app feedback, change proposal, inconsistency.
+- **Discussion forms** for the App feedback, Proposals and Q&A categories. Contributions now go
+  through the repo's Discussions; issues are closed and pull requests are open to collaborators
+  only.
 
 ## [0.1.0] - 2026-11-20
 

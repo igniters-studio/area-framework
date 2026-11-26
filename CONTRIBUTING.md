@@ -2,23 +2,23 @@
 
 *Also in French: [Français](CONTRIBUTING.fr.md).*
 
-AREA moves forward through feedback from the apps that apply it. That feedback is also what moves its entries from `development` to `stable` (see [Stability and versions](spec/conventions.md#stability-and-versions)). Issues and pull requests can be written in English or in French.
+AREA moves forward through feedback from the apps that apply it. That feedback is also what moves its entries from `development` to `stable` (see [Stability and versions](spec/conventions.md#stability-and-versions)). Everything goes through the repo's [Discussions](https://github.com/igniters-studio/area-framework/discussions), in English or in French.
 
 ## What helps most
 
 ### Feedback from an app
 
-You apply AREA in an app, in production or in development: tell us what held and what got stuck. Which pillar you could read, with which verdict, which event you had to adapt, which definition made you hesitate. Open an "App feedback" issue.
+You apply AREA in an app, in production or in development: tell us what held and what got stuck. Which pillar you could read, with which verdict, which event you had to adapt, which definition made you hesitate. Open a discussion in the **App feedback** category.
 
 Feedback from apps in production matters most: an entry becomes `stable` once it runs in at least two apps in production, one of them outside the team that maintains AREA.
 
 ### An event, property or KPI that does not fit your app
 
-Describe the app, what you wanted to measure, and why the registry entry is not enough. Open a "Change proposal" issue before any pull request: a registry change affects every app that follows it, so it is discussed first.
+Describe the app, what you wanted to measure, and why the registry entry is not enough. Open a discussion in the **Proposals** category: a registry change affects every app that follows it, so it is discussed first.
 
-### An inconsistency
+### A question or an inconsistency
 
-Between the spec and the registry, between two pages, between English and French: an "Inconsistency" issue is enough. For a typo or a translation, a direct pull request is fine.
+A question about the spec, or a gap between the spec and the registry, between two pages, between English and French, a typo included: the **Q&A** category is enough.
 
 ## Stacks
 
@@ -33,13 +33,10 @@ Feedback from native iOS, native Android and Flutter apps is welcome. It covers 
 
 One note per stack, with a short example, helps other teams as much as it helps AREA prepare its tooling for that stack.
 
-## Pull requests
+## What happens to a contribution
 
-- **Registry first.** A change to an event, a property or a KPI changes `registry/`, then the spec pages that describe it. The registry is the source of truth.
-- **English first.** The English version is the reference; the French translation follows in the same pull request, or is flagged as to do.
-- **Validate the registry** before opening the pull request: `uv run --with pyyaml python3 scripts/validate_registry.py`.
-- **The changelog** gets a line under `[Unreleased]`.
+An accepted proposal becomes a change to the spec and the registry, made by the team that maintains AREA and recorded in the [changelog](CHANGELOG.md) with the version that introduces it. The registry is the source of truth, the English version is the reference, the French translation follows.
 
 ## License of contributions
 
-A contribution is published under the license of the part of the repo it touches: [CC BY 4.0](LICENSE) for the text, [CC0 1.0](registry/LICENSE) for the registry, [Apache 2.0](scripts/LICENSE) for the script and the website.
+A contribution taken into the repo is published under the license of the part it touches: [CC BY 4.0](LICENSE) for the text, [CC0 1.0](registry/LICENSE) for the registry, [Apache 2.0](scripts/LICENSE) for the script and the website.

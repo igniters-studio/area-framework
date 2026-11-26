@@ -3,7 +3,7 @@
 # inputs: events the KPI needs. requires_properties: properties the calculation reads.
 # requires_mechanics.any_of: the KPI only exists when the app has at least one of these mechanics.
 # Every ratio counts distinct users, never events or sessions. Every reference KPI is read with its volume.
-area_version: 0.1.0
+area_version: 0.2.0
 
 definitions:
   new_users: Users whose app_opened with is_first_launch = true falls in the period. They enter the cohort at that event.

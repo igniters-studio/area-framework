@@ -138,7 +138,7 @@ Each registry entry (pillar, KPI, event, property, mechanic) has a stability lev
 2. Its KPIs have been read on real data in those apps.
 3. No open feedback questions it.
 
-Feedback is filed as an issue or a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.
+Feedback is filed as a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.
 
 An entry in `development` may change or disappear from one minor version to the next. A `stable` entry that must disappear first moves to `deprecated`, then is removed at the next major version.
 

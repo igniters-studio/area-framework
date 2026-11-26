@@ -3,7 +3,7 @@
 # scope: common (sent with every event), user (durable user state), event (context of one event).
 # values: closed list; "app_defined" means each app documents its own closed list in its tracking plan.
 # copied_on: events that carry a copy of a user property, to keep its value at the time of the event.
-area_version: 0.1.0
+area_version: 0.2.0
 
 properties:
   # Foundations — common properties

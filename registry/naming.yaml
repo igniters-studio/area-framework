@@ -1,7 +1,7 @@
 # AREA Framework — naming rules
 # License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
 # Machine-readable version of spec/conventions.md (English) and spec/fr/conventions.md (French).
-area_version: 0.1.0
+area_version: 0.2.0
 stability: development
 
 language: en  # event and property names are always in English

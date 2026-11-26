@@ -1,6 +1,6 @@
 # Rétention
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/retention.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../../pillars/retention.md).*
 
 > Reviennent-ils faire ce pour quoi l'app existe ?
 

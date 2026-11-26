@@ -1,7 +1,4 @@
-name: App feedback
-description: You apply AREA in an app. Tell us what held and what got stuck.
 title: "Feedback: "
-labels: ["app-feedback"]
 body:
   - type: markdown
     attributes:
@@ -36,7 +33,7 @@ body:
     id: version
     attributes:
       label: AREA version followed
-      placeholder: "0.1.0"
+      placeholder: "0.2.0"
     validations:
       required: true
   - type: textarea

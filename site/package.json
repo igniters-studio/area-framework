@@ -1,6 +1,6 @@
 {
   "name": "area-framework-site",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "The AREA Framework website: a static export of the repo's spec, published on GitHub Pages.",
   "license": "Apache-2.0",
