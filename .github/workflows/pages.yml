@@ -3,7 +3,8 @@ name: Pages
 # Builds the site (site/, a Next.js static export) and publishes it on GitHub Pages at
 # https://igniters-studio.github.io/area-framework/. On this organization's plan, Pages serves
 # public repositories only: while the repo is private, both jobs are skipped.
-# The release job tags and releases each new registry version, whatever the visibility.
+# The release job tags and releases each new registry version, whatever the visibility; the
+# publish job then publishes that version of the registry on npm, as the package area-framework.
 
 on:
   push:
@@ -44,6 +45,58 @@ jobs:
             exit 1
           fi
           gh release create "$tag" --target "$GITHUB_SHA" --title "AREA $version" --notes-file notes.md --latest
+
+  # Publishes area-framework@<area_version> on npm the first time that version is missing there,
+  # from a registry identical to its tag, with provenance. Independent of the site: a failure here
+  # does not stop the deploy. Needs the NPM_TOKEN secret; rerun the job once it is set.
+  publish:
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: package
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - run: yarn install --immutable
+      - name: Publish the registry on npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          version=$(sed -n 's/^area_version: //p' ../registry/pillars.yaml)
+          if npm view "area-framework@$version" version > /dev/null 2>&1; then
+            echo "area-framework@$version is already on npm"
+            exit 0
+          fi
+          if ! git diff --quiet "v$version" HEAD -- ../registry; then
+            echo "::error::registry/ differs from the tag v$version: area-framework@$version must carry the registry of v$version"
+            exit 1
+          fi
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::the NPM_TOKEN secret is not set: area-framework@$version is not published"
+            exit 1
+          fi
+          yarn check
+          npm publish --provenance --access public
+          # The effect, not the exit code: the version must answer on the registry.
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            if [ "$(npm view --prefer-online "area-framework@$version" version 2> /dev/null)" = "$version" ]; then
+              echo "area-framework@$version is on npm"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::npm publish ended, but area-framework@$version does not answer on the registry"
+          exit 1
 
   build:
     needs: release
