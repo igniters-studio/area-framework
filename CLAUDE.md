@@ -10,10 +10,11 @@ on GitHub Pages at https://igniters-studio.github.io/area-framework/. Everything
 | `spec/` | The spec in English: manifesto, conventions, foundations, pillars, Minimum Viable Tracking |
 | `spec/fr/`, `references/fr/`, `*.fr.md` | The French translation |
 | `registry/` | The spec in YAML: naming, pillars, mechanics, properties, events, KPIs (CC0 1.0) |
-| `scripts/` | `validate_registry.py`, the registry validator (Apache 2.0) |
+| `package/` | The npm package `area-framework`: the registry as JSON, generated TypeScript types and the validator (code Apache 2.0, data CC0 1.0). Decision: `docs/decisions/0001-publish-the-registry-on-npm.md` |
+| `docs/decisions/` | Architecture decision records, in English only |
 | `site/` | The website, a Next.js static export of the spec, with `llms.txt` (Apache 2.0) |
 | `references/` | Reference points outside the spec, such as benchmarks |
-| `.github/` | Pages workflow (release, build, deploy) and discussion forms |
+| `.github/` | Pages workflow (release, publish, build, deploy), Registry workflow (every PR) and discussion forms |
 
 ## Sources of truth
 
@@ -24,7 +25,8 @@ on GitHub Pages at https://igniters-studio.github.io/area-framework/. Everything
 
 ## Commands
 
-- Registry: `uv run --with pyyaml python3 scripts/validate_registry.py`.
+- Registry and package: in `package/`, `corepack enable`, `yarn install --immutable`, then `yarn check`
+  (generated types, type checks, tests, validator, build). The validator alone: `yarn validate`.
 - Site: in `site/`, `corepack enable`, `yarn install --immutable`, then `yarn check` (lint, types,
   build). Where corepack cannot reach repo.yarnpkg.com, set `COREPACK_NPM_REGISTRY=https://registry.npmjs.org`.
 - Both green before every PR. For a change to the home page, look at the rendered page too.
@@ -47,11 +49,13 @@ on GitHub Pages at https://igniters-studio.github.io/area-framework/. Everything
 
 - Semantic versioning, by the rules of `spec/conventions.md`, "Stability and versions".
 - A release is a PR that bumps `area_version` in every registry file, the README badges, the French
-  headers that are up to date and `site/package.json`, and turns `[Unreleased]` into
+  headers that are up to date, `site/package.json` and `package/package.json` (the package build
+  fails when its version differs from `area_version`), and turns `[Unreleased]` into
   `[X.Y.Z] - YYYY-MM-DD`. Procedure: the `area-release` skill.
 - On merge, the `release` job of the Pages workflow creates the tag `vX.Y.Z` and the GitHub release
-  from that changelog section, then the site is built and deployed. Never push a tag or create a
-  release by hand.
+  from that changelog section, then the site is built and deployed, and the `publish` job publishes
+  `area-framework@X.Y.Z` on npm with provenance (secret `NPM_TOKEN`), only from a registry identical
+  to the tag. Never push a tag, create a release or publish on npm by hand.
 - `llms.txt` links to the registry at the tag `v<area_version>`: a version must not reach `main`
   without its changelog section, or the release job fails and the site is not deployed.
 
