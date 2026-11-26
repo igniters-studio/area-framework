@@ -1,0 +1,60 @@
+{
+  "name": "area-framework",
+  "version": "0.2.0",
+  "description": "The AREA Framework registry for mobile app analytics: events, properties and their closed lists, KPIs, as JSON and TypeScript types, with its validator.",
+  "keywords": [
+    "analytics",
+    "tracking-plan",
+    "mobile",
+    "react-native",
+    "expo",
+    "kpi",
+    "area-framework"
+  ],
+  "homepage": "https://igniters-studio.github.io/area-framework/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igniters-studio/area-framework.git",
+    "directory": "package"
+  },
+  "license": "Apache-2.0 AND CC0-1.0",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./registry.json": "./dist/registry.json",
+    "./package.json": "./package.json"
+  },
+  "bin": "./dist/cli.js",
+  "files": [
+    "dist",
+    "LICENSE",
+    "LICENSE-registry",
+    "README.md"
+  ],
+  "scripts": {
+    "generate": "node src/generate.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.ts",
+    "validate": "node src/cli.ts validate ../registry",
+    "build": "node src/generate.ts && tsc -p tsconfig.build.json",
+    "check": "yarn generate && yarn typecheck && yarn test && yarn validate && yarn build",
+    "prepack": "node src/generate.ts && tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "yarn@4.13.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
