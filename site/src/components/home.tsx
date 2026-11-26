@@ -407,6 +407,15 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 </a>
               </div>
             </div>
+            <div className="cta-card">
+              <h3>{dict.cta.studioTitle}</h3>
+              <p>{dict.cta.studioText}</p>
+              <div className="actions">
+                <a href={`${REPO_URL}/tree/main/registry`} className="button button-light">
+                  {dict.cta.studioLink}
+                </a>
+              </div>
+            </div>
           </div>
           <div className="cta-foot">
             <div className="cta-next">
