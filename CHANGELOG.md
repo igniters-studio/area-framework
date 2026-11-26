@@ -7,6 +7,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Added
+
+- **npm package `area-framework`**: the registry as JSON and TypeScript types generated from it
+  (events, properties and their closed lists, KPIs), with the registry validator, now in TypeScript
+  (`npx area-framework validate`) and run on every pull request. It replaces
+  `scripts/validate_registry.py`.
+
 ## [0.2.0] - 2026-11-26
 
 ### Changed
