@@ -4,7 +4,7 @@
 
 **A tracking framework for mobile apps that starts from business goals, not from events.**
 
-`v0.1.0` · Text [CC BY 4.0](LICENSE), registry [CC0 1.0](registry/LICENSE) · English · [Français](README.fr.md)
+`v0.2.0` · Text [CC BY 4.0](LICENSE), registry [CC0 1.0](registry/LICENSE) · English · [Français](README.fr.md)
 
 ```mermaid
 flowchart LR
@@ -40,7 +40,7 @@ Each reference KPI is read with its volume, and comes with a verdict: measurable
 
 1. **Write the business goal of each pillar** for your app. The pillar pages give a typical example: each app writes its own, and that goal says why the pillar matters.
 2. **Define the core action** of the app, then its **aha moment**, as a hypothesis to check against the data. Everything else depends on them ([Engagement](spec/pillars/engagement.md), [Activation](spec/pillars/activation.md)).
-3. **List the mechanics** of the app: onboarding, paywall, permissions, notifications, sharing, referral… Each one brings its events ([Minimum Viable Tracking](spec/mvt.md)).
+3. **List the mechanics** of the app: onboarding, permissions, notifications, sharing, referral… Each one brings its events ([Minimum Viable Tracking](spec/mvt.md)).
 4. **Set up the Foundations**: identity, common properties, consent, separation of test data ([Foundations](spec/foundations.md)).
 5. **Implement Minimum Viable Tracking** following the [conventions](spec/conventions.md).
 6. **Read the four reference KPIs**, their volume and their verdict, then check the aha moment and add the app's own questions. A partial or not measurable verdict says what to fix first. Never an event without a question.
@@ -67,7 +67,7 @@ AREA does not replace existing frameworks. It borrows a lot from them, and adds 
 | Scale | The business | The product or a feature | The whole app |
 | What AREA borrows from it | Activation, Retention, and Referral, which became Advocacy | Engagement, and the goal → signal → metric chain | |
 | From goals to events | Through a measurement plan, built for each project | Through a measurement plan (goals, signals, metrics), built for each product or feature | Built into the framework: a common base of KPIs and events, the same for every mobile app |
-| Acquisition and revenue | At the heart of the model | Adoption only | Purchase decisions in the app; neither acquisition nor amounts |
+| Acquisition and revenue | At the heart of the model | Adoption only | Neither, in the pillars; monetization will come with the cross-cutting dimension |
 | Designed for mobile | Generic | Generic | Yes |
 
 **The difference fits in one line: with AARRR or HEART, each project builds its measurement plan; with AREA, the structure of the plan already exists.** Each app writes its goals, defines its core action and its aha moment. The rest of the common base (the reference KPIs, their verdicts, the events and their properties) is part of the framework. A team no longer has to reinvent it: it sets it up, then spends its time on what is specific to its app.
@@ -76,7 +76,7 @@ AREA also owes a lot to other work. The North Star Framework made popular the id
 
 ## Limits
 
-- **AREA measures neither acquisition nor revenue.** It tracks the purchase decisions made in the app, never the amounts. Acquisition belongs to attribution tools, revenue to the payment provider. If a subscription service or the analytics tool itself already reports revenue (Firebase does with `in_app_purchase`), the two coexist: AREA simply sends no amount of its own.
+- **AREA measures neither acquisition nor revenue.** Its four pillars carry neither the paywall nor purchases: not every app has a paid offer. Purchase decisions made in the app will come with the cross-cutting dimension (see [What comes next](#what-comes-next)). Acquisition belongs to attribution tools, revenue to the payment provider.
 - **It only measures what the app sees.** Perceived quality, a store review, how easy a flow is: these are also measured with surveys and user tests.
 - **It does not find the core action for you.** It is a product decision, and everything else depends on it. The aha moment stays a hypothesis until it has been checked against the data.
 - **It says whether the KPIs can be read, not what to decide.** No targets, no priority between the pillars: that is the team's job.
@@ -92,7 +92,7 @@ AREA also owes a lot to other work. The North Star Framework made popular the id
 
 ## What comes next
 
-AREA is a common base, and this base is not finished. The next step is a dimension that cuts across the four pillars, so that each app can add its own goals: a conversion flow specific to its business model, a feature launch, a goal set by the team. Each will be described in AREA's grammar, with its KPIs and events, on the same base.
+AREA is a common base, and this base is not finished. The next step is a dimension that cuts across the four pillars, so that each app can add its own goals: a conversion flow specific to its business model (the paywall and purchases, for instance), a feature launch, a goal set by the team. Each will be described in AREA's grammar, with its KPIs and events, on the same base.
 
 On the tooling side, a toolkit will follow this first version. It starts with React Native and Expo apps: the stack where its audits and fixes can be guaranteed right. Native iOS, native Android and Flutter will follow; the framework itself depends on no stack.
 
@@ -124,7 +124,7 @@ AREA follows semantic versioning. Each registry entry has a stability level, and
 
 ## Contributing
 
-Feedback from apps that apply AREA is what moves it forward, and what moves its entries to `stable`. A question, an inconsistency, an event that does not fit your app: open an issue or a discussion.
+Feedback from apps that apply AREA is what moves it forward, and what moves its entries to `stable`. A question, an inconsistency, an event that does not fit your app: open a [discussion](https://github.com/igniters-studio/area-framework/discussions).
 
 AREA depends on no stack, but its tooling starts with React Native and Expo. Feedback from native iOS, native Android and Flutter apps is valuable: what changes from one stack to another (where to send `app_opened`, how to know its `entry_point`, the core action done from a widget or an extension), with no new events. The details are in the [contributing guide](CONTRIBUTING.md).
 

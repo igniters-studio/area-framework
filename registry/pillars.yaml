@@ -1,7 +1,7 @@
 # AREA Framework — pillars
 # License: CC0 1.0 (registry). The prose of the spec is under CC BY 4.0.
 # business_goal is an example: each app writes its own goal for each pillar in its tracking plan.
-area_version: 0.1.0
+area_version: 0.2.0
 
 pillars:
   - id: activation

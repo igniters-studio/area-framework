@@ -1,6 +1,6 @@
 # Minimum Viable Tracking
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../mvt.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../mvt.md).*
 
 Le Minimum Viable Tracking est le tracking qu'AREA attend de toute app pour lire ses quatre piliers. Il se construit en trois couches : les Fondations, un socle d'events commun à toutes les apps, et les events des mécaniques que l'app contient. Pour une app courante, il compte une douzaine d'events, et il en tire plus d'une quinzaine de KPI.
 
@@ -12,7 +12,7 @@ Le Minimum Viable Tracking est le tracking qu'AREA attend de toute app pour lire
 |---|---|---|
 | **Fondations** | L'identité, les propriétés communes (`app_version`, `platform`, `environment`, `user_plan`…), le consentement et la séparation des données de test | Toutes |
 | **Socle** | `app_opened`, `aha_moment_reached`, `core_action_completed` | Toutes |
-| **Mécaniques** | Les events de l'onboarding, de la paywall, des autorisations, des notifications, du partage, du parrainage… | Chaque app, selon ce qu'elle contient. Une mécanique présente rend ses events obligatoires |
+| **Mécaniques** | Les events de l'onboarding, des autorisations, des notifications, du partage, du parrainage… | Chaque app, selon ce qu'elle contient. Une mécanique présente rend ses events obligatoires |
 
 ## Peu d'events, beaucoup de KPI
 
@@ -38,7 +38,7 @@ Les trois events du socle suffisent ainsi à calculer, à eux seuls, une bonne p
 
 Chacun se découpe ensuite par les propriétés des Fondations : iOS ou Android, gratuit ou payant, version de l'app.
 
-Les mécaniques ajoutent leurs propres KPI : complétion de l'onboarding, abandon par étape, conversion de la paywall, acceptation des autorisations, adoption des features, satisfaction déclarée, parrainage.
+Les mécaniques ajoutent leurs propres KPI : complétion de l'onboarding, abandon par étape, acceptation des autorisations, adoption des features, satisfaction déclarée, parrainage.
 
 ## Le socle
 
@@ -95,7 +95,6 @@ Ces events ne sont pas facultatifs : ils deviennent obligatoires dès que la mé
 |---|---|---|
 | Consentement requis | `analytics_consent_granted` | Fondations |
 | Onboarding | `onboarding_started`, `onboarding_completed`, et `onboarding_step_completed` s'il a plusieurs étapes | Activation |
-| Paywall | `paywall_shown`, `purchase_completed`, et `trial_started` si l'app propose un essai | Activation |
 | Autorisations | `permission_granted`, `permission_denied` | Activation |
 | Navigation, si l'app analyse ses parcours écran par écran | `screen_viewed` | Engagement |
 | Features distinctes de l'action cœur | `feature_used` | Engagement |
@@ -124,7 +123,7 @@ Une app avec un onboarding en plusieurs étapes, des autorisations, des notifica
 | Notifications | `notification_opened` |
 | Advocacy | `satisfaction_prompt_answered`, `review_prompt_triggered` |
 
-Douze events, avec les Fondations en dessous. Ils suffisent à lire les quatre piliers, à découper chaque KPI par plateforme, version et palier d'offre, et à répondre aux questions ci-dessous. Avec une paywall, deux ou trois events de plus (`trial_started` si l'app propose un essai).
+Douze events, avec les Fondations en dessous. Ils suffisent à lire les quatre piliers, à découper chaque KPI par plateforme, version et palier d'offre, et à répondre aux questions ci-dessous.
 
 ## Ce que le Minimum Viable Tracking permet de répondre
 

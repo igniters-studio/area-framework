@@ -1,6 +1,6 @@
 # Advocacy
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/advocacy.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../../pillars/advocacy.md).*
 
 > Sont-ils prêts à la recommander ?
 

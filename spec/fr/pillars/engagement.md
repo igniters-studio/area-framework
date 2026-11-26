@@ -1,6 +1,6 @@
 # Engagement
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../../pillars/engagement.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../../pillars/engagement.md).*
 
 > Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ?
 

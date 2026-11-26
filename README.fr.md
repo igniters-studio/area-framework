@@ -2,11 +2,11 @@
 
 # AREA Framework
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](README.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](README.md).*
 
 **Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
 
-`v0.1.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
+`v0.2.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
 
 ```mermaid
 flowchart LR
@@ -42,7 +42,7 @@ Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict :
 
 1. **Écrire l'objectif business de chaque pilier** pour votre app. Les pages des piliers en donnent un exemple type : chaque app écrit le sien, et c'est lui qui dit pourquoi le pilier compte.
 2. **Définir l'action cœur** de l'app, puis son **aha moment**, comme une hypothèse à vérifier sur les données. Tout le reste en dépend ([Engagement](spec/fr/pillars/engagement.md), [Activation](spec/fr/pillars/activation.md)).
-3. **Lister les mécaniques** de l'app : onboarding, paywall, autorisations, notifications, partage, parrainage… Chacune apporte ses events ([Minimum Viable Tracking](spec/fr/mvt.md)).
+3. **Lister les mécaniques** de l'app : onboarding, autorisations, notifications, partage, parrainage… Chacune apporte ses events ([Minimum Viable Tracking](spec/fr/mvt.md)).
 4. **Poser les Fondations** : identité, propriétés communes, consentement, séparation des données de test ([Fondations](spec/fr/foundations.md)).
 5. **Implémenter le Minimum Viable Tracking** en suivant les [conventions](spec/fr/conventions.md).
 6. **Lire les quatre KPI de référence**, leur volume et leur verdict, puis vérifier l'aha moment et ajouter les questions propres à l'app. Un verdict partiel ou non mesurable dit ce qu'il faut corriger d'abord. Jamais d'event sans question.
@@ -69,7 +69,7 @@ AREA ne remplace pas les frameworks existants. Il leur emprunte beaucoup, et ajo
 | Échelle | Le business | Le produit ou une feature | L'app entière |
 | Ce qu'AREA lui emprunte | L'Activation, la Rétention, et le Referral devenu Advocacy | L'Engagement, et la chaîne objectif → signal → métrique | |
 | De l'objectif aux events | Par un plan de mesure, à construire pour chaque projet | Par un plan de mesure (objectifs, signaux, métriques), à construire pour chaque produit ou feature | Intégré au framework : une base commune de KPI et d'events, la même pour toutes les apps mobiles |
-| Acquisition et revenu | Au cœur du modèle | Adoption seulement | Les décisions d'achat dans l'app ; ni l'acquisition ni les montants |
+| Acquisition et revenu | Au cœur du modèle | Adoption seulement | Ni l'un ni l'autre dans les piliers ; la monétisation viendra avec la dimension transversale |
 | Pensé pour le mobile | Générique | Générique | Oui |
 
 **La différence tient en une ligne : avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.** Chaque app écrit ses objectifs, définit son action cœur et son aha moment. Le reste de la base commune (les KPI de référence, leurs verdicts, les events et leurs propriétés) fait partie du framework. Une équipe n'a plus à le réinventer : elle le pose, puis elle consacre son temps à ce qui est propre à son app.
@@ -78,7 +78,7 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 ## Les limites
 
-- **AREA ne mesure ni l'acquisition ni le revenu.** Il trace les décisions d'achat prises dans l'app, jamais les montants. L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement. Si un service d'abonnement ou l'outil d'analytics lui-même remonte déjà le revenu (Firebase le fait avec `in_app_purchase`), les deux cohabitent : AREA n'envoie simplement pas de montant de son côté.
+- **AREA ne mesure ni l'acquisition ni le revenu.** Ses quatre piliers ne portent ni la paywall ni l'achat : toutes les apps n'ont pas d'offre payante. Les décisions d'achat prises dans l'app viendront avec la dimension transversale (voir [Ce qui vient ensuite](#ce-qui-vient-ensuite)). L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement.
 - **Il ne mesure que ce que l'app voit.** La qualité perçue, l'avis laissé sur un store, la facilité d'un parcours se mesurent aussi par des enquêtes et des tests utilisateurs.
 - **Il ne trouve pas l'action cœur à votre place.** C'est une décision produit, et tout le reste en dépend. L'aha moment, lui, reste une hypothèse tant qu'il n'a pas été vérifié sur les données.
 - **Il dit si les KPI sont lisibles, pas quoi décider.** Ni cible, ni priorité entre les piliers : c'est le travail de l'équipe.
@@ -94,7 +94,7 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 ## Ce qui vient ensuite
 
-AREA est une base commune, et cette base n'est pas finie. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique, le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur la même base.
+AREA est une base commune, et cette base n'est pas finie. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique (la paywall et l'achat, par exemple), le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur la même base.
 
 Côté outillage, une boîte à outils suivra cette première version. Elle commence par les apps React Native et Expo : c'est la stack où ses audits et ses correctifs peuvent être garantis justes. iOS natif, Android natif et Flutter suivront ; le framework, lui, ne dépend d'aucune stack.
 
@@ -125,7 +125,7 @@ AREA suit le versionnement sémantique. Chaque entrée du registre a un niveau d
 
 ## Contribuer
 
-Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fait passer ses entrées en `stable`. Une question, une incohérence, un event qui ne tient pas dans votre app : ouvrez une issue ou une discussion.
+Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fait passer ses entrées en `stable`. Une question, une incohérence, un event qui ne tient pas dans votre app : ouvrez une [discussion](https://github.com/igniters-studio/area-framework/discussions).
 
 AREA ne dépend d'aucune stack, mais son outillage commence par React Native et Expo. Les retours d'apps iOS natives, Android natives et Flutter sont précieux : ce qui change d'une stack à l'autre (où envoyer `app_opened`, comment connaître son `entry_point`, l'action cœur faite depuis un widget ou une extension), sans nouveaux events. Le détail est dans le [guide de contribution](CONTRIBUTING.fr.md).
 

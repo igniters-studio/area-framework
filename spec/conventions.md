@@ -75,9 +75,9 @@ Sources: [GA4 reserved names](https://support.google.com/analytics/answer/133166
 
 A duration sent as a property is a measure only the app knows, such as the duration of a run. The time elapsed between two events is computed in the tool.
 
-**Descriptive names, never abbreviated.** `permission_type` and `paywall_trigger`, not `perm_type` or `trigger`. A generic name such as `type` or `source` means nothing once it leaves its event.
+**Descriptive names, never abbreviated.** `permission_type` and `onboarding_version`, not `perm_type` or `version`. A generic name such as `type` or `source` means nothing once it leaves its event.
 
-**Values of a closed list.** In lowercase `snake_case`, and the list is documented in the registry: `paywall_trigger` is `onboarding`, `feature_lock`, `usage_limit` or `settings`, nothing else. Adding a value to a closed list is a minor version: a plan that follows the old list stays valid.
+**Values of a closed list.** In lowercase `snake_case`, and the list is documented in the registry: `entry_point` is `icon`, `notification`, `link`, `widget`, `shortcut` or `other`, nothing else. Adding a value to a closed list is a minor version: a plan that follows the old list stays valid.
 
 **One name, one meaning.** A property keeps the same meaning and the same type on every event. `screen_name` always means the name of a screen, never anything else. When two events need a related notion, each one has its own property: `link_source` for the origin of an incoming link, `consent_source` for where consent was given.
 
@@ -85,7 +85,7 @@ A duration sent as a property is a measure only the app knows, such as the durat
 
 | Scope | What it describes | When it is sent | Example |
 |---|---|---|---|
-| **Event property** | The context of this specific event | With that event | `paywall_trigger`, `step_name` |
+| **Event property** | The context of this specific event | With that event | `permission_type`, `step_name` |
 | **User property** | A lasting state of the user | Each time that state changes, from the app or from the server | `user_plan`, `is_trial` |
 | **Common property** | A context shared by every event | Attached automatically to every event | Defined in the Foundations |
 
@@ -138,7 +138,7 @@ Each registry entry (pillar, KPI, event, property, mechanic) has a stability lev
 2. Its KPIs have been read on real data in those apps.
 3. No open feedback questions it.
 
-Feedback is filed as an issue or a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.
+Feedback is filed as a discussion in the repo, and every level change is recorded in the changelog with the feedback behind it.
 
 An entry in `development` may change or disappear from one minor version to the next. A `stable` entry that must disappear first moves to `deprecated`, then is removed at the next major version.
 

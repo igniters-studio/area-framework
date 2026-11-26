@@ -3,7 +3,7 @@
 # A mechanic is a feature an app may or may not have. When it exists,
 # the events attached to it in events.yaml become mandatory.
 # A mechanic has either layer: foundations (applies before the pillars) or a pillar it is attached to.
-area_version: 0.1.0
+area_version: 0.2.0
 
 mechanics:
   - id: consent
@@ -14,11 +14,6 @@ mechanics:
   - id: onboarding
     name: Onboarding
     description: A first-run flow before the user reaches the app.
-    pillar: activation
-    stability: development
-  - id: paywall
-    name: Paywall
-    description: The app presents a paid offer, a free trial or a purchase. Amounts are never sent.
     pillar: activation
     stability: development
   - id: permissions

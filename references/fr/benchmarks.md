@@ -1,6 +1,6 @@
 # Benchmarks
 
-*Traduction de v0.1.0. La version anglaise fait référence : [English](../benchmarks.md).*
+*Traduction de v0.2.0. La version anglaise fait référence : [English](../benchmarks.md).*
 
 Vérifié le 19 novembre 2026
 

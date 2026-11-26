@@ -4,7 +4,7 @@
 # pillar: the pillar the event mainly serves; omitted for app_opened, which serves every pillar, and for foundations events.
 # role: core events are roles. An existing app may keep its own event name, and its tracking plan says which event plays which role.
 # properties: required ones are always sent; optional ones only when their condition holds. Values are in properties.yaml.
-area_version: 0.1.0
+area_version: 0.2.0
 
 events:
   # ── Core ───────────────────────────────────────────────
@@ -74,34 +74,6 @@ events:
     when: All onboarding steps are completed.
     properties:
       required: [onboarding_version]
-    stability: development
-
-  - name: paywall_shown
-    pillar: activation
-    layer: mechanic
-    mechanic: paywall
-    when: The app presents its paid offer.
-    properties:
-      required: [paywall_trigger]
-    stability: development
-
-  - name: trial_started
-    pillar: activation
-    layer: mechanic
-    mechanic: paywall
-    condition: The app offers a free trial.
-    when: The user starts a free trial.
-    properties:
-      required: [user_plan]
-    stability: development
-
-  - name: purchase_completed
-    pillar: activation
-    layer: mechanic
-    mechanic: paywall
-    when: The user buys a subscription or a product offered by the paywall. An order in a commerce app is not a purchase_completed, it is the app's core action. Never sends an amount or a currency.
-    properties:
-      required: [user_plan, purchase_type]
     stability: development
 
   - name: permission_granted

@@ -7,6 +7,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-26
+
 ### Changed
 
 - **Tooling teaser** (README in both languages, home page of the website): the coming tooling is
@@ -16,18 +18,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   follow. The framework itself depends on no stack. The presentation of AREA names no other product.
 - **"Core" keeps one meaning** (README, manifesto, home page): the three core events of Minimum
   Viable Tracking. The whole set of shared KPIs and events is now the "common base".
-- **Revenue** (README, Limits): a subscription service or the analytics tool may already report
-  revenue; AREA coexists with it and sends no amount of its own.
 - **Home page**: a promise-led hero, a card for studios and agencies, founders named with product
   teams, a note on when Advocacy can be read, "Generic" instead of "No" for AARRR and HEART on
   mobile, and a developer prompt that asks for the core action and the aha moment before
   implementing.
 
+### Removed
+
+- **The paywall is no longer part of the four pillars** (breaking): not every app has a paid
+  offer. The `paywall` mechanic, the events `paywall_shown`, `trial_started` and
+  `purchase_completed`, the properties `paywall_trigger` and `purchase_type`, and the
+  `paywall_conversion_rate` KPI leave the registry and the Activation pillar. Purchase decisions
+  will come back with the cross-cutting dimension of a later version. `user_plan` and `is_trial`
+  stay in the Foundations. The Activation page keeps how a paywall placed before the aha moment
+  weighs on activation.
+
 ### Added
 
 - **Contributing guide** (`CONTRIBUTING.md`, `CONTRIBUTING.fr.md`), with what helps most and notes
   per stack for native iOS, native Android and Flutter.
-- **Issue templates**: app feedback, change proposal, inconsistency.
+- **Discussion forms** for the App feedback, Proposals and Q&A categories. Contributions now go
+  through the repo's Discussions; issues are closed and pull requests are open to collaborators
+  only.
 
 ## [0.1.0] - 2026-11-20
 
