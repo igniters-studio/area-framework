@@ -1,0 +1,32 @@
+name: Change proposal
+description: An event, property or KPI of the registry does not fit your app.
+title: "Proposal: "
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: English or French. A registry change affects every app that follows it, so it is discussed here before any pull request.
+  - type: input
+    id: entry
+    attributes:
+      label: Registry entry
+      placeholder: "core_action_completed, entry_point, activation_rate… or a new one"
+    validations:
+      required: true
+  - type: textarea
+    id: app
+    attributes:
+      label: The app
+      description: What it does, and the mechanics it has (onboarding, paywall, notifications…).
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: What you wanted to measure, and why the entry is not enough
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change

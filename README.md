@@ -19,7 +19,7 @@ Many mobile apps track a lot and learn little. Events pile up with each feature,
 
 ### Where AREA comes from
 
-I build mobile apps, and I wanted to add tracking to each of them the same way: one method that works from one app to the next, not a plan rebuilt every time. I looked for a framework. I found [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), built for startup growth, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), built for the user experience of a product or a feature, and event specs that say what to send without saying why. The first two go from the goal to the metric, then leave each project to build its own events. None offered a common core, ready to set up in any mobile app. So I wrote one.
+I build mobile apps, and I wanted to add tracking to each of them the same way: one method that works from one app to the next, not a plan rebuilt every time. I looked for a framework. I found [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), built for startup growth, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), built for the user experience of a product or a feature, and event specs that say what to send without saying why. The first two go from the goal to the metric, then leave each project to build its own events. None offered a common base, ready to set up in any mobile app. So I wrote one.
 
 The next question came right away: how do I keep the tracking right over time? What happens when I add a feature, change the interface, or remove a feature? How do I make tracking a decision tool that lives with the project, rather than a plan that is out of date after the first sprint? Part of the answer lies in tooling (see [below](#tooling)). AREA itself applies without any tool.
 
@@ -66,17 +66,17 @@ AREA does not replace existing frameworks. It borrows a lot from them, and adds 
 | Measures | Startup growth, from acquisition to revenue | User experience | The tracking of a mobile app |
 | Scale | The business | The product or a feature | The whole app |
 | What AREA borrows from it | Activation, Retention, and Referral, which became Advocacy | Engagement, and the goal → signal → metric chain | |
-| From goals to events | Through a measurement plan, built for each project | Through a measurement plan (goals, signals, metrics), built for each product or feature | Built into the framework: a common core of KPIs and events, the same for every mobile app |
+| From goals to events | Through a measurement plan, built for each project | Through a measurement plan (goals, signals, metrics), built for each product or feature | Built into the framework: a common base of KPIs and events, the same for every mobile app |
 | Acquisition and revenue | At the heart of the model | Adoption only | Purchase decisions in the app; neither acquisition nor amounts |
-| Designed for mobile | No | No | Yes |
+| Designed for mobile | Generic | Generic | Yes |
 
-**The difference fits in one line: with AARRR or HEART, each project builds its measurement plan; with AREA, the structure of the plan already exists.** Each app writes its goals, defines its core action and its aha moment. The rest of the core (the reference KPIs, their verdicts, the events and their properties) is part of the framework. A team no longer has to reinvent it: it sets it up, then spends its time on what is specific to its app.
+**The difference fits in one line: with AARRR or HEART, each project builds its measurement plan; with AREA, the structure of the plan already exists.** Each app writes its goals, defines its core action and its aha moment. The rest of the common base (the reference KPIs, their verdicts, the events and their properties) is part of the framework. A team no longer has to reinvent it: it sets it up, then spends its time on what is specific to its app.
 
-AREA also owes a lot to other work. The North Star Framework made popular the idea of one action that carries the product's value, and Reforge the split of activation into three moments: setup (the app is ready to serve), aha (the user sees its value) and habit (the user makes it a habit). On the event side, the Segment spec and its [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), like the taxonomy guides of Amplitude and Mixpanel, set out the idea of a shared event vocabulary. AREA connects the two worlds: it starts from the questions that steer the product and goes down to the events, with a core shared by mobile apps.
+AREA also owes a lot to other work. The North Star Framework made popular the idea of one action that carries the product's value, and Reforge the split of activation into three moments: setup (the app is ready to serve), aha (the user sees its value) and habit (the user makes it a habit). On the event side, the Segment spec and its [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), like the taxonomy guides of Amplitude and Mixpanel, set out the idea of a shared event vocabulary. AREA connects the two worlds: it starts from the questions that steer the product and goes down to the events, with a base shared by mobile apps.
 
 ## Limits
 
-- **AREA measures neither acquisition nor revenue.** It tracks the purchase decisions made in the app, never the amounts. Acquisition belongs to attribution tools, revenue to the payment provider.
+- **AREA measures neither acquisition nor revenue.** It tracks the purchase decisions made in the app, never the amounts. Acquisition belongs to attribution tools, revenue to the payment provider. If a subscription service or the analytics tool itself already reports revenue (Firebase does with `in_app_purchase`), the two coexist: AREA simply sends no amount of its own.
 - **It only measures what the app sees.** Perceived quality, a store review, how easy a flow is: these are also measured with surveys and user tests.
 - **It does not find the core action for you.** It is a product decision, and everything else depends on it. The aha moment stays a hypothesis until it has been checked against the data.
 - **It says whether the KPIs can be read, not what to decide.** No targets, no priority between the pillars: that is the team's job.
@@ -92,12 +92,11 @@ AREA also owes a lot to other work. The North Star Framework made popular the id
 
 ## What comes next
 
-AREA is a core, and this core is not finished. The next step is a dimension that cuts across the four pillars, so that each app can add its own goals: a conversion flow specific to its business model, a feature launch, a goal set by the team. Each will be described in AREA's grammar, with its KPIs and events, on the same core.
+AREA is a common base, and this base is not finished. The next step is a dimension that cuts across the four pillars, so that each app can add its own goals: a conversion flow specific to its business model, a feature launch, a goal set by the team. Each will be described in AREA's grammar, with its KPIs and events, on the same base.
 
-On the tooling side, two tools will follow this first version, in this order:
+On the tooling side, a toolkit will follow this first version. It starts with React Native and Expo apps: the stack where its audits and fixes can be guaranteed right. Native iOS, native Android and Flutter will follow; the framework itself depends on no stack.
 
-- **area-core** (coming soon): an open-source toolkit, under Apache 2.0, that applies AREA to an app's repo, locally, with the developer's own coding agent. It brings deterministic checks that need no LLM (naming conventions, [Minimum Viable Tracking](spec/mvt.md), the core score), skills that audit the tracking and recommend fixes, and the MCP server that serves the framework to coding agents.
-- **[supertrack](https://igniters.studio)** (in development): a SaaS that audits an app's tracking from its codebase and keeps it in line with the app's business goals over time, with a check on every pull request, a history across several apps, and answers for non-developers.
+- **area-core** (coming soon): an open-source toolkit, under Apache 2.0, that applies AREA to an app's repo, locally, with the developer's own coding agent. It brings deterministic checks that need no LLM (naming conventions, [Minimum Viable Tracking](spec/mvt.md) and its score), skills that audit the tracking and recommend fixes, and the MCP server that serves the framework to coding agents.
 
 ## Tooling
 
@@ -106,7 +105,7 @@ AREA can be checked without any particular tool:
 - **Verdicts are checked by hand.** Each pillar page lists the conditions of each verdict: measurable, partial, not measurable.
 - **The registry is validated with a script** shipped in this repo. It needs PyYAML: `pip install pyyaml`, then `python3 scripts/validate_registry.py`, or in one command with uv: `uv run --with pyyaml python3 scripts/validate_registry.py`. It checks empty keys and values (a sign of malformed YAML), naming, reserved names, the verb vocabulary and consistency between the registry files.
 
-The author builds area-core and supertrack, announced in [What comes next](#what-comes-next). AREA depends on neither of them, and any other tool can build on the registry.
+The author builds area-core, announced in [What comes next](#what-comes-next). AREA does not depend on it, and any other tool can build on the registry.
 
 ## Repository contents
 
@@ -126,6 +125,8 @@ AREA follows semantic versioning. Each registry entry has a stability level, and
 ## Contributing
 
 Feedback from apps that apply AREA is what moves it forward, and what moves its entries to `stable`. A question, an inconsistency, an event that does not fit your app: open an issue or a discussion.
+
+AREA depends on no stack, but its tooling starts with React Native and Expo. Feedback from native iOS, native Android and Flutter apps is valuable: what changes from one stack to another (where to send `app_opened`, how to know its `entry_point`, the core action done from a widget or an extension), with no new events. The details are in the [contributing guide](CONTRIBUTING.md).
 
 ## License and citation
 

@@ -31,8 +31,8 @@ export const fr = {
   },
   hero: {
     badge: "Première version publique, open source",
-    title: "Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.",
-    lead: "Quatre piliers communs à toutes les apps mobiles, un KPI de référence pour chacun, et le tracking minimum qui les rend lisibles. Défini une fois, pour toutes les apps.",
+    title: "Quatre KPI pour piloter une app mobile. Une douzaine d'events pour les lire.",
+    lead: "Un framework de tracking qui part des objectifs business, pas des events : quatre piliers communs à toutes les apps mobiles, un KPI de référence pour chacun, et le tracking minimum qui les rend lisibles. Défini une fois, pour toutes les apps.",
     primary: "Découvrir le framework",
     secondary: "Voir sur GitHub",
     panelTitle: "App de course, première semaine",
@@ -74,14 +74,14 @@ export const fr = {
       },
     ],
     planTitle: "Un plan de mesure type",
-    planNote: "140 events, pour l'exemple",
+    planNote: "Des noms inventés, typiques d'un plan qui suit les écrans",
     areaTitle: "La même app avec AREA",
     areaNote:
       "Trois events du socle, puis ceux des mécaniques que l'app contient vraiment : une douzaine en tout.",
   },
   pillars: {
     title: "Quatre piliers, communs à toutes les apps mobiles.",
-    lead: "Définis en premier, chacun avec sa question et son KPI de référence. Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict : mesurable, partiel ou non mesurable avec le tracking en place.",
+    lead: "Définis en premier, chacun avec sa question et son KPI de référence. Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict : mesurable, partiel ou non mesurable avec le tracking en place. L'Advocacy se lit dès que l'app pose une question de satisfaction, un NPS ou propose une invitation.",
     items: {
       activation: {
         name: "Activation",
@@ -194,7 +194,7 @@ export const fr = {
         label: "De l'objectif aux events",
         aarrr: "Par un plan de mesure, à construire pour chaque projet",
         heart: "Par un plan de mesure, à construire pour chaque produit ou feature",
-        area: "Intégré au framework : un socle commun de KPI et d'events, le même pour toutes les apps mobiles",
+        area: "Intégré au framework : une base commune de KPI et d'events, la même pour toutes les apps mobiles",
       },
       {
         label: "Acquisition et revenu",
@@ -204,8 +204,8 @@ export const fr = {
       },
       {
         label: "Pensé pour le mobile",
-        aarrr: "Non",
-        heart: "Non",
+        aarrr: "Générique",
+        heart: "Générique",
         area: "Oui",
       },
     ],
@@ -213,36 +213,34 @@ export const fr = {
   origin: {
     title: "D'où vient AREA",
     quote:
-      "« J'ai cherché un framework. Aucun ne proposait un socle commun, prêt à poser dans n'importe quelle app mobile. Alors j'en ai écrit un. »",
+      "« J'ai cherché un framework. Aucun ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un. »",
     author: "Kevin Tersigni, créateur d'AREA.",
     more: "Lire l'histoire",
   },
   cta: {
     title: "Ouvert, versionné, prêt à appliquer.",
-    productTitle: "Pour les équipes produit",
+    productTitle: "Pour les équipes produit et les founders",
     productText:
       "Mettez-vous d'accord sur les quatre piliers et leurs KPI de référence, puis donnez à vos développeurs un plan de tracking qui répond à vos questions.",
     productLink: "Lire la spec",
+    studioTitle: "Pour les studios et les agences",
+    studioText:
+      "Le même plan de tracking dans toutes les apps du portefeuille : des KPI qui portent le même nom et la même définition d'une app à l'autre, et un registre versionné qui dit quelle version chaque app suit. Le plan ne se réécrit plus à chaque client.",
+    studioLink: "Voir le registre",
     devTitle: "Pour les développeurs",
     devText:
       "Donnez llms.txt à votre agent de code : il pointe vers le registre YAML des events, des propriétés et des KPI, et vers la spec, figés sur cette version. Puis demandez-lui, par exemple :",
     devPrompt:
-      "Lis https://igniters-studio.github.io/area-framework/llms.txt et le registre AREA qu'il cite. Puis liste les mécaniques de cette app, écris son plan de tracking selon le Minimum Viable Tracking, et implémente-le derrière notre wrapper analytics.",
+      "Lis https://igniters-studio.github.io/area-framework/llms.txt et le registre AREA qu'il cite. Puis pose-moi d'abord les questions sur l'action cœur et l'aha moment de cette app, sans les deviner. Ensuite liste ses mécaniques, écris son plan de tracking selon le Minimum Viable Tracking, et implémente-le derrière le wrapper analytics de l'app s'il en a un.",
     copy: "Copier",
     copied: "Copié",
     devLink: "Voir sur GitHub",
     nextLabel: "Ce qui vient ensuite :",
-    // In release order: area-core first, then supertrack.
     next: [
       {
         name: "area-core",
         status: "(à venir) :",
-        text: "une boîte à outils open source (Apache 2.0) qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur : checks déterministes (conventions de nommage, Minimum Viable Tracking, score du socle), skills d'audit et de recommandations, et un serveur MCP qui sert le framework aux agents de code.",
-      },
-      {
-        name: "supertrack",
-        status: "(en développement) :",
-        text: "audite le tracking d'une app depuis sa codebase et le garde en phase avec ses objectifs business dans la durée : un contrôle sur chaque pull request, l'historique de plusieurs apps et des réponses pour les non-développeurs.",
+        text: "une boîte à outils open source (Apache 2.0) qui applique AREA au repo d'une app React Native ou Expo, en local, avec l'agent de code du développeur : checks déterministes (conventions de nommage, Minimum Viable Tracking et son score), skills d'audit et de recommandations, et un serveur MCP qui sert le framework aux agents de code.",
       },
     ],
     star: "Suivre le repo sur GitHub",

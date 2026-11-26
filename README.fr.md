@@ -21,7 +21,7 @@ Beaucoup d'apps mobiles traquent beaucoup et en apprennent peu. Les events s'emp
 
 ### D'où vient AREA
 
-Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), pensé pour la croissance d'une startup, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait un socle commun, prêt à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
+Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), pensé pour la croissance d'une startup, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
 
 La question suivante est arrivée aussitôt : comment m'assurer que le tracking reste juste dans la durée ? Que se passe-t-il quand j'ajoute une feature, quand je change l'interface, quand j'en retire une ? Comment faire du tracking un outil de décision qui vit avec le projet, plutôt qu'un plan qui se périme au premier sprint ? Une partie de la réponse tient dans l'outillage (voir [plus bas](#outillage)). AREA, lui, s'applique sans aucun outil.
 
@@ -68,17 +68,17 @@ AREA ne remplace pas les frameworks existants. Il leur emprunte beaucoup, et ajo
 | Pour mesurer | La croissance d'une startup, de l'acquisition au revenu | L'expérience utilisateur | Le tracking d'une app mobile |
 | Échelle | Le business | Le produit ou une feature | L'app entière |
 | Ce qu'AREA lui emprunte | L'Activation, la Rétention, et le Referral devenu Advocacy | L'Engagement, et la chaîne objectif → signal → métrique | |
-| De l'objectif aux events | Par un plan de mesure, à construire pour chaque projet | Par un plan de mesure (objectifs, signaux, métriques), à construire pour chaque produit ou feature | Intégré au framework : un socle commun de KPI et d'events, le même pour toutes les apps mobiles |
+| De l'objectif aux events | Par un plan de mesure, à construire pour chaque projet | Par un plan de mesure (objectifs, signaux, métriques), à construire pour chaque produit ou feature | Intégré au framework : une base commune de KPI et d'events, la même pour toutes les apps mobiles |
 | Acquisition et revenu | Au cœur du modèle | Adoption seulement | Les décisions d'achat dans l'app ; ni l'acquisition ni les montants |
-| Pensé pour le mobile | Non | Non | Oui |
+| Pensé pour le mobile | Générique | Générique | Oui |
 
-**La différence tient en une ligne : avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.** Chaque app écrit ses objectifs, définit son action cœur et son aha moment. Le reste du socle (les KPI de référence, leurs verdicts, les events et leurs propriétés) fait partie du framework. Une équipe n'a plus à le réinventer : elle le pose, puis elle consacre son temps à ce qui est propre à son app.
+**La différence tient en une ligne : avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.** Chaque app écrit ses objectifs, définit son action cœur et son aha moment. Le reste de la base commune (les KPI de référence, leurs verdicts, les events et leurs propriétés) fait partie du framework. Une équipe n'a plus à le réinventer : elle le pose, puis elle consacre son temps à ce qui est propre à son app.
 
-Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularisé l'idée d'une action qui porte la valeur du produit, et Reforge le découpage de l'activation en trois moments : setup (l'app est prête à servir), aha (l'utilisateur en voit la valeur) et habit (il en fait une habitude). Côté events, la spec Segment et sa [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), comme les guides de taxonomie d'Amplitude et de Mixpanel, ont posé l'idée d'un vocabulaire d'events partagé. AREA relie les deux mondes : il part des questions de pilotage et descend jusqu'aux events, avec un socle commun aux apps mobiles.
+Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularisé l'idée d'une action qui porte la valeur du produit, et Reforge le découpage de l'activation en trois moments : setup (l'app est prête à servir), aha (l'utilisateur en voit la valeur) et habit (il en fait une habitude). Côté events, la spec Segment et sa [Native Mobile Spec](https://www.twilio.com/docs/segment/connections/spec/mobile), comme les guides de taxonomie d'Amplitude et de Mixpanel, ont posé l'idée d'un vocabulaire d'events partagé. AREA relie les deux mondes : il part des questions de pilotage et descend jusqu'aux events, avec une base commune aux apps mobiles.
 
 ## Les limites
 
-- **AREA ne mesure ni l'acquisition ni le revenu.** Il trace les décisions d'achat prises dans l'app, jamais les montants. L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement.
+- **AREA ne mesure ni l'acquisition ni le revenu.** Il trace les décisions d'achat prises dans l'app, jamais les montants. L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement. Si un service d'abonnement ou l'outil d'analytics lui-même remonte déjà le revenu (Firebase le fait avec `in_app_purchase`), les deux cohabitent : AREA n'envoie simplement pas de montant de son côté.
 - **Il ne mesure que ce que l'app voit.** La qualité perçue, l'avis laissé sur un store, la facilité d'un parcours se mesurent aussi par des enquêtes et des tests utilisateurs.
 - **Il ne trouve pas l'action cœur à votre place.** C'est une décision produit, et tout le reste en dépend. L'aha moment, lui, reste une hypothèse tant qu'il n'a pas été vérifié sur les données.
 - **Il dit si les KPI sont lisibles, pas quoi décider.** Ni cible, ni priorité entre les piliers : c'est le travail de l'équipe.
@@ -94,12 +94,11 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 ## Ce qui vient ensuite
 
-AREA est un socle, et ce socle n'est pas fini. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique, le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur le même socle.
+AREA est une base commune, et cette base n'est pas finie. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique, le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur la même base.
 
-Côté outillage, deux outils suivront cette première version, dans cet ordre :
+Côté outillage, une boîte à outils suivra cette première version. Elle commence par les apps React Native et Expo : c'est la stack où ses audits et ses correctifs peuvent être garantis justes. iOS natif, Android natif et Flutter suivront ; le framework, lui, ne dépend d'aucune stack.
 
-- **area-core** (à venir) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md), score du socle), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
-- **[supertrack](https://igniters.studio)** (en développement) : un SaaS qui audite le tracking d'une app depuis sa codebase et le garde en phase avec ses objectifs business dans la durée, avec un contrôle sur chaque pull request, l'historique de plusieurs apps et des réponses pour les non-développeurs.
+- **area-core** (à venir) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md) et son score), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
 
 ## Outillage
 
@@ -108,7 +107,7 @@ AREA se vérifie sans outil particulier :
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
 - **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
 
-L'auteur développe area-core et supertrack, annoncés dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA ne dépend d'aucun des deux, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe area-core, annoncé dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 
@@ -127,6 +126,8 @@ AREA suit le versionnement sémantique. Chaque entrée du registre a un niveau d
 ## Contribuer
 
 Les retours d'apps qui appliquent AREA sont ce qui le fait avancer, et ce qui fait passer ses entrées en `stable`. Une question, une incohérence, un event qui ne tient pas dans votre app : ouvrez une issue ou une discussion.
+
+AREA ne dépend d'aucune stack, mais son outillage commence par React Native et Expo. Les retours d'apps iOS natives, Android natives et Flutter sont précieux : ce qui change d'une stack à l'autre (où envoyer `app_opened`, comment connaître son `entry_point`, l'action cœur faite depuis un widget ou une extension), sans nouveaux events. Le détail est dans le [guide de contribution](CONTRIBUTING.fr.md).
 
 ## Licence et citation
 

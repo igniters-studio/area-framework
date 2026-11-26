@@ -68,7 +68,7 @@ Les piliers ne sont pas nouveaux : l'Activation, la Rétention et le Referral, d
 - Le Minimum Viable Tracking, dérivé des KPI
 - Un registre lisible par une machine de tout ce qui précède, et un script qui le valide
 
-Cette version pose le socle commun à toutes les apps mobiles. Les versions suivantes ajouteront une dimension transversale aux piliers, pour que chaque app y décrive ses propres objectifs (un parcours propre à son modèle économique, le lancement d'une feature, un objectif d'équipe) avec ses KPI et ses events, sur le même socle.
+Cette version pose la base commune à toutes les apps mobiles. Les versions suivantes ajouteront une dimension transversale aux piliers, pour que chaque app y décrive ses propres objectifs (un parcours propre à son modèle économique, le lancement d'une feature, un objectif d'équipe) avec ses KPI et ses events, sur la même base.
 
 ## Pour qui
 

@@ -32,8 +32,8 @@ export const en: Dictionary = {
   },
   hero: {
     badge: "First public version, open source",
-    title: "A tracking framework for mobile apps that starts from business goals, not from events.",
-    lead: "Four pillars every mobile app shares, a reference KPI for each, and the minimum tracking that makes them readable. Defined once, for every app.",
+    title: "Four KPIs to steer a mobile app. About a dozen events to read them.",
+    lead: "A tracking framework that starts from business goals, not from events: four pillars every mobile app shares, a reference KPI for each, and the minimum tracking that makes them readable. Defined once, for every app.",
     primary: "Discover the framework",
     secondary: "View on GitHub",
     panelTitle: "Running app, first week",
@@ -74,13 +74,13 @@ export const en: Dictionary = {
       },
     ],
     planTitle: "A typical measurement plan",
-    planNote: "140 events, illustrative",
+    planNote: "Made-up names, typical of a plan that follows the screens",
     areaTitle: "The same app with AREA",
     areaNote: "Three core events, then those of the mechanics the app actually has: about a dozen in all.",
   },
   pillars: {
     title: "Four pillars, shared by every mobile app.",
-    lead: "Defined first, each with its question and its reference KPI. Each reference KPI is read with its volume, and comes with a verdict: measurable, partial or not measurable with the tracking in place.",
+    lead: "Defined first, each with its question and its reference KPI. Each reference KPI is read with its volume, and comes with a verdict: measurable, partial or not measurable with the tracking in place. Advocacy can be read as soon as the app asks a satisfaction question, an NPS or offers an invitation.",
     items: {
       activation: {
         name: "Activation",
@@ -192,7 +192,7 @@ export const en: Dictionary = {
         label: "From goals to events",
         aarrr: "Through a measurement plan, built for each project",
         heart: "Through a measurement plan, built for each product or feature",
-        area: "Built into the framework: a common core of KPIs and events, the same for every mobile app",
+        area: "Built into the framework: a common base of KPIs and events, the same for every mobile app",
       },
       {
         label: "Acquisition and revenue",
@@ -202,8 +202,8 @@ export const en: Dictionary = {
       },
       {
         label: "Designed for mobile",
-        aarrr: "No",
-        heart: "No",
+        aarrr: "Generic",
+        heart: "Generic",
         area: "Yes",
       },
     ],
@@ -211,36 +211,34 @@ export const en: Dictionary = {
   origin: {
     title: "Where AREA comes from",
     quote:
-      "“I looked for a framework. None offered a common core, ready to set up in any mobile app. So I wrote one.”",
+      "“I looked for a framework. None offered a common base, ready to set up in any mobile app. So I wrote one.”",
     author: "Kevin Tersigni, creator of AREA.",
     more: "Read the full story",
   },
   cta: {
     title: "Open, versioned, ready to apply.",
-    productTitle: "For product teams",
+    productTitle: "For product teams and founders",
     productText:
       "Agree on the four pillars and their reference KPIs, then hand your developers a tracking plan that answers your questions.",
     productLink: "Read the spec",
+    studioTitle: "For studios and agencies",
+    studioText:
+      "The same tracking plan in every app of the portfolio: KPIs with the same name and the same definition from one app to the next, and a versioned registry that says which version each app follows. The plan is no longer rewritten for each client.",
+    studioLink: "View the registry",
     devTitle: "For developers",
     devText:
       "Give your coding agent llms.txt: it links the YAML registry of events, properties and KPIs and the spec, pinned to this version. Then ask, for example:",
     devPrompt:
-      "Read https://igniters-studio.github.io/area-framework/llms.txt and the AREA registry it links. Then list the mechanics of this app, write its tracking plan following Minimum Viable Tracking, and implement it behind our analytics wrapper.",
+      "Read https://igniters-studio.github.io/area-framework/llms.txt and the AREA registry it links. Then first ask me about this app's core action and aha moment, without guessing them. Next, list its mechanics, write its tracking plan following Minimum Viable Tracking, and implement it behind the app's analytics wrapper if it has one.",
     copy: "Copy",
     copied: "Copied",
     devLink: "View on GitHub",
     nextLabel: "Coming next:",
-    // In release order: area-core first, then supertrack.
     next: [
       {
         name: "area-core",
         status: "(coming soon):",
-        text: "an open-source toolkit (Apache 2.0) that applies AREA to an app's repo, locally, with the developer's own coding agent: deterministic checks (naming conventions, Minimum Viable Tracking, core score), audit and fix-recommendation skills, and an MCP server that serves the framework to coding agents.",
-      },
-      {
-        name: "supertrack",
-        status: "(in development):",
-        text: "audits an app's tracking from its codebase and keeps it in line with the app's business goals over time: a check on every pull request, a history across several apps, and answers for non-developers.",
+        text: "an open-source toolkit (Apache 2.0) that applies AREA to the repo of a React Native or Expo app, locally, with the developer's own coding agent: deterministic checks (naming conventions, Minimum Viable Tracking and its score), audit and fix-recommendation skills, and an MCP server that serves the framework to coding agents.",
       },
     ],
     star: "Follow the repo on GitHub",
