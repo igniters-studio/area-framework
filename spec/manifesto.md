@@ -66,7 +66,7 @@ The pillars are not new: Activation, Retention and Referral, which became Advoca
 - Minimum Viable Tracking, derived from the KPIs
 - A machine-readable registry of all of the above, and a script that validates it
 
-This version sets the core shared by all mobile apps. Later versions will add a dimension that cuts across the pillars, so that each app can describe its own goals there (a flow specific to its business model, a feature launch, a team goal) with its KPIs and events, on the same core.
+This version sets the common base shared by all mobile apps. Later versions will add a dimension that cuts across the pillars, so that each app can describe its own goals there (a flow specific to its business model, a feature launch, a team goal) with its KPIs and events, on the same base.
 
 ## Who it is for
 

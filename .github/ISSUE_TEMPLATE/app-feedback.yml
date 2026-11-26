@@ -1,0 +1,53 @@
+name: App feedback
+description: You apply AREA in an app. Tell us what held and what got stuck.
+title: "Feedback: "
+labels: ["app-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: English or French. Feedback from apps is what moves registry entries to `stable`.
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage of the app
+      options:
+        - In production
+        - In development
+    validations:
+      required: true
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Stack
+      options:
+        - React Native / Expo
+        - Native iOS
+        - Native Android
+        - Flutter
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Analytics tool
+      placeholder: Firebase, Mixpanel, Amplitude, PostHog, in-house…
+  - type: input
+    id: version
+    attributes:
+      label: AREA version followed
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: held
+    attributes:
+      label: What held
+      description: Pillars you could read, with their verdict (measurable, partial, not measurable).
+    validations:
+      required: true
+  - type: textarea
+    id: stuck
+    attributes:
+      label: What got stuck
+      description: An event you had to adapt, a definition that made you hesitate, a KPI you could not read.

@@ -15,6 +15,24 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   audit and fix-recommendation skills, and the MCP server. supertrack is a SaaS that audits an app's
   tracking and keeps it in line with the app's business goals over time. The MCP server is no longer
   announced on its own: it is part of area-core.
+- **Tooling starts with React Native and Expo** (README in both languages, home page): area-core and
+  supertrack start with this stack; native iOS, native Android and Flutter follow. The framework
+  itself depends on no stack. The supertrack teaser now describes its first version: GitHub
+  connection, audit on the four pillars, suggested code, check on every pull request.
+- **"Core" keeps one meaning** (README, manifesto, home page): the three core events of Minimum
+  Viable Tracking. The whole set of shared KPIs and events is now the "common base".
+- **Revenue** (README, Limits): a subscription service or the analytics tool may already report
+  revenue; AREA coexists with it and sends no amount of its own.
+- **Home page**: a promise-led hero, a card for studios and agencies, founders named with product
+  teams, a note on when Advocacy can be read, "Generic" instead of "No" for AARRR and HEART on
+  mobile, and a developer prompt that asks for the core action and the aha moment before
+  implementing.
+
+### Added
+
+- **Contributing guide** (`CONTRIBUTING.md`, `CONTRIBUTING.fr.md`), with what helps most and notes
+  per stack for native iOS, native Android and Flutter.
+- **Issue templates**: app feedback, change proposal, inconsistency.
 
 ## [0.1.0] - 2026-11-20
 
