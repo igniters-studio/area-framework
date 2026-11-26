@@ -3,6 +3,7 @@ name: Pages
 # Builds the site (site/, a Next.js static export) and publishes it on GitHub Pages at
 # https://igniters-studio.github.io/area-framework/. On this organization's plan, Pages serves
 # public repositories only: while the repo is private, both jobs are skipped.
+# The release job tags and releases each new registry version, whatever the visibility.
 
 on:
   push:
@@ -19,7 +20,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Tags and releases the registry's version the first time it reaches main, from its changelog
+  # section, before the site is built: llms.txt links to the registry at that tag.
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag and release the registry version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^area_version: //p' registry/pillars.yaml)
+          tag="v$version"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" > /dev/null; then
+            echo "$tag already exists"
+            exit 0
+          fi
+          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" { f = 1; next } /^## \[/ { if (f) exit } f' CHANGELOG.md > notes.md
+          if ! grep -q '[^[:space:]]' notes.md; then
+            echo "::error::CHANGELOG.md has no section for $version"
+            exit 1
+          fi
+          gh release create "$tag" --target "$GITHUB_SHA" --title "AREA $version" --notes-file notes.md --latest
+
   build:
+    needs: release
     if: github.event.repository.visibility == 'public'
     runs-on: ubuntu-latest
     defaults:
