@@ -24,6 +24,15 @@ jobs:
       - run: corepack enable
       - run: yarn install --immutable
       - run: yarn check
+      # npm pack keeps package.json as is, but npm publish silently rewrites what it finds invalid
+      # (a bin it cannot read is dropped): fail here rather than ship a broken package.
+      - name: Publish dry run, without corrections from npm
+        run: |
+          npm publish --dry-run 2>&1 | tee publish.log
+          if grep -q 'auto-corrected' publish.log; then
+            echo "::error::npm publish would rewrite package.json: run npm pkg fix in package/"
+            exit 1
+          fi
       - name: Validate the registry with the packed package
         run: |
           npm pack
