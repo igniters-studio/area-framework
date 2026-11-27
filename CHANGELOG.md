@@ -7,6 +7,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- **Home page of the website, rewritten**: a hero on why usage matters (what to track and why),
+  each pillar's typical goal on its card, Advocacy stated as readable only with a satisfaction
+  question, an NPS or an invitation, the goal-to-event chain framed as Goal-Question-Metric with an
+  illustrative retention chart, Minimum Viable Tracking with its three required core events and
+  mechanics explained, six steps that end on checking each KPI is measurable, a short introduction
+  to AARRR and HEART, practices to avoid and the AREA way marked as such, colors of the pillars
+  throughout, and scroll reveals that respect reduced motion.
+- **French**: "deeplink" instead of "lien profond" (manifesto, home page).
+
 ### Added
 
 - **npm package `area-framework`**: the registry as JSON and TypeScript types generated from it
