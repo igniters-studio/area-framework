@@ -1,17 +1,19 @@
-<p align="center"><img src=".github/assets/header-en.svg" alt="AREA: a tracking framework for mobile apps that starts from business goals, not from events. The four pillars with a reference KPI each, by igniters." width="100%"></p>
+<p align="center"><img src=".github/assets/header-en.svg" alt="AREA: an app’s usage is its most underused growth lever. The four pillars with a reference KPI each, by igniters." width="100%"></p>
 
 # AREA Framework
 
-**A tracking framework for mobile apps that starts from business goals, not from events.**
+**An app's usage is its most underused growth lever.**
+
+AREA tells you what to track and why: four pillars to steer any mobile app, a reference KPI for each, and the events that make them readable. Then everything else the app wants to know.
 
 `v0.2.0` · Text [CC BY 4.0](LICENSE), registry [CC0 1.0](registry/LICENSE) · English · [Français](README.fr.md)
 
 ```mermaid
 flowchart LR
-  G[Business goal] --> P[Pillar] --> K[KPI] --> E[Events]
+  G[Business goal] --> P[Pillar and question] --> K[KPI] --> E[Events]
 ```
 
-Every event exists because a KPI needs it, every KPI because it answers a pillar's question, every pillar because a business goal depends on it.
+No event without a reason to exist: an event exists because a KPI needs it, a KPI because it answers a question, a question because a goal depends on it. It is the [Goal-Question-Metric](https://en.wikipedia.org/wiki/GQM) approach, taken all the way down to the event. The plan is designed from the goal down to the event, and read from the event back up to the goal.
 
 ## Why AREA
 
@@ -19,31 +21,33 @@ Many mobile apps track a lot and learn little. Events pile up with each feature,
 
 ### Where AREA comes from
 
-I build mobile apps, and I wanted to add tracking to each of them the same way: one method that works from one app to the next, not a plan rebuilt every time. I looked for a framework. I found [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), built for startup growth, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), built for the user experience of a product or a feature, and event specs that say what to send without saying why. The first two go from the goal to the metric, then leave each project to build its own events. None offered a common base, ready to set up in any mobile app. So I wrote one.
+I build mobile apps, and I was looking for a tracking framework to measure the real usage of each of them, simply and in a standard way: one method that works from one app to the next, not a plan rebuilt every time. I found [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), built for startup growth, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), built for the user experience of a product or a feature, and event specs that say what to send without saying why. The first two go from the goal to the metric, then leave each project to build its own events. None of the existing ones offered a common base, ready to set up in any mobile app. So I wrote one.
 
 The next question came right away: how do I keep the tracking right over time? What happens when I add a feature, change the interface, or remove a feature? How do I make tracking a decision tool that lives with the project, rather than a plan that is out of date after the first sprint? Part of the answer lies in tooling (see [below](#tooling)). AREA itself applies without any tool.
 
-— Kevin Tersigni
+— Kevin Tersigni, creator of AREA and founder of the igniters studio
 
 ## The four pillars
 
-| Pillar | The question it answers | Reference KPI |
-|---|---|---|
-| [**Activation**](spec/pillars/activation.md) | Do new users reach the moment when the app proves its value? | Activation rate |
-| [**Retention**](spec/pillars/retention.md) | Do they come back to do what the app exists for? | Core retention |
-| [**Engagement**](spec/pillars/engagement.md) | When they are there, do they use the app for what it does best? | Core usage rate |
-| [**Advocacy**](spec/pillars/advocacy.md) | Are they ready to recommend it? | Advocacy intent rate |
+The pillars are the same for every app. What each app defines is its goals within them: for each pillar, AREA offers a typical goal, the question it raises, the reference KPI that answers it and the events that compute it.
 
-Each reference KPI is read with its volume, and comes with a verdict: measurable, partial or not measurable with the tracking in place.
+| Pillar | Typical goal | The question | Reference KPI |
+|---|---|---|---|
+| [**Activation**](spec/pillars/activation.md) | Bring as many new users as possible to the app's value, as fast as possible | Do new users reach the moment when the app proves its value? | Activation rate |
+| [**Retention**](spec/pillars/retention.md) | Bring users back, for a long time, for what the app gives them | Do they come back to do what the app exists for? | Core retention |
+| [**Engagement**](spec/pillars/engagement.md) | Make the core action a habit, and know which features create value | When they are there, do they use the app for what it does best? | Core usage rate |
+| [**Advocacy**](spec/pillars/advocacy.md) | Turn satisfied users into a lever for organic growth and product improvement | Are they ready to recommend it? | Advocacy intent rate |
+
+Each reference KPI is read with its volume, and comes with a verdict: measurable, partial or not measurable with the tracking in place. Advocacy's can be read as soon as the app asks a satisfaction question, an NPS or offers an invitation: not every app does.
 
 ## Applying AREA
 
-1. **Write the business goal of each pillar** for your app. The pillar pages give a typical example: each app writes its own, and that goal says why the pillar matters.
+1. **Set the app's goals, pillar by pillar**, starting from the typical goals: each app writes its own, and they say why a pillar matters.
 2. **Define the core action** of the app, then its **aha moment**, as a hypothesis to check against the data. Everything else depends on them ([Engagement](spec/pillars/engagement.md), [Activation](spec/pillars/activation.md)).
-3. **List the mechanics** of the app: onboarding, permissions, notifications, sharing, referral… Each one brings its events ([Minimum Viable Tracking](spec/mvt.md)).
-4. **Set up the Foundations**: identity, common properties, consent, separation of test data ([Foundations](spec/foundations.md)).
-5. **Implement Minimum Viable Tracking** following the [conventions](spec/conventions.md).
-6. **Read the four reference KPIs**, their volume and their verdict, then check the aha moment and add the app's own questions. A partial or not measurable verdict says what to fix first. Never an event without a question.
+3. **Derive the KPIs**: the four reference KPIs first, then those of the app's own questions.
+4. **List the mechanics** of the app: onboarding, permissions, notifications, sharing, referral… Each one brings its events ([Minimum Viable Tracking](spec/mvt.md)).
+5. **Set up the [Foundations](spec/foundations.md) and implement Minimum Viable Tracking**: identity, common properties, consent, separation of test data, then the events, following the [conventions](spec/conventions.md).
+6. **Check that every KPI is measurable**: measurable, partial or not measurable, the verdict says whether the right events come in and what to fix first. The KPIs are then read in the team's analytics or BI tool, where the aha moment gets checked. Never an event without a question.
 
 ## When to use AREA
 
@@ -55,7 +59,7 @@ AREA works at the scale of the whole app. A feature does not get its own framewo
 
 ## Minimum Viable Tracking in brief
 
-[Minimum Viable Tracking](spec/mvt.md) is the tracking AREA expects from every app. It is built in three layers: the Foundations, a core of three events shared by all apps (`app_opened`, `aha_moment_reached`, `core_action_completed`), and the events of the mechanics the app contains. For a typical app, about a dozen events are enough to read the four pillars.
+A few well-chosen events are enough to decide. [Minimum Viable Tracking](spec/mvt.md) is the smallest plan that makes the pillars readable. It is built in three layers: the Foundations, a core of three events required in every app (`app_opened`, `aha_moment_reached`, `core_action_completed`), and the events of the mechanics the app contains. A mechanic is a feature the app either has or doesn't: an onboarding, notifications, a permission request, a referral… If the app has it, its events join the plan. For a typical app, about a dozen events are enough to read the four pillars.
 
 ## AREA and other frameworks
 
@@ -63,11 +67,11 @@ AREA does not replace existing frameworks. It borrows a lot from them, and adds 
 
 | | AARRR | HEART | AREA |
 |---|---|---|---|
-| Measures | Startup growth, from acquisition to revenue | User experience | The tracking of a mobile app |
+| Measures | Startup growth, from acquisition to revenue | User experience | How a mobile app is used |
 | Scale | The business | The product or a feature | The whole app |
 | What AREA borrows from it | Activation, Retention, and Referral, which became Advocacy | Engagement, and the goal → signal → metric chain | |
 | From goals to events | Through a measurement plan, built for each project | Through a measurement plan (goals, signals, metrics), built for each product or feature | Built into the framework: a common base of KPIs and events, the same for every mobile app |
-| Acquisition and revenue | At the heart of the model | Adoption only | Neither, in the pillars; monetization will come with the cross-cutting dimension |
+| Acquisition and revenue | At the heart of the model | Adoption only | Outside the pillars. Journeys specific to the business model (monetization, for instance) come in a later version |
 | Designed for mobile | Generic | Generic | Yes |
 
 **The difference fits in one line: with AARRR or HEART, each project builds its measurement plan; with AREA, the structure of the plan already exists.** Each app writes its goals, defines its core action and its aha moment. The rest of the common base (the reference KPIs, their verdicts, the events and their properties) is part of the framework. A team no longer has to reinvent it: it sets it up, then spends its time on what is specific to its app.
@@ -96,7 +100,7 @@ AREA is a common base, and this base is not finished. The next step is a dimensi
 
 On the tooling side, a toolkit will follow this first version. It starts with React Native and Expo apps: the stack where its audits and fixes can be guaranteed right. Native iOS, native Android and Flutter will follow; the framework itself depends on no stack.
 
-- **area-core** (coming soon): an open-source toolkit, under Apache 2.0, that applies AREA to an app's repo, locally, with the developer's own coding agent. It brings deterministic checks that need no LLM (naming conventions, [Minimum Viable Tracking](spec/mvt.md) and its score), skills that audit the tracking and recommend fixes, and the MCP server that serves the framework to coding agents.
+- **area-core** (in the works): an open-source toolkit, under Apache 2.0, that applies AREA to an app's repo, locally, with the developer's own coding agent. It brings deterministic checks that need no LLM (naming conventions, [Minimum Viable Tracking](spec/mvt.md) and its score), skills that audit the tracking and recommend fixes, and the MCP server that serves the framework to coding agents.
 
 ## Tooling
 

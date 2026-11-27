@@ -17,6 +17,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   to AARRR and HEART, practices to avoid and the AREA way marked as such, colors of the pillars
   throughout, and scroll reveals that respect reduced motion.
 - **French**: "deeplink" instead of "lien profond" (manifesto, home page).
+- **README and header image, aligned with the home page** (both languages): the same promise, the
+  Goal-Question-Metric framing, each pillar's typical goal, Advocacy readable only with its
+  mechanics, the six steps, Minimum Viable Tracking with its three required core events, the
+  origin story's new opening and signature. In French, « La suite » replaces « Ce qui vient
+  ensuite ».
 
 ### Added
 

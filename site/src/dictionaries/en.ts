@@ -51,7 +51,7 @@ export const en: Dictionary = {
       activation: "Activation rate",
       retention: "Core retention, D7",
       engagement: "Core usage rate",
-      advocacy: "Recommendation intent rate",
+      advocacy: "Advocacy intent rate",
     },
   },
   problem: {
@@ -112,7 +112,7 @@ export const en: Dictionary = {
         name: "Advocacy",
         goal: "Turn satisfied users into a lever for organic growth and product improvement.",
         question: "Are they willing to recommend it?",
-        kpi: "Recommendation intent rate",
+        kpi: "Advocacy intent rate",
         note: "Readable as soon as the app asks a satisfaction question, an NPS or offers an invitation. Not every app does.",
       },
     },

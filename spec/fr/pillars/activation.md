@@ -100,7 +100,7 @@ Une app sans compte n'est pas pénalisée : son verdict précise seulement qu'il
 
 **Quand une paywall bloque l'accès**, personne n'atteint l'aha moment sans payer ou démarrer un essai d'abord. Ce passage obligé pèse sur le taux d'activation et allonge le Time to Aha : il se lit en même temps qu'eux.
 
-La paywall et l'achat ne font pas partie des quatre piliers : toutes les apps n'ont pas d'offre payante. Leurs events viendront avec la dimension transversale annoncée dans [Ce qui vient ensuite](../../../README.fr.md#ce-qui-vient-ensuite). Le revenu, lui, se lit chez le fournisseur de paiement.
+La paywall et l'achat ne font pas partie des quatre piliers : toutes les apps n'ont pas d'offre payante. Leurs events viendront avec la dimension transversale annoncée dans [La suite](../../../README.fr.md#la-suite). Le revenu, lui, se lit chez le fournisseur de paiement.
 
 ## Les questions auxquelles ce pilier répond
 
