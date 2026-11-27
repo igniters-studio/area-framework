@@ -13,7 +13,7 @@ Le problème ne vient pas d'un manque de méthode. Les équipes sérieuses comme
 - **Le plan de mesure suit l'arborescence de l'app.** Chaque feature reçoit ses objectifs, ses métriques et ses events. Le tracking finit par décrire l'app écran par écran, et le volume de données remplace la compréhension.
 - **L'essentiel reste flou.** L'action qui prouve la valeur de l'app n'est pas définie, pendant que des dizaines de métriques secondaires sont détaillées. L'activation et la rétention se comptent en sessions plutôt qu'en utilisateurs.
 - **Les events décrivent des taps, pas des résultats.** « Tracer le tap sur le bouton » produit des données qui cassent au premier redesign, et ne disent pas si l'utilisateur a obtenu ce qu'il venait chercher.
-- **Les réflexes du web sont transposés tels quels.** Nombre de clics pour atteindre une fonction, pages vues, sessions : sur mobile, on arrive par une notification, un widget ou un lien profond, et ces métriques perdent leur sens.
+- **Les réflexes du web sont transposés tels quels.** Nombre de clics pour atteindre une fonction, pages vues, sessions : sur mobile, on arrive par une notification, un widget ou un deeplink, et ces métriques perdent leur sens.
 - **Ce que l'app voit et ce qu'elle ne voit pas sont mélangés.** Téléchargements, note sur les stores, tickets au support : ce sont des objectifs légitimes, mais aucun event envoyé par l'app ne les mesure. Le plan promet des KPI que le tracking ne peut pas livrer.
 - **Les fondations arrivent en dernier.** L'identifiant utilisateur, les propriétés communes et le consentement conditionnent la fiabilité de tous les KPI, mais ils sont traités en fin de projet, quand ils le sont.
 

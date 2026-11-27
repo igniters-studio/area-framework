@@ -1,19 +1,21 @@
-<p align="center"><img src=".github/assets/header-fr.svg" alt="AREA : un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events. Les quatre piliers avec chacun un KPI de référence, par igniters." width="100%"></p>
+<p align="center"><img src=".github/assets/header-fr.svg" alt="AREA : l’usage d’une app est son levier de croissance le plus sous-exploité. Les quatre piliers avec chacun un KPI de référence, par igniters." width="100%"></p>
 
 # AREA Framework
 
 *Traduction de v0.2.0. La version anglaise fait référence : [English](README.md).*
 
-**Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.**
+**L'usage d'une app est son levier de croissance le plus sous-exploité.**
+
+AREA dit quoi tracker et pourquoi : quatre piliers pour piloter n'importe quelle app mobile, un KPI de référence pour chacun, et les events qui les rendent lisibles. Puis tout ce que l'app veut savoir de plus.
 
 `v0.2.0` · Texte [CC BY 4.0](LICENSE), registre [CC0 1.0](registry/LICENSE) · [English](README.md) · Français
 
 ```mermaid
 flowchart LR
-  G[Objectif business] --> P[Pilier] --> K[KPI] --> E[Events]
+  G[Objectif business] --> P[Pilier et question] --> K[KPI] --> E[Events]
 ```
 
-Chaque event existe parce qu'un KPI en a besoin, chaque KPI parce qu'il répond à la question d'un pilier, chaque pilier parce qu'un objectif business en dépend.
+Pas un event sans raison d'être : un event existe parce qu'un KPI en a besoin, un KPI parce qu'il répond à une question, une question parce qu'un objectif en dépend. C'est l'approche [Goal-Question-Metric](https://en.wikipedia.org/wiki/GQM), poussée jusqu'à l'event. Le plan se conçoit de l'objectif vers l'event, et se lit de l'event vers l'objectif.
 
 ## Pourquoi AREA
 
@@ -21,31 +23,33 @@ Beaucoup d'apps mobiles traquent beaucoup et en apprennent peu. Les events s'emp
 
 ### D'où vient AREA
 
-Je construis des apps mobiles, et je voulais mettre du tracking dans chacune d'elles de la même façon : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai cherché un framework. J'ai trouvé [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), pensé pour la croissance d'une startup, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucun ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
+Je construis des apps mobiles, et je cherchais un framework de tracking pour mesurer simplement, et de manière standard, l'usage réel de chacune d'elles : une méthode qui fonctionne d'une app à l'autre, pas un plan refait à chaque fois. J'ai trouvé [AARRR](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version) (Acquisition, Activation, Retention, Referral, Revenue), pensé pour la croissance d'une startup, [HEART](https://research.google.com/pubs/archive/36299.pdf) (Happiness, Engagement, Adoption, Retention, Task success), pensé pour l'expérience utilisateur d'un produit ou d'une feature, et des specs d'events qui disent quoi envoyer sans dire pourquoi. Les deux premiers vont de l'objectif à la métrique, puis laissent chaque projet construire ses events. Aucune des solutions existantes ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un.
 
 La question suivante est arrivée aussitôt : comment m'assurer que le tracking reste juste dans la durée ? Que se passe-t-il quand j'ajoute une feature, quand je change l'interface, quand j'en retire une ? Comment faire du tracking un outil de décision qui vit avec le projet, plutôt qu'un plan qui se périme au premier sprint ? Une partie de la réponse tient dans l'outillage (voir [plus bas](#outillage)). AREA, lui, s'applique sans aucun outil.
 
-— Kevin Tersigni
+— Kevin Tersigni, créateur d'AREA et fondateur du studio igniters
 
 ## Les quatre piliers
 
-| Pilier | La question à laquelle il répond | KPI de référence |
-|---|---|---|
-| [**Activation**](spec/fr/pillars/activation.md) | Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ? | Taux d'activation |
-| [**Rétention**](spec/fr/pillars/retention.md) | Reviennent-ils faire ce pour quoi l'app existe ? | Rétention cœur |
-| [**Engagement**](spec/fr/pillars/engagement.md) | Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ? | Taux d'usage cœur |
-| [**Advocacy**](spec/fr/pillars/advocacy.md) | Sont-ils prêts à la recommander ? | Taux d'intention de recommandation |
+Les piliers sont les mêmes pour toutes les apps. Ce que chaque app définit, ce sont ses objectifs dans chacun d'eux : AREA propose pour chaque pilier un objectif type, la question qui en découle, le KPI de référence qui y répond et les events qui le calculent.
 
-Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict : mesurable, partiel ou non mesurable avec le tracking en place.
+| Pilier | Objectif type | La question | KPI de référence |
+|---|---|---|---|
+| [**Activation**](spec/fr/pillars/activation.md) | Amener le plus de nouveaux utilisateurs possible jusqu'à la valeur de l'app, le plus vite possible | Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ? | Taux d'activation |
+| [**Rétention**](spec/fr/pillars/retention.md) | Faire revenir les utilisateurs, longtemps, pour ce que l'app leur apporte | Reviennent-ils faire ce pour quoi l'app existe ? | Rétention cœur |
+| [**Engagement**](spec/fr/pillars/engagement.md) | Faire de l'action cœur une habitude, et savoir quelles features créent de la valeur | Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ? | Taux d'usage cœur |
+| [**Advocacy**](spec/fr/pillars/advocacy.md) | Faire des utilisateurs satisfaits un levier de croissance organique et d'amélioration du produit | Sont-ils prêts à la recommander ? | Taux d'intention de recommandation |
+
+Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict : mesurable, partiel ou non mesurable avec le tracking en place. Celui de l'Advocacy se lit dès que l'app pose une question de satisfaction, un NPS ou propose une invitation : toutes ne le font pas.
 
 ## Appliquer AREA
 
-1. **Écrire l'objectif business de chaque pilier** pour votre app. Les pages des piliers en donnent un exemple type : chaque app écrit le sien, et c'est lui qui dit pourquoi le pilier compte.
+1. **Fixer les objectifs de l'app, pilier par pilier**, en partant des objectifs types : chaque app écrit les siens, et ce sont eux qui disent pourquoi un pilier compte.
 2. **Définir l'action cœur** de l'app, puis son **aha moment**, comme une hypothèse à vérifier sur les données. Tout le reste en dépend ([Engagement](spec/fr/pillars/engagement.md), [Activation](spec/fr/pillars/activation.md)).
-3. **Lister les mécaniques** de l'app : onboarding, autorisations, notifications, partage, parrainage… Chacune apporte ses events ([Minimum Viable Tracking](spec/fr/mvt.md)).
-4. **Poser les Fondations** : identité, propriétés communes, consentement, séparation des données de test ([Fondations](spec/fr/foundations.md)).
-5. **Implémenter le Minimum Viable Tracking** en suivant les [conventions](spec/fr/conventions.md).
-6. **Lire les quatre KPI de référence**, leur volume et leur verdict, puis vérifier l'aha moment et ajouter les questions propres à l'app. Un verdict partiel ou non mesurable dit ce qu'il faut corriger d'abord. Jamais d'event sans question.
+3. **En déduire les KPI** : les quatre KPI de référence d'abord, puis ceux des questions propres à l'app.
+4. **Lister les mécaniques** de l'app : onboarding, autorisations, notifications, partage, parrainage… Chacune apporte ses events ([Minimum Viable Tracking](spec/fr/mvt.md)).
+5. **Poser les [Fondations](spec/fr/foundations.md) et implémenter le Minimum Viable Tracking** : identité, propriétés communes, consentement, séparation des données de test, puis les events, selon les [conventions](spec/fr/conventions.md).
+6. **Vérifier que chaque KPI est mesurable** : mesurable, partiel ou non mesurable, le verdict dit si les bons events remontent et ce qu'il faut corriger d'abord. La lecture des KPI se fait ensuite dans l'outil d'analytics ou de BI de l'équipe, où l'on vérifie l'aha moment. Jamais d'event sans question.
 
 ## Quand utiliser AREA
 
@@ -57,7 +61,7 @@ AREA se pense à l'échelle de l'app entière. Une feature n'a pas son propre fr
 
 ## Le Minimum Viable Tracking en bref
 
-Le [Minimum Viable Tracking](spec/fr/mvt.md) est le tracking qu'AREA attend de toute app. Il se construit en trois couches : les Fondations, un socle de trois events commun à toutes les apps (`app_opened`, `aha_moment_reached`, `core_action_completed`), et les events des mécaniques que l'app contient. Pour une app courante, une douzaine d'events suffit à lire les quatre piliers.
+Peu d'events, bien choisis, suffisent pour décider. Le [Minimum Viable Tracking](spec/fr/mvt.md) est le plus petit plan qui rend les piliers lisibles. Il se construit en trois couches : les Fondations, un socle de trois events obligatoires dans toute app (`app_opened`, `aha_moment_reached`, `core_action_completed`), et les events des mécaniques que l'app contient. Une mécanique, c'est une fonction que l'app a ou n'a pas : un onboarding, des notifications, une demande d'autorisation, un parrainage… Si l'app l'a, ses events entrent dans le plan. Pour une app courante, une douzaine d'events suffit à lire les quatre piliers.
 
 ## AREA et les autres frameworks
 
@@ -65,11 +69,11 @@ AREA ne remplace pas les frameworks existants. Il leur emprunte beaucoup, et ajo
 
 | | AARRR | HEART | AREA |
 |---|---|---|---|
-| Pour mesurer | La croissance d'une startup, de l'acquisition au revenu | L'expérience utilisateur | Le tracking d'une app mobile |
+| Pour mesurer | La croissance d'une startup, de l'acquisition au revenu | L'expérience utilisateur | L'usage d'une app mobile |
 | Échelle | Le business | Le produit ou une feature | L'app entière |
 | Ce qu'AREA lui emprunte | L'Activation, la Rétention, et le Referral devenu Advocacy | L'Engagement, et la chaîne objectif → signal → métrique | |
 | De l'objectif aux events | Par un plan de mesure, à construire pour chaque projet | Par un plan de mesure (objectifs, signaux, métriques), à construire pour chaque produit ou feature | Intégré au framework : une base commune de KPI et d'events, la même pour toutes les apps mobiles |
-| Acquisition et revenu | Au cœur du modèle | Adoption seulement | Ni l'un ni l'autre dans les piliers ; la monétisation viendra avec la dimension transversale |
+| Acquisition et revenu | Au cœur du modèle | Adoption seulement | Hors des piliers. Les parcours propres au modèle économique (la monétisation, par exemple) arrivent dans une prochaine version |
 | Pensé pour le mobile | Générique | Générique | Oui |
 
 **La différence tient en une ligne : avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.** Chaque app écrit ses objectifs, définit son action cœur et son aha moment. Le reste de la base commune (les KPI de référence, leurs verdicts, les events et leurs propriétés) fait partie du framework. Une équipe n'a plus à le réinventer : elle le pose, puis elle consacre son temps à ce qui est propre à son app.
@@ -78,7 +82,7 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
 
 ## Les limites
 
-- **AREA ne mesure ni l'acquisition ni le revenu.** Ses quatre piliers ne portent ni la paywall ni l'achat : toutes les apps n'ont pas d'offre payante. Les décisions d'achat prises dans l'app viendront avec la dimension transversale (voir [Ce qui vient ensuite](#ce-qui-vient-ensuite)). L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement.
+- **AREA ne mesure ni l'acquisition ni le revenu.** Ses quatre piliers ne portent ni la paywall ni l'achat : toutes les apps n'ont pas d'offre payante. Les décisions d'achat prises dans l'app viendront avec la dimension transversale (voir [La suite](#la-suite)). L'acquisition relève des outils d'attribution, le revenu du fournisseur de paiement.
 - **Il ne mesure que ce que l'app voit.** La qualité perçue, l'avis laissé sur un store, la facilité d'un parcours se mesurent aussi par des enquêtes et des tests utilisateurs.
 - **Il ne trouve pas l'action cœur à votre place.** C'est une décision produit, et tout le reste en dépend. L'aha moment, lui, reste une hypothèse tant qu'il n'a pas été vérifié sur les données.
 - **Il dit si les KPI sont lisibles, pas quoi décider.** Ni cible, ni priorité entre les piliers : c'est le travail de l'équipe.
@@ -92,13 +96,13 @@ Il doit aussi beaucoup à d'autres travaux. Le North Star Framework a popularis�
   - les apps financées par la publicité, qui vivent du volume d'usage plus que de l'action cœur.
 - **Il est jeune.** Toutes ses entrées sont en `development`, et en version 0.x AREA ne garantit rien : tout peut encore évoluer.
 
-## Ce qui vient ensuite
+## La suite
 
 AREA est une base commune, et cette base n'est pas finie. La prochaine étape est une dimension transversale aux quatre piliers, qui permettra à chaque app d'ajouter ses propres objectifs : un parcours de conversion propre à son modèle économique (la paywall et l'achat, par exemple), le lancement d'une feature, un objectif fixé par l'équipe. Chacun s'y décrira dans la grammaire d'AREA, avec ses KPI et ses events, sur la même base.
 
 Côté outillage, une boîte à outils suivra cette première version. Elle commence par les apps React Native et Expo : c'est la stack où ses audits et ses correctifs peuvent être garantis justes. iOS natif, Android natif et Flutter suivront ; le framework, lui, ne dépend d'aucune stack.
 
-- **area-core** (à venir) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md) et son score), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
+- **area-core** (en préparation) : une boîte à outils open source, sous licence Apache 2.0, qui applique AREA au repo d'une app, en local, avec l'agent de code du développeur. Elle apporte des checks déterministes, sans LLM (conventions de nommage, [Minimum Viable Tracking](spec/fr/mvt.md) et son score), des skills qui auditent le tracking et recommandent des corrections, et le serveur MCP qui sert le framework aux agents de code.
 
 ## Outillage
 
@@ -108,7 +112,7 @@ AREA se vérifie sans outil particulier :
 - **Le registre est sur npm**, sous le nom [`area-framework`](https://www.npmjs.com/package/area-framework) : le registre en JSON, et des types TypeScript générés depuis lui (events, propriétés et leurs listes fermées, KPI). Sa version est celle d'AREA : une app épingle la version qu'elle suit, et un renommage dans le registre devient une erreur de types dans son build.
 - **Le registre se valide avec ce même package** : `npx area-framework validate registry` depuis un clone de ce repo, ou `yarn check` dans `package/`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre, et tourne sur chaque pull request.
 
-L'auteur développe area-core, annoncé dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
+L'auteur développe area-core, annoncé dans [La suite](#la-suite). AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
 ## Contenu du repo
 

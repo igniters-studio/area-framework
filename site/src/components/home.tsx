@@ -1,8 +1,12 @@
 import GithubSlugger from "github-slugger";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 import { CopyPrompt } from "@/components/copy-prompt";
 import { Fan } from "@/components/fan";
+import { BadMark, GoodMark } from "@/components/marks";
+import { RetentionChart } from "@/components/retention-chart";
+import { Reveal } from "@/components/reveal";
 import { Wordmark } from "@/components/chrome";
 import type { Dictionary } from "@/dictionaries/fr";
 import { type Lang, REPO_URL, sitePath } from "@/lib/content";
@@ -81,6 +85,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
 
   return (
     <main id="top">
+      <Reveal />
       <section className="wrap hero">
         <div className="hero-copy">
           <a href={`${REPO_URL}/blob/main/CHANGELOG.md`} className="release">
@@ -147,10 +152,13 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 {dict.problem.lead}
               </p>
             </div>
-            <dl>
+            <dl className="bad-list">
               {dict.problem.items.map((item) => (
-                <div key={item.term}>
-                  <dt>{item.term}</dt>
+                <div key={item.term} data-reveal>
+                  <dt>
+                    <BadMark label={dict.problem.badLabel} />
+                    {item.term}
+                  </dt>
                   <dd>{item.text}</dd>
                 </div>
               ))}
@@ -158,7 +166,10 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           </div>
           <figure className="plan">
             <figcaption>
-              <span className="plan-title">{dict.problem.planTitle}</span>
+              <span className="plan-title">
+                <BadMark label={dict.problem.badLabel} />
+                {dict.problem.planTitle}
+              </span>
               <span className="plan-note">{dict.problem.planNote}</span>
             </figcaption>
             <div className="plan-cloud" aria-hidden="true">
@@ -166,8 +177,11 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 <span key={name}>{name}</span>
               ))}
             </div>
-            <div className="stack" style={{ gap: 12, paddingTop: 4 }}>
-              <span className="plan-title">{dict.problem.areaTitle}</span>
+            <div className="plan-area stack" style={{ gap: 12 }}>
+              <span className="plan-title">
+                <GoodMark label={dict.problem.goodLabel} />
+                {dict.problem.areaTitle}
+              </span>
               <div className="core-chips">
                 {CORE_EVENTS.map((event) => (
                   <span key={event}>{event}</span>
@@ -192,7 +206,12 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           {PILLARS.map((pillar) => {
             const item = dict.pillars.items[pillar];
             return (
-              <Link key={pillar} href={sitePath(lang, `spec/pillars/${pillar}`)} className="pillar">
+              <Link
+                key={pillar}
+                href={sitePath(lang, `spec/pillars/${pillar}`)}
+                className="pillar"
+                style={{ "--pillar": `var(--${pillar})`, "--pillar-tint": `var(--${pillar}-tint)` } as CSSProperties}
+              >
                 <h3 aria-label={item.name}>
                   <span aria-hidden="true" className="pillar-initial" style={{ color: `var(--${pillar})` }}>
                     {item.name.charAt(0)}
@@ -201,7 +220,12 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                     {item.name.slice(1)}
                   </span>
                 </h3>
+                <span className="pillar-goal">
+                  <span className="pillar-goal-label">{dict.pillars.goalLabel}</span>
+                  {item.goal}
+                </span>
                 <span className="pillar-question">{item.question}</span>
+                {item.note && <span className="pillar-note">{item.note}</span>}
                 <span className="pillar-kpi" style={{ color: `var(--${pillar}-ink)` }}>
                   <span className="swatch" style={{ background: `var(--${pillar})` }} />
                   {item.kpi}
@@ -224,7 +248,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
               <span className="rule" />
               <span className="tip" />
             </div>
-            <ol className="chain-cards">
+            <ol className="chain-cards" data-reveal>
               <li className="up up4">
                 <span className="small">{dict.pillars.chain.goalLabel}</span>
                 <span className="big grow">{dict.pillars.chain.goal}</span>
@@ -258,21 +282,17 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
               <span className="label">{dict.pillars.up}</span>
             </div>
           </div>
+          <RetentionChart t={dict.pillars.chart} />
         </div>
       </section>
 
       <section id="mvt" aria-labelledby="mvt-title" className="band-ink">
         <div className="wrap section" style={{ gap: 56 }}>
-          <div className="stack" style={{ gap: 16, maxWidth: 780 }}>
-            <h2 id="mvt-title" className="h2">
-              {dict.mvt.title(kpis.length, pillarCount)}
-            </h2>
-            <p className="lead">{dict.mvt.lead}</p>
-          </div>
-          <Fan kpis={kpis} label={dict.mvt.fanLabel} />
           <div className="layers">
             <div className="stack" style={{ gap: 14 }}>
-              <h3>{dict.mvt.layersTitle}</h3>
+              <h2 id="mvt-title" className="h2">
+                {dict.mvt.layersTitle}
+              </h2>
               <p className="lead" style={{ fontSize: 18, maxWidth: "28em" }}>
                 {dict.mvt.layersLead}
               </p>
@@ -304,6 +324,7 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                   <span className="layer-name">{dict.mvt.mechanics}</span>
                   <span className="layer-note">{dict.mvt.mechanicsNote}</span>
                 </div>
+                <span className="layer-text">{dict.mvt.mechanicsText}</span>
                 <div className="layer-chips">
                   {SHOWN_MECHANICS.map((id) => (
                     <span key={id}>{dict.mvt.mechanicNames[id]}</span>
@@ -312,6 +333,15 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="fan-block" data-reveal>
+            <div className="stack" style={{ gap: 10, maxWidth: 780 }}>
+              <h3>{dict.mvt.fanTitle}</h3>
+              <p className="lead" style={{ fontSize: 18 }}>
+                {dict.mvt.fanLead(kpis.length, pillarCount)}
+              </p>
+            </div>
+            <Fan kpis={kpis} label={dict.mvt.fanLabel} />
           </div>
         </div>
       </section>
@@ -322,8 +352,10 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
         </h2>
         <ol className="steps">
           {dict.apply.steps.map((step, index) => (
-            <li key={step.title}>
-              <span className="step-number">{index + 1}</span>
+            <li key={step.title} data-reveal>
+              <span className="step-number" style={{ color: `var(--${PILLARS[index % PILLARS.length]})` }}>
+                {index + 1}
+              </span>
               <strong>{step.title}</strong>
               <span className="text">{step.text}</span>
             </li>
@@ -332,9 +364,12 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
       </section>
 
       <section id="compare" aria-labelledby="compare-title" className="wrap compare">
-        <h2 id="compare-title" className="h2">
-          {dict.compare.title}
-        </h2>
+        <div className="stack" style={{ gap: 16, maxWidth: 820 }}>
+          <h2 id="compare-title" className="h2">
+            {dict.compare.title}
+          </h2>
+          <p className="lead">{dict.compare.lead}</p>
+        </div>
         <div className="compare-table-wrap">
           <table>
             <thead>
@@ -395,19 +430,6 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
               </div>
             </div>
             <div className="cta-card">
-              <h3>{dict.cta.devTitle}</h3>
-              <p>{dict.cta.devText}</p>
-              <CopyPrompt prompt={dict.cta.devPrompt} copy={dict.cta.copy} copied={dict.cta.copied} />
-              <div className="actions">
-                <a href={REPO_URL} className="button button-light">
-                  {dict.cta.devLink}
-                </a>
-                <a href={`${BASE_PATH}/llms.txt`} className="button button-ghost">
-                  llms.txt
-                </a>
-              </div>
-            </div>
-            <div className="cta-card">
               <h3>{dict.cta.studioTitle}</h3>
               <p>{dict.cta.studioText}</p>
               <div className="actions">
@@ -415,6 +437,21 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                   {dict.cta.studioLink}
                 </a>
               </div>
+            </div>
+            <div className="cta-card cta-card-dev">
+              <div className="cta-dev-copy">
+                <h3>{dict.cta.devTitle}</h3>
+                <p>{dict.cta.devText}</p>
+                <div className="actions">
+                  <a href={REPO_URL} className="button button-light">
+                    {dict.cta.devLink}
+                  </a>
+                  <a href={`${BASE_PATH}/llms.txt`} className="button button-ghost">
+                    llms.txt
+                  </a>
+                </div>
+              </div>
+              <CopyPrompt prompt={dict.cta.devPrompt} copy={dict.cta.copy} copied={dict.cta.copied} />
             </div>
           </div>
           <div className="cta-foot">
@@ -425,7 +462,8 @@ export function Home({ lang, dict }: { lang: Lang; dict: Dictionary }) {
               <ul>
                 {dict.cta.next.map((tool) => (
                   <li key={tool.name}>
-                    <strong>{tool.name}</strong> {tool.status} {tool.text}
+                    <strong>{tool.name}</strong>
+                    {tool.status} {tool.text}
                   </li>
                 ))}
               </ul>

@@ -18,7 +18,7 @@ export const fr = {
   meta: {
     title: "AREA Framework",
     description:
-      "Un framework de tracking pour les apps mobiles, qui part des objectifs business et non des events.",
+      "Un framework de tracking pour les apps mobiles : quoi tracker et pourquoi, à partir des objectifs business.",
   },
   nav: {
     label: "Navigation principale",
@@ -30,9 +30,9 @@ export const fr = {
     github: "GitHub",
   },
   hero: {
-    badge: "Première version publique, open source",
-    title: "Quatre KPI pour piloter une app mobile. Une douzaine d'events pour les lire.",
-    lead: "Un framework de tracking qui part des objectifs business, pas des events : quatre piliers communs à toutes les apps mobiles, un KPI de référence pour chacun, et le tracking minimum qui les rend lisibles. Défini une fois, pour toutes les apps.",
+    badge: "Open source · voir les nouveautés",
+    title: "L'usage d'une app est son levier de croissance le plus sous-exploité.",
+    lead: "AREA dit quoi tracker et pourquoi : quatre piliers pour piloter n'importe quelle app mobile, un KPI de référence pour chacun, et les events qui les rendent lisibles. Puis tout ce que l'app veut savoir de plus.",
     primary: "Découvrir le framework",
     secondary: "Voir sur GitHub",
     panelTitle: "App de course, première semaine",
@@ -54,7 +54,9 @@ export const fr = {
   },
   problem: {
     title: "Beaucoup d'apps mobiles traquent beaucoup et en apprennent peu.",
-    lead: "Le problème ne vient pas d'un manque de méthode. Sur une app mobile, le plan de mesure déraille souvent de la même façon.",
+    lead: "Pas par manque de bonne volonté : sur mobile, le plan de mesure déraille souvent de la même façon.",
+    badLabel: "À éviter",
+    goodLabel: "Avec AREA",
     items: [
       {
         term: "Le plan de mesure suit l'arborescence de l'app.",
@@ -70,75 +72,94 @@ export const fr = {
       },
       {
         term: "Les réflexes du web sont transposés tels quels.",
-        text: "Clics, pages vues, sessions : sur mobile, on arrive par une notification, un widget ou un lien profond.",
+        text: "Clics, pages vues, sessions : sur mobile, on arrive par une notification, un widget ou un deeplink.",
       },
     ],
     planTitle: "Un plan de mesure type",
     planNote: "Des noms inventés, typiques d'un plan qui suit les écrans",
     areaTitle: "La même app avec AREA",
     areaNote:
-      "Trois events du socle, puis ceux des mécaniques que l'app contient vraiment : une douzaine en tout.",
+      "Les trois events du socle, puis ceux des mécaniques que l'app contient vraiment : une douzaine en tout.",
   },
   pillars: {
-    title: "Quatre piliers, communs à toutes les apps mobiles.",
-    lead: "Définis en premier, chacun avec sa question et son KPI de référence. Chaque KPI de référence se lit avec son volume, et s'accompagne d'un verdict : mesurable, partiel ou non mesurable avec le tracking en place. L'Advocacy se lit dès que l'app pose une question de satisfaction, un NPS ou propose une invitation.",
+    title: "Quatre piliers pour piloter une app mobile.",
+    lead: "Les piliers sont les mêmes pour toutes les apps. Ce que chaque app définit, ce sont ses objectifs dans chacun d'eux : AREA propose pour chaque pilier un objectif type, la question qui en découle, le KPI de référence qui y répond et les events qui le calculent.",
+    goalLabel: "Objectif type",
     items: {
       activation: {
         name: "Activation",
+        goal: "Amener le plus de nouveaux utilisateurs possible jusqu'à la valeur de l'app, le plus vite possible.",
         question: "Les nouveaux utilisateurs atteignent-ils le moment où l'app prouve sa valeur ?",
         kpi: "Taux d'activation",
+        note: "",
       },
       retention: {
         name: "Rétention",
+        goal: "Faire revenir les utilisateurs, longtemps, pour ce que l'app leur apporte.",
         question: "Reviennent-ils faire ce pour quoi l'app existe ?",
         kpi: "Rétention cœur",
+        note: "",
       },
       engagement: {
         name: "Engagement",
+        goal: "Faire de l'action cœur une habitude, et savoir quelles features créent de la valeur.",
         question: "Quand ils sont là, utilisent-ils l'app pour ce qu'elle sait faire de mieux ?",
         kpi: "Taux d'usage cœur",
+        note: "",
       },
       advocacy: {
         name: "Advocacy",
+        goal: "Faire des utilisateurs satisfaits un levier de croissance organique et d'amélioration du produit.",
         question: "Sont-ils prêts à la recommander ?",
         kpi: "Taux d'intention de recommandation",
+        note: "Se lit dès que l'app pose une question de satisfaction, un NPS ou propose une invitation. Toutes ne le font pas.",
       },
     },
-    chainTitle: "Chaque event sait pourquoi il existe.",
+    chainTitle: "Pas un event sans raison d'être.",
     chainLead:
-      "Chaque event existe parce qu'un KPI en a besoin, chaque KPI parce qu'il répond à la question d'un pilier, chaque pilier parce qu'un objectif business en dépend.",
-    down: "Le plan se conçoit de haut en bas",
-    up: "Les données remontent, de bas en haut",
+      "Un event existe parce qu'un KPI en a besoin, un KPI parce qu'il répond à une question, une question parce qu'un objectif en dépend. C'est l'approche Goal-Question-Metric, poussée jusqu'à l'event.",
+    down: "Se conçoit de l'objectif vers l'event",
+    up: "Se lit de l'event vers l'objectif",
     chain: {
-      goalLabel: "Objectif business",
+      goalLabel: "Objectif",
       goal: "Faire revenir les utilisateurs, longtemps, pour ce que l'app leur apporte.",
-      goalBack: "Retour : objectif tenu ou non",
-      pillarLabel: "Pilier",
+      goalBack: "Objectif tenu, ou pas",
+      pillarLabel: "Pilier et question",
       pillar: "Rétention",
-      pillarBack: "Retour : question tranchée",
+      pillarBack: "Question tranchée",
       kpiLabel: "KPI de référence",
       kpi: "Rétention cœur à J1, J7 et J30",
-      kpiBack: "Retour : 28 % à J7",
+      kpiBack: "28 % à J7",
       eventLabel: "Event",
       eventBack: "Envoyé par l'app, à chaque course",
     },
+    chart: {
+      title: "Au bout de la chaîne, dans l'outil d'analytics de l'équipe",
+      note: "Données fictives",
+      kpi: "Rétention cœur, par cohorte",
+      activated: "Activés",
+      notActivated: "Non activés",
+      days: ["J0", "J1", "J7", "J14", "J30"],
+      label:
+        "Graphique fictif : la rétention cœur des utilisateurs activés reste autour de 40 % à J30, celle des non activés tombe sous 10 %",
+      caption:
+        "AREA s'assure que les bons events remontent, bien nommés, au bon moment. Le KPI, lui, se lit dans l'outil d'analytics ou de BI de l'équipe.",
+    },
   },
   mvt: {
-    title: (kpis: number, pillars: number) =>
-      `Trois events du socle. ${spell(kpis, true)} KPI sur ${spell(pillars)} piliers.`,
-    lead: "La richesse d'un tracking ne vient pas du nombre d'events : elle vient des propriétés, des cohortes et du temps. Chaque KPI se découpe ensuite par les propriétés des Fondations : iOS ou Android, gratuit ou payant, version de l'app.",
-    fanLabel: "Les trois events du socle et les KPI qu'ils calculent à eux seuls",
-    layersTitle: "Le Minimum Viable Tracking, en trois couches.",
+    layersTitle: "Peu d'events, bien choisis, suffisent pour décider.",
     layersLead:
-      "Les Fondations rendent les KPI fiables, le socle les rend lisibles, puis chaque mécanique que l'app contient apporte ses events. Pour une app courante, une douzaine d'events suffit à lire les quatre piliers.",
+      "Le Minimum Viable Tracking est le plus petit plan qui rend les piliers lisibles. Trois couches, dont deux identiques dans toutes les apps. Pas besoin de 300 events : la richesse vient des propriétés, des cohortes et du temps.",
     foundations: "1. Fondations",
     foundationsNote: "Toutes les apps",
     foundationsText:
       "L'identité, les propriétés communes, le consentement et la séparation des données de test.",
     core: "2. Socle",
-    coreNote: "Toutes les apps",
+    coreNote: "Trois events obligatoires dans toute app",
     mechanics: "3. Mécaniques",
-    mechanicsNote: "Une mécanique présente rend ses events obligatoires",
+    mechanicsNote: "Selon l'app",
+    mechanicsText:
+      "Une mécanique, c'est une fonction que l'app a ou n'a pas : un onboarding, des notifications, une demande d'autorisation, un parrainage… Si l'app l'a, ses events entrent dans le plan.",
     mechanicNames: {
       onboarding: "Onboarding",
       permissions: "Autorisations",
@@ -149,46 +170,50 @@ export const fr = {
     },
     more: (count: number) => `et ${count} autres`,
     readMore: "Lire le Minimum Viable Tracking",
+    fanTitle: "Rien qu'avec les trois events du socle",
+    fanLead: (kpis: number, pillars: number) =>
+      `Un exemple : ${spell(kpis)} KPI déjà calculables sur ${spell(pillars)} piliers, à découper ensuite par plateforme, offre ou version de l'app. Les mécaniques et les questions propres à l'app en ajoutent bien d'autres.`,
+    fanLabel: "Les trois events du socle et les KPI qu'ils calculent à eux seuls",
   },
   apply: {
     title: "Appliquer AREA, en six étapes.",
     steps: [
       {
-        title: "Écrire l'objectif business de chaque pilier",
-        text: "Les pages des piliers en donnent un exemple type : chaque app écrit le sien, et c'est lui qui dit pourquoi le pilier compte.",
+        title: "Fixer les objectifs de l'app, pilier par pilier",
+        text: "En partant des objectifs types qu'AREA propose : chaque app écrit les siens, et c'est eux qui disent pourquoi un pilier compte.",
       },
       {
         title: "Définir l'action cœur, puis l'aha moment",
-        text: "L'aha moment est une hypothèse à vérifier sur les données. Tout le reste en dépend.",
+        text: "L'action pour laquelle l'app existe, et le moment où un nouvel utilisateur en perçoit la valeur. L'aha moment reste une hypothèse à vérifier sur les données.",
+      },
+      {
+        title: "En déduire les KPI",
+        text: "Les quatre KPI de référence d'abord, puis ceux des questions propres à l'app.",
       },
       {
         title: "Lister les mécaniques de l'app",
         text: "Onboarding, autorisations, notifications, partage, parrainage… Chacune apporte ses events.",
       },
       {
-        title: "Poser les Fondations",
-        text: "Identité, propriétés communes, consentement, séparation des données de test.",
+        title: "Poser les Fondations et implémenter le Minimum Viable Tracking",
+        text: "Identité, propriétés communes, consentement, puis les events, selon les conventions de nommage.",
       },
       {
-        title: "Implémenter le Minimum Viable Tracking",
-        text: "En suivant les conventions.",
-      },
-      {
-        title: "Lire les quatre KPI de référence",
-        text: "Leur volume et leur verdict, puis vérifier l'aha moment et ajouter les questions propres à l'app. Jamais d'event sans question.",
+        title: "Vérifier que chaque KPI est mesurable",
+        text: "Mesurable, partiel ou non mesurable : AREA dit si les bons events remontent. La lecture se fait ensuite dans l'outil d'analytics ou de BI de l'équipe. Jamais d'event sans question.",
       },
     ],
   },
   compare: {
-    title:
-      "Avec AARRR ou HEART, chaque projet construit son plan de mesure ; avec AREA, la structure du plan existe déjà.",
+    title: "AREA, AARRR, HEART : trois frameworks, trois usages.",
+    lead: "AARRR (les « pirate metrics » de Dave McClure) et HEART (Google) sont les deux frameworks les plus cités pour mesurer un produit. Ils disent quoi mesurer, pas quels events envoyer : chaque équipe construit son plan de mesure. AREA va jusqu'aux events, avec une structure commune à toutes les apps mobiles.",
     criterion: "Critère",
     rows: [
       {
         label: "Pour mesurer",
         aarrr: "La croissance d'une startup, de l'acquisition au revenu",
         heart: "L'expérience utilisateur",
-        area: "Le tracking d'une app mobile",
+        area: "L'usage d'une app mobile",
       },
       {
         label: "De l'objectif aux events",
@@ -200,7 +225,7 @@ export const fr = {
         label: "Acquisition et revenu",
         aarrr: "Au cœur du modèle",
         heart: "Adoption seulement",
-        area: "Ni l'un ni l'autre dans les piliers ; la monétisation viendra avec la dimension transversale",
+        area: "Hors des piliers. Les parcours propres au modèle économique (la monétisation, par exemple) arrivent dans une prochaine version",
       },
       {
         label: "Pensé pour le mobile",
@@ -213,15 +238,15 @@ export const fr = {
   origin: {
     title: "D'où vient AREA",
     quote:
-      "« J'ai cherché un framework. Aucun ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un. »",
-    author: "Kevin Tersigni, créateur d'AREA.",
+      "« Je cherchais un framework de tracking pour être capable de mesurer simplement et de manière standard l'usage réel des apps de ma factory. Aucune des solutions existantes ne proposait une base commune, prête à poser dans n'importe quelle app mobile. Alors j'en ai écrit un. »",
+    author: "Kevin Tersigni, créateur d'AREA et fondateur du studio igniters.",
     more: "Lire l'histoire",
   },
   cta: {
-    title: "Ouvert, versionné, prêt à appliquer.",
+    title: "Open source, versionné, disponible dès aujourd'hui.",
     productTitle: "Pour les équipes produit et les founders",
     productText:
-      "Mettez-vous d'accord sur les quatre piliers et leurs KPI de référence, puis donnez à vos développeurs un plan de tracking qui répond à vos questions.",
+      "Mettez-vous d'accord sur les objectifs de chaque pilier et leurs KPI, puis donnez à vos développeurs un plan de tracking qui répond à vos questions.",
     productLink: "Lire la spec",
     studioTitle: "Pour les studios et les agences",
     studioText:
@@ -235,11 +260,11 @@ export const fr = {
     copy: "Copier",
     copied: "Copié",
     devLink: "Voir sur GitHub",
-    nextLabel: "Ce qui vient ensuite :",
+    nextLabel: "En préparation :",
     next: [
       {
         name: "area-core",
-        status: "(à venir) :",
+        status: " :",
         text: "une boîte à outils open source (Apache 2.0) qui applique AREA au repo d'une app React Native ou Expo, en local, avec l'agent de code du développeur : checks déterministes (conventions de nommage, Minimum Viable Tracking et son score), skills d'audit et de recommandations, et un serveur MCP qui sert le framework aux agents de code.",
       },
     ],
