@@ -463,6 +463,12 @@ pre,
 .problem dt {
   font-weight: 700;
   font-size: 19px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.problem dd {
+  padding-left: 34px;
 }
 .problem dd {
   margin: 6px 0 0;
@@ -490,7 +496,38 @@ pre,
 .plan-title {
   font-weight: 700;
   font-size: 19px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
+.plan-area {
+  margin-top: 4px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow: 0 0 0 2px var(--engagement-tint);
+}
+
+/* ─── Marks: a practice to avoid, the AREA way ─────────────────────────── */
+.mark {
+  flex: none;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+}
+.mark svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.mark-bad circle { fill: #fde4e2; stroke: none; }
+.mark-bad path { stroke: #c4320a; }
+.mark-good circle { fill: var(--engagement); stroke: none; }
+.mark-good path { stroke: #ffffff; }
 .plan-note {
   font-size: 15px;
   color: var(--muted);
@@ -543,10 +580,14 @@ pre,
   overflow: hidden;
 }
 .pillar {
+  --pillar: var(--ink);
+  --pillar-tint: var(--ground);
   text-decoration: none;
   color: var(--ink);
   background: var(--paper);
-  padding: 28px 28px 32px;
+  box-shadow: inset 0 6px 0 var(--pillar);
+  transition: background-color 0.2s ease;
+  padding: 34px 28px 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -554,7 +595,27 @@ pre,
 }
 .pillar:hover {
   color: var(--ink);
-  background: #fbfbfd;
+  background: var(--pillar-tint);
+}
+.pillar-goal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.pillar-goal-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pillar);
+}
+.pillar-note {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
 }
 .pillar h3 {
   margin: 0 0 8px;
@@ -576,10 +637,12 @@ pre,
   margin-left: 2px;
 }
 .pillar-question {
-  font-size: 17px;
-  line-height: 1.45;
-  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
   flex-grow: 1;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-3);
 }
 .pillar-kpi {
   display: flex;
@@ -1009,7 +1072,7 @@ pre,
 }
 .cta-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
   gap: 16px;
 }
 .cta-card {
@@ -1025,6 +1088,18 @@ pre,
   font-weight: 700;
   font-size: 24px;
   letter-spacing: -0.02em;
+}
+.cta-card-dev {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.cta-dev-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 .cta-card p {
   margin: 0;
@@ -1144,6 +1219,123 @@ pre,
   92% { opacity: 1; }
   100% { left: 0%; opacity: 0; }
 }
+/* ─── Retention chart (illustrative) ───────────────────────────────────── */
+.chart-card {
+  margin: 0;
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: 0 0 0 1px var(--line);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chart-title {
+  font-weight: 700;
+  font-size: 19px;
+}
+.chart-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+.chart-body {
+  background: var(--ground);
+  border-radius: 16px;
+  padding: 18px 18px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chart-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.chart-kpi {
+  font-weight: 600;
+  color: var(--retention-ink);
+}
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  color: var(--muted);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-swatch {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+}
+.legend-dashed {
+  background: repeating-linear-gradient(90deg, #8a8fa3 0 4px, transparent 4px 7px);
+}
+.chart {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+}
+.chart .grid { stroke: var(--line-2); stroke-width: 1; }
+.chart .axis { fill: var(--muted); font-size: 15px; font-family: var(--sans); }
+.chart .line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.chart .line-main { stroke: var(--retention); }
+.chart .line-muted { stroke: #8a8fa3; stroke-dasharray: 0.012 0.012; stroke-width: 2.5; }
+.chart .dot { fill: var(--paper); stroke: var(--retention); stroke-width: 2.5; }
+.chart-caption {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 46em;
+}
+.fan-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 8px;
+}
+.fan-block h3 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-ready [data-reveal]:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .reveal-ready .steps li:nth-child(2), .reveal-ready .bad-list > div:nth-child(2) { transition-delay: 0.08s; }
+  .reveal-ready .steps li:nth-child(3), .reveal-ready .bad-list > div:nth-child(3) { transition-delay: 0.16s; }
+  .reveal-ready .steps li:nth-child(4), .reveal-ready .bad-list > div:nth-child(4) { transition-delay: 0.24s; }
+  .reveal-ready .steps li:nth-child(5) { transition-delay: 0.32s; }
+  .reveal-ready .steps li:nth-child(6) { transition-delay: 0.4s; }
+  .reveal-ready .chart-card .line-main {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.6s ease 0.3s;
+  }
+  .reveal-ready .chart-card.is-visible .line-main { stroke-dashoffset: 0; }
+  .reveal-ready .chart-card .dot { opacity: 0; transition: opacity 0.4s ease 1.6s; }
+  .reveal-ready .chart-card.is-visible .dot { opacity: 1; }
+  .pillar { transition: background-color 0.2s ease, transform 0.2s ease; }
+  .pillar:hover { transform: translateY(-3px); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
   .stream { animation: stream 22s linear infinite; }
