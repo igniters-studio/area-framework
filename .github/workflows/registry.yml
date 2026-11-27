@@ -1,0 +1,30 @@
+name: Registry
+
+# Validates the registry and checks the npm package (package/) on every pull request: generated
+# types, tests, validator, build, then the packed tarball itself, as npm will publish it.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: package
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn check
+      - name: Validate the registry with the packed package
+        run: |
+          npm pack
+          npx --yes --package "$PWD/area-framework-$(node -p 'require("./package.json").version').tgz" area-framework validate ../registry

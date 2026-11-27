@@ -39,4 +39,4 @@ Une proposition retenue devient un changement de la spec et du registre, fait pa
 
 ## Licence des contributions
 
-Une contribution reprise dans le repo est publiée sous la licence de la partie qu'elle touche : [CC BY 4.0](LICENSE) pour le texte, [CC0 1.0](registry/LICENSE) pour le registre, [Apache 2.0](scripts/LICENSE) pour le script et le site.
+Une contribution reprise dans le repo est publiée sous la licence de la partie qu'elle touche : [CC BY 4.0](LICENSE) pour le texte, [CC0 1.0](registry/LICENSE) pour le registre, [Apache 2.0](package/LICENSE) pour le code du package et le site.

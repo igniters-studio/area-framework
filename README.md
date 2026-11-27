@@ -103,7 +103,8 @@ On the tooling side, a toolkit will follow this first version. It starts with Re
 AREA can be checked without any particular tool:
 
 - **Verdicts are checked by hand.** Each pillar page lists the conditions of each verdict: measurable, partial, not measurable.
-- **The registry is validated with a script** shipped in this repo. It needs PyYAML: `pip install pyyaml`, then `python3 scripts/validate_registry.py`, or in one command with uv: `uv run --with pyyaml python3 scripts/validate_registry.py`. It checks empty keys and values (a sign of malformed YAML), naming, reserved names, the verb vocabulary and consistency between the registry files.
+- **The registry is on npm**, as the package [`area-framework`](https://www.npmjs.com/package/area-framework): the registry as JSON, and TypeScript types generated from it (events, properties and their closed lists, KPIs). Its version is the version of AREA, so an app pins the version it follows, and a rename in the registry becomes a type error in its build.
+- **The registry is validated by the same package**: `npx area-framework validate registry` from a clone of this repo, or `yarn check` in `package/`. It checks empty keys and values (a sign of malformed YAML), naming, reserved names, the verb vocabulary and consistency between the registry files, and runs on every pull request.
 
 The author builds area-core, announced in [What comes next](#what-comes-next). AREA does not depend on it, and any other tool can build on the registry.
 
@@ -113,7 +114,7 @@ The author builds area-core, announced in [What comes next](#what-comes-next). A
 spec/          The spec: manifesto, conventions, foundations, pillars, Minimum Viable Tracking
 spec/fr/       The French translation of the spec
 registry/      The spec in machine-readable form (YAML)
-scripts/       The script that validates the registry
+package/       The npm package area-framework: the registry as JSON, its TypeScript types and its validator
 site/          The website, a static export of the spec published on GitHub Pages
 references/    Reference points that are not part of the spec, such as benchmarks
 ```
@@ -132,6 +133,6 @@ AREA depends on no stack, but its tooling starts with React Native and Expo. Fee
 
 - **The text** of AREA (`spec/`, `references/`, this README) is published under the [CC BY 4.0](LICENSE) license. You can reuse it, adapt it and use it commercially, as long as you credit the source and state your changes.
 - **The registry** (`registry/`) is published under the [CC0 1.0](registry/LICENSE) license: event, property and KPI names can be reused in your code and tracking plans with no conditions at all.
-- **The script** (`scripts/`) and **the website's code** (`site/`) are published under the [Apache 2.0](scripts/LICENSE) license.
+- **The package's code** (`package/`) and **the website's code** (`site/`) are published under the [Apache 2.0](package/LICENSE) license. The registry data the package ships stays under CC0 1.0.
 
 > AREA Framework, Kevin Tersigni, igniters — https://github.com/igniters-studio/area-framework

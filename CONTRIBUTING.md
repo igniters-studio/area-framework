@@ -39,4 +39,4 @@ An accepted proposal becomes a change to the spec and the registry, made by the 
 
 ## License of contributions
 
-A contribution taken into the repo is published under the license of the part it touches: [CC BY 4.0](LICENSE) for the text, [CC0 1.0](registry/LICENSE) for the registry, [Apache 2.0](scripts/LICENSE) for the script and the website.
+A contribution taken into the repo is published under the license of the part it touches: [CC BY 4.0](LICENSE) for the text, [CC0 1.0](registry/LICENSE) for the registry, [Apache 2.0](package/LICENSE) for the package's code and the website.

@@ -105,7 +105,8 @@ Côté outillage, une boîte à outils suivra cette première version. Elle comm
 AREA se vérifie sans outil particulier :
 
 - **Les verdicts se vérifient à la main.** Chaque page de pilier liste les conditions de chaque verdict : mesurable, partiel, non mesurable.
-- **Le registre se valide avec un script** livré dans ce repo. Il demande PyYAML : `pip install pyyaml`, puis `python3 scripts/validate_registry.py`, ou en une commande avec uv : `uv run --with pyyaml python3 scripts/validate_registry.py`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre.
+- **Le registre est sur npm**, sous le nom [`area-framework`](https://www.npmjs.com/package/area-framework) : le registre en JSON, et des types TypeScript générés depuis lui (events, propriétés et leurs listes fermées, KPI). Sa version est celle d'AREA : une app épingle la version qu'elle suit, et un renommage dans le registre devient une erreur de types dans son build.
+- **Le registre se valide avec ce même package** : `npx area-framework validate registry` depuis un clone de ce repo, ou `yarn check` dans `package/`. Il contrôle les clés et valeurs vides (signe d'un YAML mal formé), le nommage, les noms réservés, le vocabulaire de verbes et la cohérence entre les fichiers du registre, et tourne sur chaque pull request.
 
 L'auteur développe area-core, annoncé dans [Ce qui vient ensuite](#ce-qui-vient-ensuite). AREA n'en dépend pas, et tout autre outil peut s'appuyer sur le registre.
 
@@ -114,7 +115,7 @@ L'auteur développe area-core, annoncé dans [Ce qui vient ensuite](#ce-qui-vien
 ```
 spec/          La spec : manifeste, conventions, fondations, piliers, Minimum Viable Tracking
 registry/      La spec en version lisible par une machine (YAML)
-scripts/       Le script qui valide le registre
+package/       Le package npm area-framework : le registre en JSON, ses types TypeScript et son validateur
 site/          Le site, un export statique de la spec publié sur GitHub Pages
 references/    Les repères qui ne font pas partie de la spec, comme les benchmarks
 ```
@@ -133,6 +134,6 @@ AREA ne dépend d'aucune stack, mais son outillage commence par React Native et 
 
 - **Le texte** d'AREA (`spec/`, `references/`, ce README) est publié sous licence [CC BY 4.0](LICENSE). Vous pouvez le reprendre, l'adapter et l'utiliser commercialement, à condition de citer la source et d'indiquer vos modifications.
 - **Le registre** (`registry/`) est publié sous licence [CC0 1.0](registry/LICENSE) : les noms d'events, de propriétés et de KPI se reprennent dans votre code et vos plans de tracking sans aucune condition.
-- **Le script** (`scripts/`) et **le code du site** (`site/`) sont publiés sous licence [Apache 2.0](scripts/LICENSE).
+- **Le code du package** (`package/`) et **le code du site** (`site/`) sont publiés sous licence [Apache 2.0](package/LICENSE). Les données du registre que le package contient restent sous CC0 1.0.
 
 > AREA Framework, Kevin Tersigni, igniters — https://github.com/igniters-studio/area-framework
