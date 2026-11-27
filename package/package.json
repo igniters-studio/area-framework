@@ -30,7 +30,9 @@
     "./registry.json": "./dist/registry.json",
     "./package.json": "./package.json"
   },
-  "bin": "./dist/cli.js",
+  "bin": {
+    "area-framework": "dist/cli.js"
+  },
   "files": [
     "dist",
     "LICENSE",
